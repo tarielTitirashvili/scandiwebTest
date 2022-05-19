@@ -11,18 +11,11 @@ export class App extends React.Component {
 
     }
   }
-  componentDidMount = async ()=>{
+  async componentDidMount (){
     const {loading, data, error, partial, networkStatus} = await client.query({
       query: GET_CURRENCIES
     })
-    console.log(loading, data, error, partial, networkStatus)   
-  }
-  componentDidMount = async ()=>{
-    const {loading, data, error, partial, networkStatus} = await client.query({
-      query: GET_CATEGORIES
-    })
-    console.log(loading, data, error, partial, networkStatus)   
-  }
+  } 
   render(){ 
     return (
       <div className="App">
