@@ -1,12 +1,12 @@
 import React from 'react';
 import { routes } from '../../../routes';
 import {
-  Navigate, Route, Routes, useHistory, useLocation,
+  Navigate, Route, Routes
 } from 'react-router-dom';
 import Category from '../../pages/category';
 import styled from 'styled-components'
 import Header from '../../ui/organisms/header';
-import { GET_CATEGORIES } from '../../../query';
+import { GET_CATEGORIES, GET_CURRENCIES } from '../../../query';
 import { client } from './../../../';
 
 const AppContainer = styled.div`
@@ -19,12 +19,13 @@ export class MainLayout extends React.Component {
     super(props)
     this.state = {
       name: '',
+      currency: {},
+      currencies: [],
       categories: []
     }
     this.onClick=this.onClick.bind(this)
   }
   onClick(name){
-    console.log(name)
     this.setState(({
       name: name
     }),console.log(this.state.name))
@@ -40,8 +41,20 @@ export class MainLayout extends React.Component {
       }
     ), ()=>console.log(this.state.categories, this.state.name))
   }
+  getCurrencies = async()=>{
+    const {data} = await client.query({
+      query: GET_CURRENCIES
+    })
+    this.setState(({
+      currencies: data.currencies,
+      currency: data.currencies[0],
+    }),)
+    
+  }
   componentDidMount(){
     this.getDate()
+    this.getCurrencies()
+    console.log(this.state.currencies)
   }
 
   render(){
@@ -51,10 +64,12 @@ export class MainLayout extends React.Component {
           name = { this.state.name } 
           categories = { this.state.categories } 
           onClick = { this.onClick }
+          currencies = {this.state.currencies}
+          currency = {this.state.currency}
         />
         <Routes>
           <Route 
-            path='/category' 
+            path='/category/:name' 
             element = {<Category name={this.state.name} />} 
           />
           { routes.map((route) => {
@@ -72,12 +87,12 @@ export class MainLayout extends React.Component {
               <Route 
                 key={ route.path } 
                 path={ route.path } 
-                element = {route.component} 
+                element = {<route.component />} 
               />
             ));
             return result;
           }) }
-          <Route path='/' element = { <Navigate replace to='/category' /> } />
+          <Route path='/' element = { <Navigate replace to={`/category${'/'+this.state.name}`} /> } />
           <Route path='*' element = { <Navigate replace to='/error404' /> } />
         </Routes>
       </AppContainer>

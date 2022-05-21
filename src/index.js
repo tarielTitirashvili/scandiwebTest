@@ -17,6 +17,7 @@ const Global = createGlobalStyle`
 *{
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }`
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

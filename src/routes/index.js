@@ -6,16 +6,16 @@ export const routes = [
   {
     path: '/category',
     title: 'categories',
-    component: <Category/>,
+    component: Category,
   },
   {
     path: '/product/:id',
     title: 'product',
-    component: <Product/>,
+    component: Product,
   },
   {
     path: '/cart',
     title: 'createNewPassword',
-    component: <Cart/>,
+    component: Cart,
   },
 ];

@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import Logo from '../../atoms/logo';
 import FlexContainer from '../../styles/flexContainer';
 import HeaderContainer from '../../styles/headerContainer';
-import NavTitle from './../../styles/navTitles/index';
+import Title from '../../styles/titles/index';
 import SelectedNavTitleStyle from '../../styles/selectedNavTitleStyle'
+import { NavLink } from 'react-router-dom';
+import EmptyCart from '../../../../assets/EmptyCart.svg'
+import Bag from '../../../../assets/Group.svg'
+import Currency from '../currencies';
 
 export default class Header extends Component {
 
@@ -12,28 +16,46 @@ export default class Header extends Component {
       <HeaderContainer>
         <FlexContainer align = {'center'} hight = {'5rem'}>
           {this.props.categories.map((category, index)=>this.props.name === category.name? 
-            <FlexContainer key = {index} display = {'inline'} align = {'center'} hight = {'5rem'}>
-              <NavTitle 
+            <NavLink 
+              key={index} 
+              style={{height: '100%'}} 
+              onClick={()=>this.props.onClick(category.name)}
+              to={`/category/${category.name}`}
+            >
+              <Title 
                 selected
                 onClick={()=>this.props.onClick(category.name)}
-              > 
+              >
                 {category.name} 
-              </NavTitle> 
+              </Title> 
               <SelectedNavTitleStyle />
-            </FlexContainer>
+            </NavLink> 
             : 
-            <FlexContainer key = {index} align = {'center'} hight = {'5rem'}>
-              <NavTitle 
+            <NavLink 
+              key={index} 
+              style={{height: '100%'}} 
+              to={`/category/${category.name}`} 
+              onClick={()=>this.props.onClick(category.name)}
+            >
+              <Title 
                 navTitle 
-                onClick={()=>this.props.onClick(category.name)}
               > 
                 {category.name} 
-              </NavTitle>
-            </FlexContainer>
+              </Title>
+            </NavLink>
           )}
         </FlexContainer>
-        <FlexContainer align = {'center'} margin={'9px 0 0 0'} justify={'center'} ><Logo /></FlexContainer>
-        <h1>cart</h1>
+        <FlexContainer 
+          align = {'center'} 
+          margin={'9px 0 0 0'} 
+          justify={'center'} 
+        >
+          <Logo src={Bag} alt = 'Bag'/>
+        </FlexContainer>
+        <FlexContainer align={'center'} justify={'right'}>
+          <Currency currency = {this.props.currency} currencies = {this.props.currencies} />
+          <Logo src={EmptyCart} alt = 'EmptyCart' />
+        </FlexContainer>
       </HeaderContainer>
     )
   }
