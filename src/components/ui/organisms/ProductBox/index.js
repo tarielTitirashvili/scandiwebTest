@@ -4,9 +4,30 @@ import { Text } from '../../styles/titles'
 import { NavLink } from 'react-router-dom';
 
 export default class ProductBox extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      focused: false
+    }
+  }
+  onFocusStatusChange=()=>{
+    this.setState(prev=>{
+      return{
+      focused: !prev.focused
+    }})
+  }
   render() {
     return (
-      <NavLink to={`/product/${this.props.product.id}`} style={{padding:'16px', cursor: 'pointer'}}>
+      <NavLink 
+        onMouseEnter={this.onFocusStatusChange}
+        onMouseLeave={this.onFocusStatusChange}
+        to={`/product/${this.props.product.id}`} 
+        style={{
+          padding:'16px', 
+          cursor: 'pointer',
+          boxShadow: this.state.focused?'0px 4px 35px rgba(168, 172, 176, 0.19)':'none',
+        }}
+      >
         <FlexContainer 
           display={'block'} 
           justify={'left'} 

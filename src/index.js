@@ -17,7 +17,11 @@ const Global = createGlobalStyle`
   margin: 0;
   padding: 0;
   text-decoration: none;
-}`
+}
+a:visited {
+  color: #1D1F22;
+}
+`
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <ThemeProvider theme={theme}>
