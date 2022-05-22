@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Logo from '../../atoms/logo'
 import FlexContainer, { HoveredContainer} from '../../styles/flexContainer'
 import Title from '../../styles/titles'
 import Vector from '../../../../assets/Vector.svg'
@@ -18,7 +17,6 @@ export default class Currency extends Component {
     }))
   }
   render() {
-    console.log(this.state.isOpen)
     return (
       <FlexContainer
         align = {'center'}
@@ -34,18 +32,33 @@ export default class Currency extends Component {
           <Title
             margin = {'0 10px 0 0'} 
             size = {'1.125rem'}
+            weight={'500'}
           >
             {this.props.currency.symbol}
           </Title>
-          <Logo src={Vector} alt = {'vector'}/>
+          <img 
+            src={Vector} 
+            alt = {'vector'} 
+            style={{transform: `${this.state.isOpen?'rotateZ(0deg)':'rotateZ(180deg)'}`}} 
+          />
         </FlexContainer>
-        <CurrenciesContainer display = {this.state.isOpen?'none':'inline'} height = {`${45*this.props.currencies.length}px`} opened = {true}>
+        <CurrenciesContainer 
+          display = {this.state.isOpen?'none':'inline'} 
+          height = {`${45*this.props.currencies.length}px`} 
+          opened = {true}
+        >
           {
             this.props.currencies.map((currency)=>{
               return<HoveredContainer 
                 key={`${currency.symbol}${currency.label}`}
+                onClick = {()=>{this.props.onChangeCurrency(currency)
+                  this.onCurrencyClick()}}
               >
-                <Title weight = {'500'} margin={'0'} size = {'1.125rem'}>
+                <Title 
+                  weight = {'500'} 
+                  margin={'0'} 
+                  size = {'1.125rem'}
+                >
                  {`${currency.symbol} ${currency.label}`}
                 </Title>
               </HoveredContainer>

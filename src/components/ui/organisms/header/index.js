@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Logo from '../../atoms/logo';
 import FlexContainer from '../../styles/flexContainer';
 import HeaderContainer from '../../styles/headerContainer';
 import Title from '../../styles/titles/index';
@@ -50,11 +49,15 @@ export default class Header extends Component {
           margin={'9px 0 0 0'} 
           justify={'center'} 
         >
-          <Logo src={Bag} alt = 'Bag'/>
+          <img src={Bag} alt = 'Bag'/>
         </FlexContainer>
         <FlexContainer align={'center'} justify={'right'}>
-          <Currency currency = {this.props.currency} currencies = {this.props.currencies} />
-          <Logo src={EmptyCart} alt = 'EmptyCart' />
+          <Currency 
+            currency = {this.props.currency} 
+            currencies = {this.props.currencies} 
+            onChangeCurrency = {this.props.onChangeCurrency}
+          />
+          <img src={EmptyCart} alt = 'EmptyCart' />
         </FlexContainer>
       </HeaderContainer>
     )

@@ -26,7 +26,8 @@ padding: 8px 0 8px 0;
 width: 114px;
 justify-content: center;
 align-items: center;
-height: 45px;
+cursor: pointer;
+height: 29px;
 &:hover {
   animation: ${openCurrencies} 1s;
   animation-fill-mode: forwards;

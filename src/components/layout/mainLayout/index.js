@@ -24,11 +24,17 @@ export class MainLayout extends React.Component {
       categories: []
     }
     this.onClick=this.onClick.bind(this)
+    this.onChangeCurrency = this.onChangeCurrency.bind(this)
   }
   onClick(name){
     this.setState(({
       name: name
-    }),console.log(this.state.name))
+    }))
+  }
+  onChangeCurrency(newCurrency){
+    this.setState(({
+      currency: newCurrency
+    }))
   }
   getDate = async () => {
     const {data} = await client.query({
@@ -39,7 +45,7 @@ export class MainLayout extends React.Component {
         name: data.categories[0].name,
         categories: data.categories
       }
-    ), ()=>console.log(this.state.categories, this.state.name))
+    ))
   }
   getCurrencies = async()=>{
     const {data} = await client.query({
@@ -48,19 +54,20 @@ export class MainLayout extends React.Component {
     this.setState(({
       currencies: data.currencies,
       currency: data.currencies[0],
-    }),)
+    }))
     
   }
   componentDidMount(){
     this.getDate()
     this.getCurrencies()
-    console.log(this.state.currencies)
   }
-
   render(){
+    console.log(window.history)
+    console.log(window.location.search)
     return(
       <AppContainer>
         <Header 
+          onChangeCurrency = {this.onChangeCurrency}
           name = { this.state.name } 
           categories = { this.state.categories } 
           onClick = { this.onClick }

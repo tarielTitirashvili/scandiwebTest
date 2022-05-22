@@ -1,8 +1,7 @@
 import React from 'react';
-import './App.css';
 import { MainLayout } from './components/layout/mainLayout';
 import { client } from './index';
-import { GET_CATEGORIES, GET_CURRENCIES } from './query';
+import { GET_CURRENCIES } from './query';
 
 export class App extends React.Component {
   constructor(props){
@@ -18,9 +17,9 @@ export class App extends React.Component {
   } 
   render(){ 
     return (
-      <div className="App">
+      <>
         <MainLayout />
-      </div>
+      </>
     )
   }
 }
