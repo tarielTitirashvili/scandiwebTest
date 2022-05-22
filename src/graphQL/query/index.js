@@ -34,3 +34,21 @@ query{
   }
 }
 `
+export const GET_PRODUCTS_BY_CATEGORY = gql`
+  query($CategoryInput: CategoryInput){
+    category(input: $CategoryInput){
+      name
+      products{
+        id, 
+        name, 
+        category, 
+        inStock, 
+        description,
+        brand, 
+        gallery, 
+        prices{currency{label, symbol}, amount}
+        attributes{id,name,type,items{id, value, displayValue}}
+      }
+    }
+  }
+`

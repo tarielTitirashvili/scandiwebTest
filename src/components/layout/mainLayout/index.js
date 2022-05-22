@@ -1,19 +1,19 @@
 import React from 'react';
-import { routes } from '../../../routes';
 import {
   Navigate, Route, Routes
 } from 'react-router-dom';
 import Category from '../../pages/category';
 import styled from 'styled-components'
 import Header from '../../ui/organisms/header';
-import { GET_CATEGORIES, GET_CURRENCIES } from '../../../query';
+import { GET_CATEGORIES, GET_CURRENCIES } from '../../../graphQL/query';
 import { client } from './../../../';
+import Product from '../../pages/product';
+import Cart from '../../pages/cart';
 
 const AppContainer = styled.div`
 padding: 0 101px 0 101px;
 width: calc(100vw-202px);
 `
-
 export class MainLayout extends React.Component {
   constructor(props){
     super(props)
@@ -21,7 +21,7 @@ export class MainLayout extends React.Component {
       name: '',
       currency: {},
       currencies: [],
-      categories: []
+      categories: [],
     }
     this.onClick=this.onClick.bind(this)
     this.onChangeCurrency = this.onChangeCurrency.bind(this)
@@ -47,6 +47,7 @@ export class MainLayout extends React.Component {
       }
     ))
   }
+
   getCurrencies = async()=>{
     const {data} = await client.query({
       query: GET_CURRENCIES
@@ -55,15 +56,14 @@ export class MainLayout extends React.Component {
       currencies: data.currencies,
       currency: data.currencies[0],
     }))
-    
   }
   componentDidMount(){
     this.getDate()
     this.getCurrencies()
   }
   render(){
-    console.log(window.history)
-    console.log(window.location.search)
+    // console.log(window.history)
+    // console.log(window.location.search)
     return(
       <AppContainer>
         <Header 
@@ -77,28 +77,16 @@ export class MainLayout extends React.Component {
         <Routes>
           <Route 
             path='/category/:name' 
-            element = {<Category name={this.state.name} />} 
+            element = {<Category name={this.state.name} currency={this.state.currency} />} 
           />
-          { routes.map((route) => {
-            const result = [];
-            if (route.children) {
-              result.push(...route.children.map((child) => (
-                <Route 
-                  key={ child.path } 
-                  path={ child.path } 
-                  element = {child.component}
-                />
-              )));
-            }
-            result.push((
-              <Route 
-                key={ route.path } 
-                path={ route.path } 
-                element = {<route.component />} 
-              />
-            ));
-            return result;
-          }) }
+          <Route 
+            path='/product/:id' 
+            element = {<Product name={this.state.name} currency={this.state.currency}/>} 
+          />
+          <Route 
+            path='/cart' 
+            element = {<Cart name={this.state.name} currency={this.state.currency} />} 
+          />
           <Route path='/' element = { <Navigate replace to={`/category${'/'+this.state.name}`} /> } />
           <Route path='*' element = { <Navigate replace to='/error404' /> } />
         </Routes>
