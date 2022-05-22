@@ -10,7 +10,6 @@ align-items: ${props => props.align || 'center'};
 justify-content: ${props => props.justify || 'center'};
 height:${props=>props.height || '0'};
 position: ${props=> props.position || 'absolute'};
-
 }
 `
 export default CurrenciesContainer

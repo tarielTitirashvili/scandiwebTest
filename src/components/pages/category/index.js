@@ -4,8 +4,27 @@ import FlexContainer from "../../ui/styles/flexContainer";
 import Title from "../../ui/styles/titles";
 import { client } from './../../../index';
 import ProductBox from './../../ui/organisms/ProductBox/index';
+import styled from 'styled-components';
 
-export const SelectedCategoryProvider = React.createContext()
+const ProductsContainer = styled.div`
+display: ${props=>props.display || 'grid'};
+grid-template-columns:${props=> props.columns || 'minmax(250px, 386px) minmax(250px, 386px) minmax(250px, 386px)'};
+grid-template-rows:${props=> props.columns || '444x 444px'};
+grid-auto-flow: row;
+column-gap: 40px;
+@media screen and (max-width: 950px){
+  grid-template-columns:${props=> props.columns || 'minmax(250px, 386px) minmax(250px, 386px)'};
+  grid-auto-flow: row;
+}
+@media screen and (max-width: 660px){
+  grid-template-columns:${props=> props.columns || 'minmax(250px, 386px)'};
+  grid-auto-flow: row;
+}
+@media screen and (min-width: 1441px){
+  grid-template-columns:${props=> props.columns || 'minmax(250px, 386px) minmax(250px, 386px) minmax(250px, 386px) minmax(250px, 386px)'};
+  grid-auto-flow: row;
+}
+`
 
 export default class Category extends Component{
   constructor(props){
@@ -35,16 +54,25 @@ export default class Category extends Component{
   render(){
     return(
       <>
-      <FlexContainer>
-        <Title size = {'42px'} margin={'80px 0 87px 0'}>
-          {this.props.name}
-        </Title>
-      </FlexContainer>
-      {
-        this.state.products.map((product)=>{
-          return<ProductBox key={product.id} product = {product} />
-        })
-      }
+        <FlexContainer zIndex={'-1'}>
+          <Title 
+            size = {'42px'} 
+            margin={'80px 0 103px 0'}
+          >
+            {this.props.name}
+          </Title>
+        </FlexContainer>
+        <ProductsContainer>
+          {
+            this.state.products.map((product)=>{
+              return<ProductBox 
+                key={product.id} 
+                product = {product} 
+                currency = {this.props.currency}
+              />
+            })
+          }
+        </ProductsContainer>
       </>
     )
   }

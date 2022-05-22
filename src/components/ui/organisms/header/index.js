@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import FlexContainer from '../../styles/flexContainer';
-import HeaderContainer from '../../styles/headerContainer';
-import Title from '../../styles/titles/index';
-import SelectedNavTitleStyle from '../../styles/selectedNavTitleStyle'
-import { NavLink } from 'react-router-dom';
 import EmptyCart from '../../../../assets/EmptyCart.svg'
 import Bag from '../../../../assets/Group.svg'
-import Currency from '../currencies';
+import FlexContainer from '../../styles/flexContainer';
+import Title from '../../styles/titles';
+import HeaderContainer from './../../styles/headerContainer/index';
+import SelectedNavTitleStyle from './../../styles/selectedNavTitleStyle/index';
+import Currency from './currencies/index';
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default class Header extends Component {
 

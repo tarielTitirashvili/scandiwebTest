@@ -16,8 +16,11 @@ flex-direction: ${props => props.direction || 'row'};
 align-items: ${props => props.align || 'stretch'};
 justify-content: ${props => props.justify || 'stretch'};
 height:${props=>props.height || '100%'};
+width:${props=>props.width || ''};
 cursor:${props=> props.cursor || 'default'};
 position: ${props=> props.position || 'relative'};
+flex-wrap: wrap;
+z-index: ${props=>props.zIndex || '1'}
 `
 
 export const HoveredContainer = styled.div`

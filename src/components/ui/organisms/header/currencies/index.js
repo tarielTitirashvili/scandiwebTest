@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import FlexContainer, { HoveredContainer} from '../../styles/flexContainer'
-import Title from '../../styles/titles'
-import Vector from '../../../../assets/Vector.svg'
-import CurrenciesContainer from '../../styles/currenciesContainer/index'
+import Vector from '../../../../../assets/Vector.svg'
+import FlexContainer, { HoveredContainer } from '../../../styles/flexContainer'
+import Title from '../../../styles/titles'
+import CurrenciesContainer from './../../../styles/currenciesContainer/index';
 
 export default class Currency extends Component {
   constructor(props){

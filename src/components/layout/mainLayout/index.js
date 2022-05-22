@@ -13,6 +13,15 @@ import Cart from '../../pages/cart';
 const AppContainer = styled.div`
 padding: 0 101px 0 101px;
 width: calc(100vw-202px);
+@media screen and (max-width: 660px){
+  padding: 0 50px 0 50px;
+}
+@media screen and (max-width: 425px){
+  padding: 0 20px 0 20px;
+}
+@media screen and (max-width: 300px){
+  padding: 0 5px 0 5px;
+}
 `
 export class MainLayout extends React.Component {
   constructor(props){
