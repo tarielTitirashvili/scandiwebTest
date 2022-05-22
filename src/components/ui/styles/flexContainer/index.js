@@ -18,7 +18,7 @@ justify-content: ${props => props.justify || 'stretch'};
 height:${props=>props.height || '100%'};
 width:${props=>props.width || ''};
 cursor:${props=> props.cursor || 'default'};
-position: ${props=> props.position || 'relative'};
+position: ${props=> props.position || 'static'};
 flex-wrap: wrap;
 z-index: ${props=>props.zIndex || '1'}
 `

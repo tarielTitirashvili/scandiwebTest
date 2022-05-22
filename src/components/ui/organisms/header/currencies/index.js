@@ -21,6 +21,7 @@ export default class Currency extends Component {
       <FlexContainer
         align = {'center'}
         hight = {'80px'}
+        position = {'relative'}
       >
         <FlexContainer
           onClick={()=>{this.onCurrencyClick()}}

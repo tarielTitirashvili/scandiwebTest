@@ -40,4 +40,5 @@ font-size: ${props=> props.size || '1rem'};
 line-height: 120%;
 font-weight: ${props=>props.weight || props.theme.colors.text};
 cursor: pointer;
+position: ${props=>props.position || 'static'}
 `

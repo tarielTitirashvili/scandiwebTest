@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FlexContainer from '../../styles/flexContainer'
 import { Text } from '../../styles/titles'
 import { NavLink } from 'react-router-dom';
+import AddToCartButton from '../../atoms/addToCartButton';
 
 export default class ProductBox extends Component {
   constructor(props){
@@ -40,10 +41,12 @@ export default class ProductBox extends Component {
           />
         </FlexContainer>
         <Text 
+          position={'relative'}
           weight={'300'} 
           fontSize={'1.125rem'} 
           margin={'24px 0 0 0'}
         >
+          { this.state.focused? <AddToCartButton/>:''}
           {this.props.product.name}
         </Text>
         {
@@ -55,9 +58,9 @@ export default class ProductBox extends Component {
               key={currency.currency.symbol} 
               weight={'500'} 
               fontSize={'1.125rem'} 
-              margin={'0 0 16px 0'}
+              margin={'0'}
             >
-            {`${currency.currency.symbol} ${currency.amount}`}
+            {`${currency.currency.symbol}${currency.amount}`}
             </Text>
             }
           })
