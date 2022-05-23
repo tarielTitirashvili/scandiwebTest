@@ -8,15 +8,15 @@ import styled from 'styled-components';
 
 const ProductsContainer = styled.div`
 display: ${props=>props.display || 'grid'};
-grid-template-columns:${props=> props.columns || 'minmax(250px, 386px) minmax(250px, 386px) minmax(250px, 386px)'};
+grid-template-columns:${props=> props.columns || 'minmax(280px, 386px) minmax(280px, 386px) minmax(280px, 386px)'};
 grid-template-rows:${props=> props.columns || '444x 444px'};
 grid-auto-flow: row;
 column-gap: 40px;
-@media screen and (max-width: 950px){
-  grid-template-columns:${props=> props.columns || 'minmax(250px, 386px) minmax(250px, 386px)'};
+@media screen and (max-width: 1040px){
+  grid-template-columns:${props=> props.columns || 'minmax(280px, 386px) minmax(280px, 386px)'};
   grid-auto-flow: row;
 }
-@media screen and (max-width: 660px){
+@media screen and (max-width: 719px){
   grid-template-columns:${props=> props.columns || 'minmax(250px, 386px)'};
   grid-auto-flow: row;
 }
@@ -41,7 +41,6 @@ export default class Category extends Component{
           CategoryInput: {title: this.props.name},
         },
     });
-    console.log(data.category.products, loading)
     this.setState(({
       products: data.category.products
     }))
@@ -58,6 +57,7 @@ export default class Category extends Component{
           <Title 
             size = {'42px'} 
             margin={'80px 0 103px 0'}
+            weight={'400'}
           >
             {this.props.name}
           </Title>
@@ -65,7 +65,7 @@ export default class Category extends Component{
         <ProductsContainer>
           {
             this.state.products.map((product)=>{
-              return<ProductBox 
+                return<ProductBox 
                 key={product.id} 
                 product = {product} 
                 currency = {this.props.currency}

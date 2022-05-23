@@ -18,7 +18,16 @@ const Global = createGlobalStyle`
   padding: 0;
   text-decoration: none;
 }
+a:link {
+  color: #1D1F22;
+}
 a:visited {
+  color: #1D1F22;
+}
+a:hover {
+  color: #1D1F22;
+}
+a:active {
   color: #1D1F22;
 }
 `

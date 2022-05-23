@@ -8,18 +8,21 @@ export default class ProductBox extends Component {
   constructor(props){
     super(props)
     this.state = {
-      focused: false
+      focused: false,
     }
+    this.cartPosRef = React.createRef()
   }
   onFocusStatusChange=()=>{
     this.setState(prev=>{
       return{
       focused: !prev.focused
     }})
+    console.log(this.cartPosRef.current.offsetWidth-200)
   }
   render() {
     return (
       <NavLink 
+        ref={this.cartPosRef}
         onMouseEnter={this.onFocusStatusChange}
         onMouseLeave={this.onFocusStatusChange}
         to={`/product/${this.props.product.id}`} 
@@ -46,7 +49,7 @@ export default class ProductBox extends Component {
           fontSize={'1.125rem'} 
           margin={'24px 0 0 0'}
         >
-          { this.state.focused? <AddToCartButton/>:''}
+          { this.state.focused? <AddToCartButton left={`${this.cartPosRef.current.offsetWidth-98}px`} />:''}
           {this.props.product.name}
         </Text>
         {
@@ -62,7 +65,7 @@ export default class ProductBox extends Component {
             >
             {`${currency.currency.symbol}${currency.amount}`}
             </Text>
-            }
+            }else {return ''}
           })
         }
       </NavLink>
