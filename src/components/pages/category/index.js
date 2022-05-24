@@ -34,6 +34,7 @@ export default class Category extends Component{
       products: [],
     }
   }
+
   getProductsByCategory = async () => {
     const {data, loading} = await client.query({
         query: GET_PRODUCTS_BY_CATEGORY,

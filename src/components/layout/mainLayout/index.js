@@ -32,15 +32,13 @@ export class MainLayout extends React.Component {
       currencies: [],
       categories: [],
     }
-    this.onClick=this.onClick.bind(this)
-    this.onChangeCurrency = this.onChangeCurrency.bind(this)
   }
-  onClick(name){
+  onClick=(name)=>{
     this.setState(({
       name: name
     }))
   }
-  onChangeCurrency(newCurrency){
+  onChangeCurrency=(newCurrency)=>{
     this.setState(({
       currency: newCurrency
     }))
@@ -51,12 +49,10 @@ export class MainLayout extends React.Component {
     })
     this.setState((
       {
-        name: data.categories[0].name,
         categories: data.categories
       }
     ))
   }
-
   getCurrencies = async()=>{
     const {data} = await client.query({
       query: GET_CURRENCIES
@@ -66,13 +62,32 @@ export class MainLayout extends React.Component {
       currency: data.currencies[0],
     }))
   }
+  getParams(){
+    const params = new URLSearchParams(window.location.search)
+    const pathArray = window.location.pathname.split('/')
+    if(pathArray[1]==="category"&&this.state.name!==pathArray[2]){
+      this.setState(({
+        name: pathArray[2]
+      }))
+    }
+    console.log(params.get('tariel'))
+    console.log(window.location.pathname.split('/'))
+  }
   componentDidMount(){
+    this.getParams()
     this.getDate()
     this.getCurrencies()
   }
+  componentDidUpdate(prevProps, prevState){
+    console.log(prevState.name!==this.state.name,prevState.name)
+    if(prevState.name!==this.state.name){
+      this.getParams()
+      this.getDate()
+    }
+  }
   render(){
-    // console.log(window.history)
-    // console.log(window.location.search)
+
+
     return(
       <AppContainer>
         <Header 
@@ -86,11 +101,13 @@ export class MainLayout extends React.Component {
         <Routes>
           <Route 
             path='/category/:name' 
-            element = {<Category name={this.state.name} currency={this.state.currency} />} 
+            element = {<Category name={this.state.name} currency={this.state.currency}/>} 
           />
           <Route 
             path='/product/:id' 
-            element = {<Product name={this.state.name} currency={this.state.currency}/>} 
+            element = {<Product 
+              // name={this.state.name} currency={this.state.currency}
+              />} 
           />
           <Route 
             path='/cart' 

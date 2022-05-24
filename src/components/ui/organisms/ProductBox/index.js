@@ -17,8 +17,8 @@ export default class ProductBox extends Component {
       return{
       focused: !prev.focused
     }})
-    console.log(this.cartPosRef.current.offsetWidth-200)
   }
+
   render() {
     return (
       <NavLink 
