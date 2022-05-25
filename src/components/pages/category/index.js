@@ -26,7 +26,7 @@ column-gap: 40px;
 }
 `
 
-export default class Category extends Component{
+class Category extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -50,6 +50,9 @@ export default class Category extends Component{
     if(prev.name!==this.props.name){
       this.getProductsByCategory()
     }
+  }
+  componentDidMount(){
+    this.getProductsByCategory()
   }
   render(){
     return(
@@ -78,3 +81,5 @@ export default class Category extends Component{
     )
   }
 }
+
+export default Category

@@ -52,3 +52,18 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
     }
   }
 `
+export const GRT_PRODUCT_BY_ID = gql`
+  query($id: String!){
+    product(id: $id){
+      id, 
+      name, 
+      category, 
+      inStock, 
+      description,
+      brand, 
+      gallery, 
+      prices{currency{label, symbol}, amount}
+      attributes{id,name,type,items{id, value, displayValue}}
+    }
+  }
+`

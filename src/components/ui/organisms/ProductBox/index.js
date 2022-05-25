@@ -25,7 +25,7 @@ export default class ProductBox extends Component {
         ref={this.cartPosRef}
         onMouseEnter={this.onFocusStatusChange}
         onMouseLeave={this.onFocusStatusChange}
-        to={`/product/${this.props.product.id}`} 
+        to={`/product/${this.props.product.id}?currency=${this.props.currency}`} 
         style={{
           padding:'16px', 
           cursor: 'pointer',
@@ -54,9 +54,7 @@ export default class ProductBox extends Component {
         </Text>
         {
           this.props.product.prices.map((currency)=>{
-            if(this.props.currency.label===currency.currency.label&&
-              this.props.currency.symbol===currency.currency.symbol
-              ){
+            if(this.props.currency===currency.currency.symbol){
             return<Text 
               key={currency.currency.symbol} 
               weight={'500'} 

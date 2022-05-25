@@ -9,6 +9,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 export default class Header extends Component {
+
   render() {
     return (
       <HeaderContainer>
@@ -18,7 +19,7 @@ export default class Header extends Component {
               key={index} 
               style={{height: '100%'}} 
               onClick={()=>this.props.onClick(category.name)}
-              to={`/category/${category.name}`}
+              to={`/category/${category.name}?currency=${this.props.currency}`}
             >
               <Title 
                 selected
@@ -32,7 +33,7 @@ export default class Header extends Component {
             <NavLink 
               key={index} 
               style={{height: '100%'}} 
-              to={`/category/${category.name}`} 
+              to={`/category/${category.name}?currency=${this.props.currency}`}
               onClick={()=>this.props.onClick(category.name)}
             >
               <Title 

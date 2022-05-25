@@ -11,11 +11,17 @@ export default class Currency extends Component {
       isOpen: true
     }
   }
+  onClickHandler(symbol){
+    this.onCurrencyClick()
+    this.props.onChangeCurrency(symbol)
+    window.history.replaceState(null, null, `http://${window.location.host}${window.location.pathname}?currency=${symbol}`)
+  }
   onCurrencyClick(){
     this.setState(prev=>({
         isOpen: !prev.isOpen
     }))
   }
+  
   render() {
     return (
       <FlexContainer
@@ -35,7 +41,7 @@ export default class Currency extends Component {
             size = {'1.125rem'}
             weight={'500'}
           >
-            {this.props.currency.symbol}
+            {this.props.currency}
           </Title>
           <img 
             src={Vector} 
@@ -52,8 +58,7 @@ export default class Currency extends Component {
             this.props.currencies.map((currency)=>{
               return<HoveredContainer 
                 key={`${currency.symbol}${currency.label}`}
-                onClick = {()=>{this.props.onChangeCurrency(currency)
-                  this.onCurrencyClick()}}
+                onClick = {()=>this.onClickHandler(currency.symbol)}
               >
                 <Title 
                   weight = {'500'} 

@@ -28,7 +28,7 @@ export class MainLayout extends React.Component {
     super(props)
     this.state = {
       name: '',
-      currency: {},
+      currency: '',
       currencies: [],
       categories: [],
     }
@@ -57,33 +57,36 @@ export class MainLayout extends React.Component {
     const {data} = await client.query({
       query: GET_CURRENCIES
     })
-    this.setState(({
-      currencies: data.currencies,
-      currency: data.currencies[0],
-    }))
+    if(!this.state.currency){
+      this.setState(({
+        currencies: data.currencies,
+        currency: data.currencies[0].symbol,
+      }))
+    }else{
+      this.setState(({
+        currencies: data.currencies,
+      }))
+    }
+
   }
   getParams(){
-    const params = new URLSearchParams(window.location.search)
+    const urlCurrency = new URLSearchParams(window.location.search).get('currency')
     const pathArray = window.location.pathname.split('/')
     if(pathArray[1]==="category"&&this.state.name!==pathArray[2]){
       this.setState(({
         name: pathArray[2]
       }))
     }
-    console.log(params.get('tariel'))
-    console.log(window.location.pathname.split('/'))
+    if(urlCurrency!==null){
+      this.setState(({
+        currency: urlCurrency
+      }))
+    }
   }
   componentDidMount(){
     this.getParams()
     this.getDate()
     this.getCurrencies()
-  }
-  componentDidUpdate(prevProps, prevState){
-    console.log(prevState.name!==this.state.name,prevState.name)
-    if(prevState.name!==this.state.name){
-      this.getParams()
-      this.getDate()
-    }
   }
   render(){
 
@@ -106,7 +109,7 @@ export class MainLayout extends React.Component {
           <Route 
             path='/product/:id' 
             element = {<Product 
-              // name={this.state.name} currency={this.state.currency}
+              name={this.state.name} currency={this.state.currency}
               />} 
           />
           <Route 
