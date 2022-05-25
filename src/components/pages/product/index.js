@@ -25,7 +25,6 @@ export default class Product extends Component {
       product: data.product,
       loading: loading
     }))
-    console.log(data.product, loading, error)
   };  
   componentDidMount(){
     this.getProductsById()
@@ -33,9 +32,9 @@ export default class Product extends Component {
   render() {
     if(this.state.loading)return <h1>Loading...</h1>
     return (
-      <FlexContainer>
+      <FlexContainer margin={'33.4px 0 0 0'}>
         <ImagesPlayer gallery = {this.state.product.gallery}/>
-        <ProductInfo />
+        <ProductInfo product = {this.state.product}/>
       </FlexContainer>
     )
   }

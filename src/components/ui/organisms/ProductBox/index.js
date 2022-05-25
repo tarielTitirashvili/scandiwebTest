@@ -51,7 +51,7 @@ export default class ProductBox extends Component {
           margin={'24px 0 0 0'}
         >
           { this.state.focused? <AddToCartButton left={`${this.cartPosRef.current.offsetWidth-98}px`} />:''}
-          {this.props.product.name}
+          {`${this.props.product.brand} ${this.props.product.name}`}
         </Text>
         {
           this.props.product.prices.map((currency)=>{

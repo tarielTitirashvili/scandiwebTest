@@ -1,9 +1,29 @@
 import React, { Component } from 'react'
+import { SmallTitle } from '../../styles/titles'
+import styled from 'styled-components';
+import Attributes from '../../molecules/attributes';
+
+const ProductInfoContainer = styled.div`
+width: 292px;
+margin-bottom: 32.4px;
+`
 
 export default class ProductInfo extends Component {
   render() {
     return (
-      <div>ProductInfo</div>
+      <ProductInfoContainer>
+          <SmallTitle weight={600} size={'1.875rem'} lineHeight={'27px'} margin={'0'} cursor = {'auto'}>
+            {this.props.product.brand}
+          </SmallTitle>
+          <SmallTitle  size={'1.875rem'} lineHeight={'27px'} margin={'0'} cursor = {'auto'}>
+            {this.props.product.name}
+          </SmallTitle>
+          {
+            this.props.product.attributes.map(attribute=>{
+              return <Attributes key={attribute.id} attribute = {attribute}/>
+            })
+          }
+      </ProductInfoContainer>
     )
   }
 }
