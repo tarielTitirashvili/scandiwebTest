@@ -9,6 +9,20 @@ margin-bottom: 32.4px;
 `
 
 export default class ProductInfo extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      selectedAtr: []
+    }
+  }
+  pushSelectedAtr(selected){
+    this.setState(prev => ({
+      selectedAtr: [...prev.selectedAtr , selected]
+    }))
+  }
+  deleteSelectionAtr(){
+    
+  }
   render() {
     return (
       <ProductInfoContainer>
@@ -20,7 +34,7 @@ export default class ProductInfo extends Component {
           </SmallTitle>
           {
             this.props.product.attributes.map(attribute=>{
-              return <Attributes key={attribute.id} attribute = {attribute}/>
+              return <Attributes key={attribute.id} attribute = {attribute} selected={this.state.selectedAtr}/>
             })
           }
       </ProductInfoContainer>

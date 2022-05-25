@@ -5,11 +5,11 @@ import Title from '../../styles/titles'
 
 export default class Attributes extends Component {
   render() {
-    console.log(this.props.attribute.items)
+    console.log(this.props.attribute)
     return (
       <div>
         <Title weight={'700'} size={'1.125rem'} margin={'0'}>
-          {this.props.attribute.id}:
+          {this.props.attribute.name}:
         </Title>
         <FlexContainer>
           {

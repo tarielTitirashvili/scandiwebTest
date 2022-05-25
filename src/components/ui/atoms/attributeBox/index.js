@@ -13,7 +13,7 @@ border: ${props=>props.borderColor || '1px solid' + props.theme.colors.primary};
 
 export default class AttributeBox extends Component {
   render() {
-    console.log(this.props.item)
+    // console.log(this.props.item)
     return (
       <AttributeContainer>
         <Text>
