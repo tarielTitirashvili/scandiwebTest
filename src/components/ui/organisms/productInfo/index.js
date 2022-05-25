@@ -15,26 +15,50 @@ export default class ProductInfo extends Component {
       selectedAtr: []
     }
   }
-  pushSelectedAtr(selected){
-    this.setState(prev => ({
-      selectedAtr: [...prev.selectedAtr , selected]
-    }))
+  pushSelectedAtr=(name, value)=>{
+    let filteredSelectedAtr = undefined
+    if(this.state.selectedAtr.length!==0){
+      filteredSelectedAtr = this.state.selectedAtr.filter(selected=>selected.name!==name)
+    }
+    if(filteredSelectedAtr!==undefined){
+      this.setState(({
+        selectedAtr: [ ...filteredSelectedAtr , {name: name, value: value}]
+      }))
+    }else{
+      this.setState(({
+        selectedAtr: [ {name: name, value: value}]
+      }))
+    }
   }
-  deleteSelectionAtr(){
-    
-  }
+  
   render() {
     return (
       <ProductInfoContainer>
-          <SmallTitle weight={600} size={'1.875rem'} lineHeight={'27px'} margin={'0'} cursor = {'auto'}>
+          <SmallTitle 
+            weight={600} 
+            size={'1.875rem'} 
+            lineHeight={'27px'} 
+            margin={'0'} 
+            cursor = {'auto'}
+          >
             {this.props.product.brand}
           </SmallTitle>
-          <SmallTitle  size={'1.875rem'} lineHeight={'27px'} margin={'0'} cursor = {'auto'}>
+          <SmallTitle  
+            size={'1.875rem'} 
+            lineHeight={'27px'} 
+            margin={'0'} 
+            cursor = {'auto'}
+          >
             {this.props.product.name}
           </SmallTitle>
           {
             this.props.product.attributes.map(attribute=>{
-              return <Attributes key={attribute.id} attribute = {attribute} selected={this.state.selectedAtr}/>
+              return <Attributes 
+                key={attribute.id} 
+                attribute = {attribute} 
+                selected={this.state.selectedAtr} 
+                pushSelectedAtr={this.pushSelectedAtr}
+              />
             })
           }
       </ProductInfoContainer>

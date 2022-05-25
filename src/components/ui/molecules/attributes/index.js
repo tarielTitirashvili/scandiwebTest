@@ -5,20 +5,29 @@ import Title from '../../styles/titles'
 
 export default class Attributes extends Component {
   render() {
-    console.log(this.props.attribute)
+    // console.log(this.props.attribute)
     return (
-      <div>
-        <Title weight={'700'} size={'1.125rem'} margin={'0'}>
+      <>
+        <Title 
+          weight={'700'} 
+          size={'1.125rem'} 
+          margin={'0'}
+        >
           {this.props.attribute.name}:
         </Title>
         <FlexContainer>
           {
             this.props.attribute.items.map(item=>{
-              return <AttributeBox key={item.id} item={item} />
+              return <AttributeBox 
+                key={item.id} 
+                item={item} 
+                name= {this.props.attribute.name} 
+                pushSelectedAtr={this.props.pushSelectedAtr} 
+              />
             })
           }
         </FlexContainer>
-      </div>
+      </>
     )
   }
 }

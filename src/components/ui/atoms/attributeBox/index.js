@@ -13,9 +13,8 @@ border: ${props=>props.borderColor || '1px solid' + props.theme.colors.primary};
 
 export default class AttributeBox extends Component {
   render() {
-    // console.log(this.props.item)
     return (
-      <AttributeContainer>
+      <AttributeContainer onClick={()=>this.props.pushSelectedAtr(this.props.name, this.props.item.value)}>
         <Text>
           {this.props.item.value}
         </Text>
