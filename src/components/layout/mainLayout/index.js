@@ -67,7 +67,6 @@ export class MainLayout extends React.Component {
         currencies: data.currencies,
       }))
     }
-
   }
   getParams(){
     const urlCurrency = new URLSearchParams(window.location.search).get('currency')
@@ -104,7 +103,7 @@ export class MainLayout extends React.Component {
         <Routes>
           <Route 
             path='/category/:name' 
-            element = {<Category name={this.state.name} currency={this.state.currency}/>} 
+            element = {<Category onClick = { this.onClick } name={this.state.name} currency={this.state.currency}/>} 
           />
           <Route 
             path='/product/:id' 

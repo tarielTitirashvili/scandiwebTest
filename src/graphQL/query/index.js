@@ -52,7 +52,7 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
     }
   }
 `
-export const GRT_PRODUCT_BY_ID = gql`
+export const GET_PRODUCT_BY_ID = gql`
   query($id: String!){
     product(id: $id){
       id, 

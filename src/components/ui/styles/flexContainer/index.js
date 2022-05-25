@@ -19,6 +19,7 @@ height:${props=>props.height || '100%'};
 width:${props=>props.width || ''};
 cursor:${props=> props.cursor || 'default'};
 position: ${props=> props.position || 'static'};
+overflow: ${props=>props.overflow || 'hidden'};
 flex-wrap: wrap;
 z-index: ${props=>props.zIndex || '1'}
 `

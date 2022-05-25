@@ -70,6 +70,7 @@ class Category extends Component{
           {
             this.state.products.map((product)=>{
                 return<ProductBox 
+                onClick = { this.props.onClick }
                 key={product.id} 
                 product = {product} 
                 currency = {this.props.currency}

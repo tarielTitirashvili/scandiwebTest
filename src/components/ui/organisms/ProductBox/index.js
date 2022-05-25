@@ -31,6 +31,7 @@ export default class ProductBox extends Component {
           cursor: 'pointer',
           boxShadow: this.state.focused?'0px 4px 35px rgba(168, 172, 176, 0.19)':'none',
         }}
+        onClick={()=>this.props.onClick('')}
       >
         <FlexContainer 
           display={'block'} 
