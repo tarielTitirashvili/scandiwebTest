@@ -21,6 +21,7 @@ export default class Attributes extends Component {
                 key={item.id} 
                 item={item} 
                 name= {this.props.attribute.name} 
+                type= {this.props.attribute.type} 
                 selected={this.props.selected}
                 pushSelectedAtr={this.props.pushSelectedAtr} 
               />

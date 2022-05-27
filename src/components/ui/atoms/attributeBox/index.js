@@ -51,7 +51,7 @@ export default class AttributeBox extends Component {
       <>
         {
           this.selectedStatus()? 
-            this.props.name==="Color"?
+            this.props.type==="swatch"?
               <AttributeContainer 
                 selectedColorContainer 
                 onClick={()=>this.props.pushSelectedAtr(this.props.name, this.props.item.value)}
@@ -73,7 +73,7 @@ export default class AttributeBox extends Component {
                 </Text>
               </AttributeContainer>
           :
-            this.props.name==="Color"?
+            this.props.type==="swatch"?
               <AttributeContainer 
                 colorContainer 
                 onClick={()=>this.props.pushSelectedAtr(this.props.name, this.props.item.value)}
