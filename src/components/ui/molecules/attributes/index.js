@@ -5,7 +5,6 @@ import Title from '../../styles/titles'
 
 export default class Attributes extends Component {
   render() {
-    // console.log(this.props.attribute)
     return (
       <>
         <Title 
@@ -15,7 +14,7 @@ export default class Attributes extends Component {
         >
           {this.props.attribute.name}:
         </Title>
-        <FlexContainer>
+        <FlexContainer margin={'8px 0 24px 0'} height={'auto'}>
           {
             this.props.attribute.items.map(item=>{
               return <AttributeBox 

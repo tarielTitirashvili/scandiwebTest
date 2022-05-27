@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Attributes from '../../molecules/attributes';
 
 const ProductInfoContainer = styled.div`
-width: 292px;
+width: 320px;
 margin-bottom: 32.4px;
 `
 
@@ -38,7 +38,7 @@ export default class ProductInfo extends Component {
             weight={600} 
             size={'1.875rem'} 
             lineHeight={'27px'} 
-            margin={'0'} 
+            margin={'0 0 16px 0'} 
             cursor = {'auto'}
           >
             {this.props.product.brand}
@@ -46,7 +46,7 @@ export default class ProductInfo extends Component {
           <SmallTitle  
             size={'1.875rem'} 
             lineHeight={'27px'} 
-            margin={'0'} 
+            margin={'0 0 43px 0'} 
             cursor = {'auto'}
           >
             {this.props.product.name}

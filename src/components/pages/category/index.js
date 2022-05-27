@@ -6,10 +6,10 @@ import { client } from './../../../index';
 import ProductBox from './../../ui/organisms/ProductBox/index';
 import styled from 'styled-components';
 
-const ProductsContainer = styled.div`
+export const ProductsContainer = styled.div`
 display: ${props=>props.display || 'grid'};
 grid-template-columns:${props=> props.columns || 'minmax(280px, 386px) minmax(280px, 386px) minmax(280px, 386px)'};
-grid-template-rows:${props=> props.columns || '444x 444px'};
+grid-template-rows:${props=> props.rows || '444px 444px'};
 grid-auto-flow: row;
 column-gap: 40px;
 @media screen and (max-width: 1040px){
