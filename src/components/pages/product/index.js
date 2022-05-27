@@ -34,7 +34,7 @@ export default class Product extends Component {
     return (
       <FlexContainer margin={'33.4px 0 0 0'}>
         <ImagesPlayer gallery = {this.state.product.gallery}/>
-        <ProductInfo product = {this.state.product}/>
+        <ProductInfo product = {this.state.product} currency = {this.props.currency}/>
       </FlexContainer>
     )
   }

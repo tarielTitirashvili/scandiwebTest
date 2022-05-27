@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { SmallTitle } from '../../styles/titles'
-import styled from 'styled-components';
+import { SmallTitle, Text } from '../../styles/titles'
 import Attributes from '../../molecules/attributes';
+import ProductPrice from '../../atoms/productPrice';
+import CartButton from '../../styles/Button';
+import styled from 'styled-components';
 
 const ProductInfoContainer = styled.div`
 width: 320px;
 margin-bottom: 32.4px;
+margin-left: 100px;
 `
 
 export default class ProductInfo extends Component {
@@ -30,8 +33,12 @@ export default class ProductInfo extends Component {
       }))
     }
   }
-  
+  parseHTML(){
+    let parser = new DOMParser();
+    let htmlDoc = parser.parseFromString(this.props.product.description, 'text/html');
+  }
   render() {
+ 
     return (
       <ProductInfoContainer>
           <SmallTitle 
@@ -61,6 +68,18 @@ export default class ProductInfo extends Component {
               />
             })
           }
+          <ProductPrice 
+            currency = {this.props.currency}
+            prices = {this.props.product.prices}
+          />
+          <CartButton 
+            margin = {'0 0 40px 0'}
+          >
+            ADD TO CART
+          </CartButton>
+          <Text>
+            {this.props.product.description}
+          </Text>
       </ProductInfoContainer>
     )
   }
