@@ -18,7 +18,6 @@ export default class ProductBox extends Component {
       focused: !prev.focused
     }})
   }
-
   render() {
     return (
       <NavLink 
@@ -46,11 +45,14 @@ export default class ProductBox extends Component {
         </FlexContainer>
         <Text 
           position={'relative'}
+          onClick={(event)=>console.log(event)}
           weight={'300'} 
           fontSize={'1.125rem'} 
           margin={'24px 0 0 0'}
         >
-          { this.state.focused? <AddToCartButton left={`${this.cartPosRef.current.offsetWidth-98}px`} />:''}
+          { this.state.focused? <AddToCartButton 
+          product = {this.props.product}
+          left={`${this.cartPosRef.current.offsetWidth-98}px`} />:''}
           {`${this.props.product.brand} ${this.props.product.name}`}
         </Text>
         {

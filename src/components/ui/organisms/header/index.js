@@ -1,4 +1,3 @@
-import EmptyCart from '../../../../assets/EmptyCart.svg'
 import Bag from '../../../../assets/Group.svg'
 import FlexContainer from '../../styles/flexContainer';
 import Title from '../../styles/titles';
@@ -7,6 +6,7 @@ import SelectedNavTitleStyle from './../../styles/selectedNavTitleStyle/index';
 import Currency from './currencies/index';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import Cart from './cart';
 
 export default class Header extends Component {
 
@@ -57,7 +57,7 @@ export default class Header extends Component {
             currencies = {this.props.currencies} 
             onChangeCurrency = {this.props.onChangeCurrency}
           />
-          <img src={EmptyCart} alt = 'EmptyCart' />
+          <Cart />
         </FlexContainer>
       </HeaderContainer>
     )

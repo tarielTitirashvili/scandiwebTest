@@ -12,7 +12,6 @@ import Cart from '../../pages/cart';
 
 const AppContainer = styled.div`
 padding: 0 101px 0 101px;
-width: calc(100vw-202px);
 @media screen and (max-width: 660px){
   padding: 0 50px 0 50px;
 }

@@ -5,6 +5,7 @@ import ProductPrice from '../../atoms/productPrice';
 import CartButton from '../../styles/Button';
 import styled from 'styled-components';
 import { Interweave } from 'interweave';
+import WithOnAddToCart from '../../../hoc/withOnAddToCart';
 
 const ProductInfoContainer = styled.div`
 width: 320px;
@@ -12,7 +13,7 @@ margin-bottom: 32.4px;
 margin-left: 100px;
 `
 
-export default class ProductInfo extends Component {
+class ProductInfo extends Component {
   constructor(props){
     super(props)
     this.state={
@@ -108,7 +109,7 @@ export default class ProductInfo extends Component {
           />
           <CartButton 
             margin = {'0 0 40px 0'}
-            onClick={this.onAddToCart}
+            onClick={()=>this.props.onAddToCart(this.state.selectedAtr)}
           >
             ADD TO CART
           </CartButton>
@@ -119,3 +120,5 @@ export default class ProductInfo extends Component {
     )
   }
 }
+
+export default WithOnAddToCart(ProductInfo)

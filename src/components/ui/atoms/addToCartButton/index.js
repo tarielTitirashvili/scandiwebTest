@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EmptyCart from '../../../../assets/EmptyCartWhite.svg'
 import styled from 'styled-components';
+import WithOnAddToCart from '../../../hoc/withOnAddToCart';
 
 const StyledCircle = styled.div`
 position: absolute;
@@ -14,12 +15,22 @@ padding-top: 15.4px;
 padding-left: 14px;
 `
 
-export default class AddToCartButton extends Component {
+ class AddToCartButton extends Component {
+
   render() {
     return (
-      <StyledCircle left={this.props.left}>
+      <StyledCircle
+        id='AddToCartButton'
+        onClick={e=>{
+          e.preventDefault()
+          this.props.onAddToCart([this.props.product.attributes])
+        }} 
+        left={this.props.left}
+      >
         <img src={EmptyCart} alt={'cart'}/>
       </StyledCircle>
     )
   }
 }
+
+export default WithOnAddToCart(AddToCartButton)
