@@ -9,7 +9,18 @@ import { NavLink } from 'react-router-dom';
 import Cart from './cart';
 
 export default class Header extends Component {
-
+  constructor(props){
+    super(props)
+    this.state={
+      currenciesOpen: false,
+      cartOpen: false
+    }
+  }
+  onCurrencyClick=()=>{
+    this.setState(prev=>({
+      currenciesOpen: !prev.currenciesOpen
+    }))
+  }
   render() {
     return (
       <HeaderContainer>
@@ -53,6 +64,8 @@ export default class Header extends Component {
         </FlexContainer>
         <FlexContainer align={'center'} justify={'right'}>
           <Currency 
+            currenciesOpen = {this.state.currenciesOpen}
+            onCurrencyClick ={this.onCurrencyClick}
             currency = {this.props.currency} 
             currencies = {this.props.currencies} 
             onChangeCurrency = {this.props.onChangeCurrency}

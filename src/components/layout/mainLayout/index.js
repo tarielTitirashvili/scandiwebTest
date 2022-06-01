@@ -102,11 +102,13 @@ export class MainLayout extends React.Component {
         <Routes>
           <Route 
             path='/category/:name' 
-            element = {<Category 
+            element = {
+            <Category 
               onClick = { this.onClick } 
               name={this.state.name} 
-              currency={this.state.currency}/>
-            } 
+              currency={this.state.currency}
+            />
+            }
           />
           <Route 
             path='/product/:id' 

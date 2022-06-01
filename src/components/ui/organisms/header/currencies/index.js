@@ -5,23 +5,11 @@ import Title from '../../../styles/titles'
 import CurrenciesContainer from './../../../styles/currenciesContainer/index';
 
 export default class Currency extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      isOpen: true
-    }
-  }
   onClickHandler(symbol){
-    this.onCurrencyClick()
+    this.props.onCurrencyClick()
     this.props.onChangeCurrency(symbol)
     window.history.replaceState(null, null, `http://${window.location.host}${window.location.pathname}?currency=${symbol}`)
   }
-  onCurrencyClick(){
-    this.setState(prev=>({
-        isOpen: !prev.isOpen
-    }))
-  }
-  
   render() {
     return (
       <FlexContainer
@@ -30,7 +18,7 @@ export default class Currency extends Component {
         position = {'relative'}
       >
         <FlexContainer
-          onClick={()=>{this.onCurrencyClick()}}
+          onClick={()=>{this.props.onCurrencyClick()}}
           cursor={'pointer'}
           align = {'center'} 
           margin = {'0 22px 0 0'} 
@@ -46,11 +34,11 @@ export default class Currency extends Component {
           <img 
             src={Vector} 
             alt = {'vector'} 
-            style={{transform: `${this.state.isOpen?'rotateZ(0deg)':'rotateZ(180deg)'}`}} 
+            style={{transform: `${this.props.currenciesOpen?'rotateZ(180deg)':'rotateZ(0deg)'}`}} 
           />
         </FlexContainer>
         <CurrenciesContainer 
-          display = {this.state.isOpen?'none':'inline'} 
+          display = {this.props.currenciesOpen?'inline':'none'} 
           height = {`${45*this.props.currencies.length}px`} 
           opened = {true}
         >

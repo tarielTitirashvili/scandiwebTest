@@ -22,6 +22,7 @@ padding-left: 14px;
       <StyledCircle
         id='AddToCartButton'
         onClick={e=>{
+          e.stopPropagation()
           e.preventDefault()
           this.props.onAddToCart([this.props.product.attributes])
         }} 
