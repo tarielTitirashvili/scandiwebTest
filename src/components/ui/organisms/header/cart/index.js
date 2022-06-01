@@ -24,6 +24,7 @@ cursor: pointer;
 `
 const CartDropdownContainer = styled.div`
 position: absolute;
+padding: 32px 16px;
 right: 72px;
 width: 325px;
 max-height: 677px;
@@ -85,7 +86,6 @@ export default class Cart extends Component {
     }
   }
   render() {
-    console.log(window.innerHeight)
     return (
       <CartButtonCOntainer 
         onClick={this.props.onCartButtonClick}

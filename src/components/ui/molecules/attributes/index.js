@@ -5,16 +5,17 @@ import Title from '../../styles/titles'
 
 export default class Attributes extends Component {
   render() {
+    console.log(this.props.cartDropdown)
     return (
       <>
         <Title 
-          weight={'700'} 
-          size={'1.125rem'} 
+          weight={`${this.props.cartDropdown?'400':'700'}`} 
+          size={`${this.props.cartDropdown?'0.875rem':'1.125rem'}`} 
           margin={'0'}
         >
           {this.props.attribute.name}:
         </Title>
-        <FlexContainer margin={'8px 0 24px 0'} height={'auto'}>
+        <FlexContainer margin={`${this.props.cartDropdown?'8px 0':'8px 0 24px 0'}`} height={'auto'}>
           {
             this.props.attribute.items.map(item=>{
               return <AttributeBox 
@@ -24,6 +25,7 @@ export default class Attributes extends Component {
                 type= {this.props.attribute.type} 
                 selected={this.props.selected}
                 pushSelectedAtr={this.props.pushSelectedAtr} 
+                cartDropdown = {this.props.cartDropdown}
               />
             })
           }

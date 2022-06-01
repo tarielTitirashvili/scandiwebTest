@@ -38,7 +38,7 @@ export default class DropdownCart extends Component {
   render() {
     return (
       <div onClick={(e)=>e.stopPropagation()}>
-        <FlexContainer margin={'32px 16px'} justify={'left'} >
+        <FlexContainer margin={'0 0 32px 0'} justify={'left'} >
           <Text weight={'700'}  margin={'0'} >
             My Bag, 
           </Text>
@@ -46,12 +46,13 @@ export default class DropdownCart extends Component {
             {this.state.quantity} items
           </Text>
         </FlexContainer>
-        <FlexContainer>
+        <FlexContainer display = {'inline'} >
           {this.props.products.map(product=>{
-            // console.log(product.product.attributes)
+            console.log(product.product.attributes)
             return product.product.attributes.map(attribute=>{
-              console.log(attribute)
+              // console.log(attribute)
               return<Attributes 
+                cartDropdown = {true}
                 key={attribute.id} 
                 attribute = {attribute} 
                 selected={product.selectedAtr} 
