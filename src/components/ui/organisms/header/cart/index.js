@@ -26,8 +26,9 @@ const CartDropdownContainer = styled.div`
 position: absolute;
 right: 72px;
 width: 325px;
-height: 600px;
-background-color:${props=>props.color || props.theme.colors.white}
+max-height: 677px;
+overflow: auto;
+background-color:${props=>props.color || props.theme.colors.white};
 `
 const ScreenDarker = styled.div`
 position: absolute;
@@ -74,7 +75,17 @@ export default class Cart extends Component {
       }))
     }
   }
+  generateHight=()=>{
+    let winHeight = window.innerHeight
+    let rootDivHeight = document.getElementById("root").clientHeight
+    if(winHeight<rootDivHeight){
+      return rootDivHeight - 80
+    }else{
+      return winHeight - 80
+    }
+  }
   render() {
+    console.log(window.innerHeight)
     return (
       <CartButtonCOntainer 
         onClick={this.props.onCartButtonClick}
@@ -85,7 +96,7 @@ export default class Cart extends Component {
         <img src={EmptyCart} alt = 'EmptyCart' />
         {
           this.props.cartOpen?
-          <ScreenDarker height = {document.getElementById("root").clientHeight-80}>
+          <ScreenDarker height = {this.generateHight()}>
             <CartDropdownContainer>
               <DropdownCart 
                 currency = {this.props.currency} 

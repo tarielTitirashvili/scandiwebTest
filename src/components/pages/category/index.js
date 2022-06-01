@@ -59,6 +59,7 @@ class Category extends Component{
       <>
         <FlexContainer zIndex={'-1'}>
           <Title 
+            lineHeight={'67.2px'}
             size = {'42px'} 
             margin={'80px 0 103px 0'}
             weight={'400'}

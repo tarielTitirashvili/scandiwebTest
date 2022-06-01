@@ -61,6 +61,7 @@ class ProductInfo extends Component {
           </SmallTitle>
           {
             this.props.product.attributes.map(attribute=>{
+              console.log(attribute)
               return <Attributes 
                 key={attribute.id} 
                 attribute = {attribute} 
