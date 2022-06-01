@@ -30,7 +30,13 @@ export class MainLayout extends React.Component {
       currency: '',
       currencies: [],
       categories: [],
+      cartChanged: false,
     }
+  }
+  onCartStateChange=()=>{
+    this.setState((prev)=>({
+      cartChanged: !prev.cartChanged
+    }))
   }
   onClick=(name)=>{
     this.setState(({
@@ -87,11 +93,11 @@ export class MainLayout extends React.Component {
     this.getCurrencies()
   }
   render(){
-
-
     return(
       <AppContainer>
         <Header 
+          cartChanged = {this.state.cartChanged}
+          onCartStateChange = {this.onCartStateChange}
           onChangeCurrency = {this.onChangeCurrency}
           name = { this.state.name } 
           categories = { this.state.categories } 
@@ -104,6 +110,7 @@ export class MainLayout extends React.Component {
             path='/category/:name' 
             element = {
             <Category 
+              onCartStateChange = {this.onCartStateChange}
               onClick = { this.onClick } 
               name={this.state.name} 
               currency={this.state.currency}
@@ -113,6 +120,7 @@ export class MainLayout extends React.Component {
           <Route 
             path='/product/:id' 
             element = {<Product 
+              onCartStateChange={this.onCartStateChange}
               name={this.state.name} 
               currency={this.state.currency}
             />} 

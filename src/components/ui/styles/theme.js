@@ -12,6 +12,5 @@ export const theme = {
   fontWeight:{
     selectedNavTitle: 600,
     text: 400,
-    
   }
 }

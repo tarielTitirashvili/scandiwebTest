@@ -17,8 +17,23 @@ export default class Header extends Component {
     }
   }
   onCurrencyClick=()=>{
+    if(this.state.cartOpen){
+      this.setState(({
+        cartOpen: false
+      }))
+    }
     this.setState(prev=>({
       currenciesOpen: !prev.currenciesOpen
+    }))
+  }
+  onCartButtonClick=()=>{
+    if(this.state.currenciesOpen){
+      this.setState(({
+        currenciesOpen: false
+      }))
+    }
+    this.setState(prev=>({
+      cartOpen: !prev.cartOpen
     }))
   }
   render() {
@@ -70,7 +85,12 @@ export default class Header extends Component {
             currencies = {this.props.currencies} 
             onChangeCurrency = {this.props.onChangeCurrency}
           />
-          <Cart />
+          <Cart 
+            cartOpen = {this.state.cartOpen}
+            onCartButtonClick = {this.onCartButtonClick}
+            cartChanged = {this.props.cartChanged}
+            onCartStateChange={this.props.onCartStateChange}
+          />
         </FlexContainer>
       </HeaderContainer>
     )

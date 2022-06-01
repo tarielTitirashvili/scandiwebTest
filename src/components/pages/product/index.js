@@ -33,8 +33,14 @@ export default class Product extends Component {
     if(this.state.loading)return <h1>Loading...</h1>
     return (
       <FlexContainer margin={'33.4px 0 0 0'}>
-        <ImagesPlayer gallery = {this.state.product.gallery}/>
-        <ProductInfo product = {this.state.product} currency = {this.props.currency}/>
+        <ImagesPlayer 
+          gallery = {this.state.product.gallery}
+        />
+        <ProductInfo 
+          product = {this.state.product} 
+          currency = {this.props.currency}
+          onCartStateChange = {this.props.onCartStateChange}
+        />
       </FlexContainer>
     )
   }

@@ -16,6 +16,13 @@ padding-left: 14px;
 `
 
  class AddToCartButton extends Component {
+  generateAttributes(){
+    let selectedAttributes = []
+    this.props.product.attributes.forEach(atr=>{
+      selectedAttributes.push({name: atr.name, value: atr.items[0].value})
+    })
+    return selectedAttributes
+  }
 
   render() {
     return (
@@ -24,7 +31,8 @@ padding-left: 14px;
         onClick={e=>{
           e.stopPropagation()
           e.preventDefault()
-          this.props.onAddToCart([this.props.product.attributes])
+          this.props.onCartStateChange()
+          this.props.onAddToCart(this.generateAttributes())
         }} 
         left={this.props.left}
       >
