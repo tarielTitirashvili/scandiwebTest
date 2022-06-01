@@ -25,14 +25,16 @@ const WithOnAddToCart = WrappedComponent => {
           localStorage.setItem('cart', JSON.stringify([
             ...cart, {
               product: this.props.product, 
-              selectedAtr: selectedAtr
+              selectedAtr: selectedAtr,
+              quantity: 1
             }
           ]))
         }else{
           localStorage.setItem('cart', JSON.stringify([
             {
               product: this.props.product, 
-              selectedAtr: selectedAtr
+              selectedAtr: selectedAtr,
+              quantity: 1
             }
           ]))
         }

@@ -15,7 +15,9 @@ justify-content: center;
 background: ${props=>props.background || props.theme.colors.text};
 color: ${props=>props.color || props.theme.colors.white};
 font-weight: 700;
-border-radius: 100%;`
+font-size: 0.875rem;
+border-radius: 100%;
+`
 const CartButtonCOntainer = styled.div`
 position: relative;
 cursor: pointer;
@@ -40,16 +42,27 @@ export default class Cart extends Component {
   constructor(props){
     super(props)
     this.state={
-      productsInCart: 0
+      productsInCart: 0,
+      products: []
     }
   }
   componentDidUpdate(prevProps){
+    let cart = JSON.parse(localStorage.getItem('cart'))
     if(prevProps.cartChanged!==this.props.cartChanged){
-      let cart = JSON.parse(localStorage.getItem('cart'))
       if(cart){
         this.setState(({
           productsInCart: cart.length
         }))
+      }
+    }
+    if(this.props.cartOpen){
+      if(cart){
+        if(this.state.products.length !== cart.length){
+          this.state.products.forEach(product=>product.count)
+          this.setState(({
+            products: cart
+          }))
+        }
       }
     }
   }
@@ -74,12 +87,14 @@ export default class Cart extends Component {
           this.props.cartOpen?
           <ScreenDarker height = {document.getElementById("root").clientHeight-80}>
             <CartDropdownContainer>
-              <DropdownCart />
+              <DropdownCart 
+                currency = {this.props.currency} 
+                products = {this.state.products} 
+              />
             </CartDropdownContainer>
           </ScreenDarker>
           :''
         }
-        
       </CartButtonCOntainer>
     )
   }
