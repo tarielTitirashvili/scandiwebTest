@@ -7,7 +7,6 @@ class DropdownCart extends Component {
   constructor(props){
     super(props)
     this.state = {
-      quantity: 0,
       total: 0,
     }
   }
@@ -26,7 +25,6 @@ class DropdownCart extends Component {
       })
     })
     this.setState(({
-      quantity: quantity,
       total: total
     }))
   }
@@ -34,7 +32,7 @@ class DropdownCart extends Component {
     this.getQuantityAndTotal()
   }
   componentDidUpdate(prevProps){
-    if(this.props.products.length !== prevProps.products.length){
+    if(this.props.quantity !== prevProps.quantity){
       this.getQuantityAndTotal()
     }
   }
@@ -46,16 +44,18 @@ class DropdownCart extends Component {
             My Bag, 
           </Text>
           <Text margin = {'0 0 0 4px'}>
-            {this.state.quantity} items
+            {this.props.quantity} items
           </Text>
         </FlexContainer>
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
             return<DropdownProduct 
-              key={`${product.product.id}${product.selectedAtr[0].value}${index}`}
+              onChangeCount = {this.props.onChangeCount}
+              key={`${product.product.id}${index}`}
               product = {product} 
               index = {index}
               pushSelectedAtr={this.pushSelectedAtr}
+              currency = {this.props.currency}
             />
             // <SmallTitle>
             //   {product.product.name}

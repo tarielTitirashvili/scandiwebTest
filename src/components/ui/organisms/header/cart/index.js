@@ -44,7 +44,7 @@ export default class Cart extends Component {
   constructor(props){
     super(props)
     this.state={
-      productsInCart: 0,
+      quantity: 0,
       products: []
     }
   }
@@ -72,7 +72,6 @@ export default class Cart extends Component {
               sameValues=sameValues+1
             }
           })
-          console.log(attribute)
         })
         if(sameValues===product.selectedAtr.length){
           isProductWithSameParams = true
@@ -86,15 +85,34 @@ export default class Cart extends Component {
       }))
     }
   }
-  onChangeCount=()=>{
-
+  onChangeCount=(change, index)=>{
+    let filteredProducts = this.state.products.filter((product, i)=>i!==index)
+    let product = {
+      product: this.state.products[index].product,
+      quantity: this.state.products[index].quantity,
+      selectedAtr: [...this.state.products[index].selectedAtr]
+    }
+    product.quantity = product.quantity+change
+    if(product.quantity>0){
+      filteredProducts.splice(index, 0, product)
+      this.setState(prev=>({
+        products: [...filteredProducts],
+        quantity: prev.quantity+change
+      }))
+    }else{
+      this.setState(prev=>({
+        products: [...filteredProducts],
+        quantity: prev.quantity+change
+      }))
+      localStorage.setItem('cart', JSON.stringify([...filteredProducts]))
+    }
   }
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(prevProps.cartChanged!==this.props.cartChanged){
       if(cart){
         this.setState(({
-          productsInCart: cart.length
+          quantity: cart.length
         }))
       }
     }
@@ -108,12 +126,19 @@ export default class Cart extends Component {
         }
       }
     }
+    if(prevProps.cartOpen&&!this.props.cartOpen){
+      localStorage.setItem('cart', JSON.stringify([...this.state.products]))
+    }
   }
   componentDidMount(){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(cart){
+      let quantity = 0
+      cart.forEach(product=>{
+        quantity = quantity + product.quantity
+      })
       this.setState(({
-        productsInCart: cart.length
+        quantity: quantity
       }))
     }
   }
@@ -127,19 +152,26 @@ export default class Cart extends Component {
     }
   }
   render() {
+    console.log(this.state.products)
     return (
       <CartButtonCOntainer 
         onClick={this.props.onCartButtonClick}
-      >      
-        <CartCount>
-          {this.state.productsInCart}
-        </CartCount>
+      > 
+        {
+          this.state.quantity>0?
+          <CartCount>
+            {this.state.quantity}
+          </CartCount>
+          :''
+        }     
         <img src={EmptyCart} alt = 'EmptyCart' />
         {
           this.props.cartOpen?
           <ScreenDarker height = {this.generateHight()}>
             <CartDropdownContainer>
               <DropdownCart 
+                quantity = {this.state.quantity}
+                onChangeCount = {this.onChangeCount}
                 onAtrSelect = {this.onAtrSelect}
                 currency = {this.props.currency} 
                 products = {this.state.products} 

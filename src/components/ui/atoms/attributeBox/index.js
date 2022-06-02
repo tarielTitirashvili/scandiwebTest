@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 import { Text } from '../../styles/titles';
 
 const AttributeContainer = styled.div`
-padding: 1px;
+padding: ${props=>props.padding || '0px 6px'};
 margin: ${props=>props.margin || '0 6px 0 0'};
 height: ${props=>props.height || '32px'};
 min-width: ${props=>props.minWidth || '32px'};
@@ -56,6 +56,8 @@ export default class AttributeBox extends Component {
               <AttributeContainer 
                 height={`${this.props.cartDropdown?'16px':'32px'}`}
                 minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
+                margin={`${this.props.cartDropdown?'':'0 10px 0 0'}`}
+                padding={`${this.props.cartDropdown?'1px':''}`}
                 selectedColorContainer 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -73,8 +75,8 @@ export default class AttributeBox extends Component {
             :
               <AttributeContainer 
                 height={`${this.props.cartDropdown?'22px':'45px'}`}
-                minWidth = {`${this.props.cartDropdown?'22px':'63px'}`}
-                margin={'0 12px 0 0'}
+                minWidth = {`${this.props.cartDropdown?'12px':'63px'}`}
+                margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
                 selected 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -96,6 +98,8 @@ export default class AttributeBox extends Component {
               <AttributeContainer 
                 height={`${this.props.cartDropdown?'16px':'32px'}`}
                 minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
+                margin={`${this.props.cartDropdown?'':'0 10px 0 0'}`}
+                padding={`${this.props.cartDropdown?'1px':''}`}
                 colorContainer 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -118,9 +122,9 @@ export default class AttributeBox extends Component {
               </AttributeContainer>
             :
               <AttributeContainer 
-                margin={'0 12px 0 0'}
+                margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
                 height={`${this.props.cartDropdown?'22px':'45px'}`}
-                minWidth = {`${this.props.cartDropdown?'22px':'63px'}`}
+                minWidth = {`${this.props.cartDropdown?'12px':'63px'}`}
                 notSelected 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
