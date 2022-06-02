@@ -66,6 +66,9 @@ export default class Cart extends Component {
       products: [ ...filteredProducts]
     }))
   }
+  onChangeCount=()=>{
+    
+  }
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(prevProps.cartChanged!==this.props.cartChanged){

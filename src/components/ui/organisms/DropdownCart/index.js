@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import DropdownProduct from '../../molecules/dropdownProduct';
 import FlexContainer from '../../styles/flexContainer'
-import { Text } from '../../styles/titles'
+import { SmallTitle, Text } from '../../styles/titles'
 import Attributes from './../../molecules/attributes/index';
 
 class DropdownCart extends Component {
@@ -51,18 +52,27 @@ class DropdownCart extends Component {
         </FlexContainer>
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
-            // console.log(product.product.attributes)
-            return product.product.attributes.map(attribute=>{
-              // console.log(attribute)
-              return<Attributes 
-                cartDropdown = {true}
-                key={attribute.id} 
-                attribute = {attribute} 
-                selected={product.selectedAtr} 
-                pushSelectedAtr={this.pushSelectedAtr}
-                index = {index}
-              />
-            })
+            console.log(product)
+            return<DropdownProduct 
+              key={product.product.id}
+              product = {product} 
+              index = {index}
+              pushSelectedAtr={this.pushSelectedAtr}
+            />
+            // <SmallTitle>
+            //   {product.product.name}
+            // </SmallTitle>
+            // return product.product.attributes.map(attribute=>{
+            //   console.log(product)
+            //   return<Attributes 
+            //     cartDropdown = {true}
+            //     key={attribute.id} 
+            //     attribute = {attribute} 
+            //     selected={product.selectedAtr} 
+            //     pushSelectedAtr={this.pushSelectedAtr}
+            //     index = {index}
+            //   />
+            // })
           })}
         </FlexContainer>
         <FlexContainer margin={'32px 16px'} justify={'space-between'}>
