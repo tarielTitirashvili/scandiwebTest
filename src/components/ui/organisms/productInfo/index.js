@@ -5,7 +5,7 @@ import ProductPrice from '../../atoms/productPrice';
 import CartButton from '../../styles/Button';
 import styled from 'styled-components';
 import { Interweave } from 'interweave';
-import WithOnAddToCart from '../../../hoc/withOnAddToCart';
+import withOnAddToCart from '../../../hoc/withOnAddToCart';
 
 const ProductInfoContainer = styled.div`
 width: 320px;
@@ -61,7 +61,6 @@ class ProductInfo extends Component {
           </SmallTitle>
           {
             this.props.product.attributes.map(attribute=>{
-              console.log(attribute)
               return <Attributes 
                 key={attribute.id} 
                 attribute = {attribute} 
@@ -88,4 +87,4 @@ class ProductInfo extends Component {
   }
 }
 
-export default WithOnAddToCart(ProductInfo)
+export default withOnAddToCart(ProductInfo)

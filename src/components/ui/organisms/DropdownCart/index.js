@@ -3,13 +3,16 @@ import FlexContainer from '../../styles/flexContainer'
 import { Text } from '../../styles/titles'
 import Attributes from './../../molecules/attributes/index';
 
-export default class DropdownCart extends Component {
+class DropdownCart extends Component {
   constructor(props){
     super(props)
     this.state = {
       quantity: 0,
       total: 0,
     }
+  }
+  pushSelectedAtr=(name, value, selected, index)=>{
+    this.props.onAtrSelect(name, value, selected, index)
   }
   getQuantityAndTotal=()=>{
     let quantity = 0
@@ -47,8 +50,8 @@ export default class DropdownCart extends Component {
           </Text>
         </FlexContainer>
         <FlexContainer display = {'inline'} >
-          {this.props.products.map(product=>{
-            console.log(product.product.attributes)
+          {this.props.products.map((product, index)=>{
+            // console.log(product.product.attributes)
             return product.product.attributes.map(attribute=>{
               // console.log(attribute)
               return<Attributes 
@@ -57,6 +60,7 @@ export default class DropdownCart extends Component {
                 attribute = {attribute} 
                 selected={product.selectedAtr} 
                 pushSelectedAtr={this.pushSelectedAtr}
+                index = {index}
               />
             })
           })}
@@ -73,3 +77,5 @@ export default class DropdownCart extends Component {
     )
   }
 }
+
+export default DropdownCart

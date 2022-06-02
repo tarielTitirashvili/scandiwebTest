@@ -1,6 +1,6 @@
 import React from 'react'
 
-const WithOnAddToCart = WrappedComponent => {
+const withOnAddToCart = WrappedComponent => {
   class HOC extends React.Component {
     onAddToCart = (selectedAtr) => {
       let cart = JSON.parse(localStorage.getItem('cart'))
@@ -47,4 +47,4 @@ const WithOnAddToCart = WrappedComponent => {
   return HOC
 }
 
-export default WithOnAddToCart
+export default withOnAddToCart

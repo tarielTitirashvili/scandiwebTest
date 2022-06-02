@@ -48,6 +48,24 @@ export default class Cart extends Component {
       products: []
     }
   }
+  onAtrSelect=(name, value, selected, index)=>{
+    let product = {
+      product: this.state.products[index].product,
+      quantity: this.state.products[index].quantity,
+      selectedAtr: [...this.state.products[index].selectedAtr]
+    }
+    let filteredSelectedAtr = undefined
+    if(selected.length!==0){
+      filteredSelectedAtr = product.selectedAtr.filter(selected=>selected.name!==name)
+      product.selectedAtr=filteredSelectedAtr
+    }
+    product.selectedAtr.push({name: name, value: value})
+    let filteredProducts = this.state.products.filter((product, i)=>i!==index)
+    filteredProducts.splice(index, 0, product)
+    this.setState(({
+      products: [ ...filteredProducts]
+    }))
+  }
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(prevProps.cartChanged!==this.props.cartChanged){
@@ -99,6 +117,7 @@ export default class Cart extends Component {
           <ScreenDarker height = {this.generateHight()}>
             <CartDropdownContainer>
               <DropdownCart 
+                onAtrSelect = {this.onAtrSelect}
                 currency = {this.props.currency} 
                 products = {this.state.products} 
               />

@@ -5,7 +5,6 @@ import Title from '../../styles/titles'
 
 export default class Attributes extends Component {
   render() {
-    console.log(this.props.cartDropdown)
     return (
       <>
         <Title 
@@ -26,6 +25,7 @@ export default class Attributes extends Component {
                 selected={this.props.selected}
                 pushSelectedAtr={this.props.pushSelectedAtr} 
                 cartDropdown = {this.props.cartDropdown}
+                index = {this.props.index}
               />
             })
           }
