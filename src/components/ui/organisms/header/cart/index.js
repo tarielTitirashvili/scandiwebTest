@@ -49,25 +49,45 @@ export default class Cart extends Component {
     }
   }
   onAtrSelect=(name, value, selected, index)=>{
+    let cliCkedProductId = this.state.products[index].product.id
+    let filteredSelectedAtr = undefined
+    let isProductWithSameParams = false
     let product = {
       product: this.state.products[index].product,
       quantity: this.state.products[index].quantity,
       selectedAtr: [...this.state.products[index].selectedAtr]
     }
-    let filteredSelectedAtr = undefined
     if(selected.length!==0){
       filteredSelectedAtr = product.selectedAtr.filter(selected=>selected.name!==name)
       product.selectedAtr=filteredSelectedAtr
     }
-    product.selectedAtr.push({name: name, value: value})
     let filteredProducts = this.state.products.filter((product, i)=>i!==index)
+    product.selectedAtr.push({name: name, value: value})
+    filteredProducts.forEach(randomProduct=>{
+      if(randomProduct.product.id===cliCkedProductId){
+        let sameValues = 0
+        randomProduct.selectedAtr.forEach(attribute=>{
+          product.selectedAtr.forEach(atr=>{
+            if(attribute.name === atr.name && attribute.value===atr.value ){
+              sameValues=sameValues+1
+            }
+          })
+          console.log(attribute)
+        })
+        if(sameValues===product.selectedAtr.length){
+          isProductWithSameParams = true
+        }
+      }
+    })
     filteredProducts.splice(index, 0, product)
-    this.setState(({
-      products: [ ...filteredProducts]
-    }))
+    if(!isProductWithSameParams){
+      this.setState(({
+        products: [ ...filteredProducts]
+      }))
+    }
   }
   onChangeCount=()=>{
-    
+
   }
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))

@@ -7,13 +7,13 @@ import FlexContainer from '../../styles/flexContainer';
 const ImageContainer = styled.div`
 width: 121px;
 height: 190px;
-object-fit: cover;
+
 `
 
 export default class DropdownProduct extends Component {
   render() {
     return (
-    <FlexContainer justify = {'space-between'}>
+    <FlexContainer justify = {'space-between'} margin = {'40px 0'} >
       <div>
         <SmallTitle weight={'300'} margin={'0'}>
           {this.props.product.product.name}
@@ -35,7 +35,7 @@ export default class DropdownProduct extends Component {
         <img 
           src={this.props.product.product.gallery[0]} 
           alt = {this.props.product.product.name}
-          style={{width: '100%', height: '100%'}}
+          style={{width: '100%', height: '100%', objectFit: 'cover'}}
         />
       </ImageContainer>
     </FlexContainer>

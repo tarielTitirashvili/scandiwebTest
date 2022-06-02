@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import DropdownProduct from '../../molecules/dropdownProduct';
 import FlexContainer from '../../styles/flexContainer'
-import { SmallTitle, Text } from '../../styles/titles'
-import Attributes from './../../molecules/attributes/index';
+import { Text } from '../../styles/titles'
 
 class DropdownCart extends Component {
   constructor(props){
@@ -52,9 +51,8 @@ class DropdownCart extends Component {
         </FlexContainer>
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
-            console.log(product)
             return<DropdownProduct 
-              key={product.product.id}
+              key={`${product.product.id}${product.selectedAtr[0].value}${index}`}
               product = {product} 
               index = {index}
               pushSelectedAtr={this.pushSelectedAtr}
