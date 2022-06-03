@@ -21,20 +21,19 @@ height: 43px;
 padding: 0;
 `
 export default class DropdownCartButtons extends Component {
-  componentDidMount(){
-    window.addEventListener('storage', event=>{
-      console.log(event)
-    })
-  }
   onCheckOut=()=>{
-    localStorage.removeItem('cart')
+    this.props.onCheckOut()
     console.log(this.props.total)
+    this.props.onCartButtonClick()
+  }
+  onViewBag(){
+    this.props.onClick('')
     this.props.onCartButtonClick()
   }
   render() {
     return (
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <NavLink  onClick={this.props.onCartButtonClick} to={'/cart'}>
+        <NavLink  onClick={this.onViewBag} to={`/cart?currency=${this.props.currency}`}>
           <ViewBagButton>
             VIEW BAG
           </ViewBagButton>

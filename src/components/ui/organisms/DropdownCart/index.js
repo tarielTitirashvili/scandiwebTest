@@ -14,11 +14,9 @@ class DropdownCart extends Component {
   pushSelectedAtr=(name, value, selected, index)=>{
     this.props.onAtrSelect(name, value, selected, index)
   }
-  getQuantityAndTotal=()=>{
-    let quantity = 0
+  getTotal=()=>{
     let total = 0
     this.props.products.forEach(product=>{
-      quantity = quantity + product.quantity
       product.product.prices.forEach(currency=>{
         if(currency.currency.symbol===this.props.currency){
           total = total + product.quantity*currency.amount
@@ -32,9 +30,10 @@ class DropdownCart extends Component {
   componentDidUpdate(prevProps){
     if(
       (this.props.quantity !== prevProps.quantity) || 
-      (this.props.products.length!==prevProps.products.length)
+      (this.props.products.length!==prevProps.products.length) ||
+      (this.props.cartOpen && !prevProps.cartOpen)
     ){
-      this.getQuantityAndTotal()
+      this.getTotal()
     }
   }
   render() {
@@ -69,8 +68,11 @@ class DropdownCart extends Component {
           </Text>
         </FlexContainer>
         <DropdownCartButtons 
+          onClick = {this.props.onClick}
+          currency={this.props.currency}
           total ={this.state.total} 
           onCartButtonClick = {this.props.onCartButtonClick} 
+          onCheckOut = {this.props.onCheckOut}
         />
       </div>
     )

@@ -33,6 +33,7 @@ overflow: auto;
 background-color:${props=>props.color || props.theme.colors.white};
 `
 const ScreenDarker = styled.div`
+display: ${props=> props.display || 'block'};
 position: absolute;
 top: 52px;
 right: -101px;
@@ -48,6 +49,12 @@ export default class Cart extends Component {
       quantity: 0,
       products: []
     }
+  }
+  onCheckOut=()=>{
+    this.setState(({
+      quantity: 0,
+      products: []
+    }))
   }
   onAtrSelect=(name, value, selected, index)=>{
     let cliCkedProductId = this.state.products[index].product.id
@@ -126,7 +133,7 @@ export default class Cart extends Component {
       this.getQuantity()
     }
     if(this.props.cartOpen){
-      if(cart){
+      if(cart!==null){
         if(this.state.products.length !== cart.length){
           this.state.products.forEach(product=>product.count)
           this.setState(({
@@ -136,7 +143,11 @@ export default class Cart extends Component {
       }
     }
     if(prevProps.cartOpen&&!this.props.cartOpen){
-      localStorage.setItem('cart', JSON.stringify([...this.state.products]))
+      if(this.state.products===null){
+        localStorage.setItem('cart', JSON.stringify(this.state.products))
+      }else{
+        localStorage.setItem('cart', JSON.stringify([...this.state.products]))
+      }
     }
   }
   componentDidMount(){
@@ -164,23 +175,21 @@ export default class Cart extends Component {
           :''
         }     
         <img src={EmptyCart} alt = 'EmptyCart' />
-        {
-          this.props.cartOpen?
-          <ScreenDarker height = {this.generateHight()}>
-            <CartDropdownContainer>
-              <DropdownCart 
-                cartOpen = {this.props.cartOpen}
-                quantity = {this.state.quantity}
-                onChangeCount = {this.onChangeCount}
-                onAtrSelect = {this.onAtrSelect}
-                currency = {this.props.currency} 
-                products = {this.state.products} 
-                onCartButtonClick={this.props.onCartButtonClick}
-              />
-            </CartDropdownContainer>
-          </ScreenDarker>
-          :''
-        }
+        <ScreenDarker display={`${ this.props.cartOpen? '':'none'}`} height = {this.generateHight()}>
+          <CartDropdownContainer>
+            <DropdownCart 
+              onClick = {this.props.onClick}
+              onCheckOut = {this.onCheckOut}
+              cartOpen = {this.props.cartOpen}
+              quantity = {this.state.quantity}
+              onChangeCount = {this.onChangeCount}
+              onAtrSelect = {this.onAtrSelect}
+              currency = {this.props.currency} 
+              products = {this.state.products} 
+              onCartButtonClick={this.props.onCartButtonClick}
+            />
+          </CartDropdownContainer>
+        </ScreenDarker>
       </CartButtonCOntainer>
     )
   }

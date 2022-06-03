@@ -57,7 +57,7 @@ export default class AttributeBox extends Component {
                 height={`${this.props.cartDropdown?'16px':'32px'}`}
                 minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
                 margin={`${this.props.cartDropdown?'':'0 10px 0 0'}`}
-                padding={`${this.props.cartDropdown?'1px':''}`}
+                padding={`${this.props.cartDropdown?'1px':'0px 6px'}`}
                 selectedColorContainer 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -77,6 +77,7 @@ export default class AttributeBox extends Component {
                 height={`${this.props.cartDropdown?'22px':'45px'}`}
                 minWidth = {`${this.props.cartDropdown?'12px':'63px'}`}
                 margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
+                padding={`${this.props.cartDropdown?'0px 6px':'1px'}`}
                 selected 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -99,7 +100,7 @@ export default class AttributeBox extends Component {
                 height={`${this.props.cartDropdown?'16px':'32px'}`}
                 minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
                 margin={`${this.props.cartDropdown?'':'0 10px 0 0'}`}
-                padding={`${this.props.cartDropdown?'1px':''}`}
+                padding={`${this.props.cartDropdown?'1px':'0px 6px'}`}
                 colorContainer 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -125,6 +126,7 @@ export default class AttributeBox extends Component {
                 margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
                 height={`${this.props.cartDropdown?'22px':'45px'}`}
                 minWidth = {`${this.props.cartDropdown?'12px':'63px'}`}
+                padding={`${this.props.cartDropdown?'0px 6px':'1px'}`}
                 notSelected 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
