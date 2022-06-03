@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import DropdownCartButtons from '../../molecules/dropdownCartButtons';
 import DropdownProduct from '../../molecules/dropdownProduct';
 import FlexContainer from '../../styles/flexContainer'
 import { Text } from '../../styles/titles'
@@ -28,11 +29,11 @@ class DropdownCart extends Component {
       total: total
     }))
   }
-  componentDidMount(){
-    this.getQuantityAndTotal()
-  }
   componentDidUpdate(prevProps){
-    if(this.props.quantity !== prevProps.quantity){
+    if(
+      (this.props.quantity !== prevProps.quantity) || 
+      (this.props.products.length!==prevProps.products.length)
+    ){
       this.getQuantityAndTotal()
     }
   }
@@ -40,10 +41,10 @@ class DropdownCart extends Component {
     return (
       <div onClick={(e)=>e.stopPropagation()}>
         <FlexContainer margin={'0 0 32px 0'} justify={'left'} >
-          <Text weight={'700'}  margin={'0'} >
+          <Text cursor={'text'} weight={'700'}  margin={'0'} >
             My Bag, 
           </Text>
-          <Text margin = {'0 0 0 4px'}>
+          <Text cursor={'text'} margin = {'0 0 0 4px'}>
             {this.props.quantity} items
           </Text>
         </FlexContainer>
@@ -57,30 +58,20 @@ class DropdownCart extends Component {
               pushSelectedAtr={this.pushSelectedAtr}
               currency = {this.props.currency}
             />
-            // <SmallTitle>
-            //   {product.product.name}
-            // </SmallTitle>
-            // return product.product.attributes.map(attribute=>{
-            //   console.log(product)
-            //   return<Attributes 
-            //     cartDropdown = {true}
-            //     key={attribute.id} 
-            //     attribute = {attribute} 
-            //     selected={product.selectedAtr} 
-            //     pushSelectedAtr={this.pushSelectedAtr}
-            //     index = {index}
-            //   />
-            // })
           })}
         </FlexContainer>
         <FlexContainer margin={'32px 16px'} justify={'space-between'}>
-          <Text margin={'0'} weight={'500'}>
+          <Text cursor={'text'} margin={'0'} weight={'500'}>
             Total
           </Text>
-          <Text weight={'700'}  margin={'0'} >
+          <Text cursor={'text'} weight={'700'}  margin={'0'} >
            {this.props.currency}{this.state.total}
           </Text>
         </FlexContainer>
+        <DropdownCartButtons 
+          total ={this.state.total} 
+          onCartButtonClick = {this.props.onCartButtonClick} 
+        />
       </div>
     )
   }

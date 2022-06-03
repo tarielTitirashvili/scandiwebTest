@@ -8,6 +8,7 @@ export default class Attributes extends Component {
     return (
       <>
         <Title 
+          cursor={'text'}
           weight={`${this.props.cartDropdown?'400':'700'}`} 
           size={`${this.props.cartDropdown?'0.875rem':'1.125rem'}`} 
           margin={'0'}

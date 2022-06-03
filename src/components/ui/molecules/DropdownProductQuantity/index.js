@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Text } from '../../styles/titles';
 
 const StyledSquare = styled.div`
-width: 23px;
-height: 23px;
+width: 22px;
+height: 22px;
 display: flex;
 justify-content: center;
 align-items: center;

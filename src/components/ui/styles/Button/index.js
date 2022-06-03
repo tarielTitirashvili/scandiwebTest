@@ -11,7 +11,7 @@ color: ${props=>props.color || props.theme.colors.white};
 justify-content: center;
 align-items: center;
 border: none;
-padding: 20px;
+padding: ${props=>props.padding || '20px'};
 cursor: pointer;
 outline: inherit;
 `

@@ -23,10 +23,11 @@ position: relative;
 cursor: pointer;
 `
 const CartDropdownContainer = styled.div`
+cursor: default;
 position: absolute;
 padding: 32px 16px;
 right: 72px;
-width: 325px;
+width: 310px;
 max-height: 677px;
 overflow: auto;
 background-color:${props=>props.color || props.theme.colors.white};
@@ -107,14 +108,22 @@ export default class Cart extends Component {
       localStorage.setItem('cart', JSON.stringify([...filteredProducts]))
     }
   }
+  getQuantity=()=>{
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    if(cart){
+      let quantity = 0
+      cart.forEach(product=>{
+        quantity = quantity + product.quantity
+      })
+      this.setState(({
+        quantity: quantity
+      }))
+    }
+  }
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(prevProps.cartChanged!==this.props.cartChanged){
-      if(cart){
-        this.setState(({
-          quantity: cart.length
-        }))
-      }
+      this.getQuantity()
     }
     if(this.props.cartOpen){
       if(cart){
@@ -131,16 +140,7 @@ export default class Cart extends Component {
     }
   }
   componentDidMount(){
-    let cart = JSON.parse(localStorage.getItem('cart'))
-    if(cart){
-      let quantity = 0
-      cart.forEach(product=>{
-        quantity = quantity + product.quantity
-      })
-      this.setState(({
-        quantity: quantity
-      }))
-    }
+    this.getQuantity()
   }
   generateHight=()=>{
     let winHeight = window.innerHeight
@@ -152,7 +152,6 @@ export default class Cart extends Component {
     }
   }
   render() {
-    console.log(this.state.products)
     return (
       <CartButtonCOntainer 
         onClick={this.props.onCartButtonClick}
@@ -170,11 +169,13 @@ export default class Cart extends Component {
           <ScreenDarker height = {this.generateHight()}>
             <CartDropdownContainer>
               <DropdownCart 
+                cartOpen = {this.props.cartOpen}
                 quantity = {this.state.quantity}
                 onChangeCount = {this.onChangeCount}
                 onAtrSelect = {this.onAtrSelect}
                 currency = {this.props.currency} 
                 products = {this.state.products} 
+                onCartButtonClick={this.props.onCartButtonClick}
               />
             </CartDropdownContainer>
           </ScreenDarker>

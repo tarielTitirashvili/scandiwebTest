@@ -14,11 +14,11 @@ export default class DropdownProduct extends Component {
   render() {
     return (
     <FlexContainer justify = {'space-between'} margin = {'40px 0'} >
-      <div style={{maxWidth: '136px'}}>
-        <SmallTitle weight={'300'} margin={'0'}>
+      <div style={{width: '136px'}}>
+        <SmallTitle cursor={'text'} weight={'300'} margin={'0'}>
           {this.props.product.product.name}
         </SmallTitle>
-        <Text weight={'500'}margin={'4px 0 8px 0'}>
+        <Text cursor={'text'} weight={'500'}margin={'4px 0 8px 0'}>
           {this.props.currency}
           {this.props.product.product.prices.map(price=>{
             return price.currency.symbol===this.props.currency?price.amount:''
