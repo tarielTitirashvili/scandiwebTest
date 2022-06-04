@@ -127,7 +127,7 @@ export class MainLayout extends React.Component {
           />
           <Route 
             path='/cart' 
-            element = {<Cart name={this.state.name} currency={this.state.currency} />} 
+            element = {<Cart cartChanged={this.state.cartChanged} name={this.state.name} currency={this.state.currency} />} 
           />
           <Route path='/' element = { <Navigate replace to={`/category${'/'+this.state.name}`} /> } />
           <Route path='*' element = { <Navigate replace to='/error404' /> } />

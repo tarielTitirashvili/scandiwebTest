@@ -60,13 +60,12 @@ class Cart extends Component {
     if(prevProps.cartOpen&&!this.props.cartOpen){
       if(this.props.products===null){
         localStorage.setItem('cart', JSON.stringify(this.props.products))
+        this.props.onCartStateChange()      
       }else{
         localStorage.setItem('cart', JSON.stringify([...this.props.products]))
+        this.props.onCartStateChange()      
       }
     }
-  }
-  componentDidMount(){
-    this.props.getQuantity()
   }
   generateHight=()=>{
     let winHeight = window.innerHeight

@@ -20,11 +20,16 @@ align-items: center;
 `;
 
 export default class DropdownProductQuantity extends Component {
+  
   render() {
+    console.log(this.props)
     return (
       <Container>
         <StyledSquare 
-          onClick={()=>this.props.onChangeCount(1, this.props.index)}
+          onClick={()=>{
+            this.props.onChangeCount(1, this.props.index) 
+
+          }}
         >
           +
         </StyledSquare>
@@ -32,7 +37,9 @@ export default class DropdownProductQuantity extends Component {
           {this.props.quantity}
         </Text>
         <StyledSquare
-          onClick={()=>this.props.onChangeCount(-1, this.props.index)}
+          onClick={()=>{
+            this.props.onChangeCount(-1, this.props.index) 
+          }}
         >
           -
         </StyledSquare>

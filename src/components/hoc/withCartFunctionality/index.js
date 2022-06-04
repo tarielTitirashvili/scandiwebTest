@@ -91,6 +91,9 @@ const withCartFunctionality = WrappedComponent => {
         products: products
       }))
     }
+    componentDidMount(){
+      this.getQuantity()
+    }
     render() {
       return <WrappedComponent 
         {...this.props} 
