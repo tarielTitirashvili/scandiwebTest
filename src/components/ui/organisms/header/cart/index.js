@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import EmptyCart from '../../../../../assets/EmptyCart.svg'
+import withCartFunctionality from '../../../../hoc/withCartFunctionality'
 import DropdownCart from '../../DropdownCart'
 
 const CartCount = styled.p`
@@ -28,7 +29,7 @@ position: absolute;
 padding: 32px 16px;
 right: 72px;
 width: 310px;
-max-height: 677px;
+max-height: 613px;
 overflow: auto;
 background-color:${props=>props.color || props.theme.colors.white};
 `
@@ -42,116 +43,30 @@ height: ${props=> props.height+'px' || 'calc(100vh - 80px)'};
 background-color: #39374838;
 `
 
-export default class Cart extends Component {
-  constructor(props){
-    super(props)
-    this.state={
-      quantity: 0,
-      products: []
-    }
-  }
-  onCheckOut=()=>{
-    this.setState(({
-      quantity: 0,
-      products: []
-    }))
-  }
-  onAtrSelect=(name, value, selected, index)=>{
-    let cliCkedProductId = this.state.products[index].product.id
-    let filteredSelectedAtr = undefined
-    let isProductWithSameParams = false
-    let product = {
-      product: this.state.products[index].product,
-      quantity: this.state.products[index].quantity,
-      selectedAtr: [...this.state.products[index].selectedAtr]
-    }
-    if(selected.length!==0){
-      filteredSelectedAtr = product.selectedAtr.filter(selected=>selected.name!==name)
-      product.selectedAtr=filteredSelectedAtr
-    }
-    let filteredProducts = this.state.products.filter((product, i)=>i!==index)
-    product.selectedAtr.push({name: name, value: value})
-    filteredProducts.forEach(randomProduct=>{
-      if(randomProduct.product.id===cliCkedProductId){
-        let sameValues = 0
-        randomProduct.selectedAtr.forEach(attribute=>{
-          product.selectedAtr.forEach(atr=>{
-            if(attribute.name === atr.name && attribute.value===atr.value ){
-              sameValues=sameValues+1
-            }
-          })
-        })
-        if(sameValues===product.selectedAtr.length){
-          isProductWithSameParams = true
-        }
-      }
-    })
-    filteredProducts.splice(index, 0, product)
-    if(!isProductWithSameParams){
-      this.setState(({
-        products: [ ...filteredProducts]
-      }))
-    }
-  }
-  onChangeCount=(change, index)=>{
-    let filteredProducts = this.state.products.filter((product, i)=>i!==index)
-    let product = {
-      product: this.state.products[index].product,
-      quantity: this.state.products[index].quantity,
-      selectedAtr: [...this.state.products[index].selectedAtr]
-    }
-    product.quantity = product.quantity+change
-    if(product.quantity>0){
-      filteredProducts.splice(index, 0, product)
-      this.setState(prev=>({
-        products: [...filteredProducts],
-        quantity: prev.quantity+change
-      }))
-    }else{
-      this.setState(prev=>({
-        products: [...filteredProducts],
-        quantity: prev.quantity+change
-      }))
-      localStorage.setItem('cart', JSON.stringify([...filteredProducts]))
-    }
-  }
-  getQuantity=()=>{
-    let cart = JSON.parse(localStorage.getItem('cart'))
-    if(cart){
-      let quantity = 0
-      cart.forEach(product=>{
-        quantity = quantity + product.quantity
-      })
-      this.setState(({
-        quantity: quantity
-      }))
-    }
-  }
+class Cart extends Component {
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(prevProps.cartChanged!==this.props.cartChanged){
-      this.getQuantity()
+      this.props.getQuantity()
     }
     if(this.props.cartOpen){
       if(cart!==null){
-        if(this.state.products.length !== cart.length){
-          this.state.products.forEach(product=>product.count)
-          this.setState(({
-            products: cart
-          }))
+        if(this.props.products.length !== cart.length){
+          this.props.products.forEach(product=>product.count)
+          this.props.setProducts(cart)
         }
       }
     }
     if(prevProps.cartOpen&&!this.props.cartOpen){
-      if(this.state.products===null){
-        localStorage.setItem('cart', JSON.stringify(this.state.products))
+      if(this.props.products===null){
+        localStorage.setItem('cart', JSON.stringify(this.props.products))
       }else{
-        localStorage.setItem('cart', JSON.stringify([...this.state.products]))
+        localStorage.setItem('cart', JSON.stringify([...this.props.products]))
       }
     }
   }
   componentDidMount(){
-    this.getQuantity()
+    this.props.getQuantity()
   }
   generateHight=()=>{
     let winHeight = window.innerHeight
@@ -168,9 +83,9 @@ export default class Cart extends Component {
         onClick={this.props.onCartButtonClick}
       > 
         {
-          this.state.quantity>0?
+          this.props.quantity>0?
           <CartCount>
-            {this.state.quantity}
+            {this.props.quantity}
           </CartCount>
           :''
         }     
@@ -179,13 +94,13 @@ export default class Cart extends Component {
           <CartDropdownContainer>
             <DropdownCart 
               onClick = {this.props.onClick}
-              onCheckOut = {this.onCheckOut}
+              onCheckOut = {this.props.onCheckOut}
               cartOpen = {this.props.cartOpen}
-              quantity = {this.state.quantity}
-              onChangeCount = {this.onChangeCount}
-              onAtrSelect = {this.onAtrSelect}
+              quantity = {this.props.quantity}
+              onChangeCount = {this.props.onChangeCount}
+              onAtrSelect = {this.props.onAtrSelect}
               currency = {this.props.currency} 
-              products = {this.state.products} 
+              products = {this.props.products} 
               onCartButtonClick={this.props.onCartButtonClick}
             />
           </CartDropdownContainer>
@@ -194,3 +109,5 @@ export default class Cart extends Component {
     )
   }
 }
+
+export default withCartFunctionality(Cart)

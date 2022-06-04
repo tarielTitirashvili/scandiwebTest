@@ -38,7 +38,7 @@ class DropdownCart extends Component {
   }
   render() {
     return (
-      <div onClick={(e)=>e.stopPropagation()}>
+      <div  onClick={(e)=>e.stopPropagation()}>
         <FlexContainer margin={'0 0 32px 0'} justify={'left'} >
           <Text cursor={'text'} weight={'700'}  margin={'0'} >
             My Bag, 

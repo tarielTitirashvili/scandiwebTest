@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const CartButton = styled.button`
 background-color: ${props=>props.backgroundColor || props.theme.colors.primary};
 margin: ${props=>props.margin || '0'}; 
-font-size: 1rem;
+font-size: ${props=>props.size || '1rem'};
 line-height: ${props=>props.lineHeight||'120%'};
 font-weight: ${props=>props.weight || 600};
 width: 100%;

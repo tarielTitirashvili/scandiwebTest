@@ -20,7 +20,7 @@ width: 140px;
 height: 43px;
 padding: 0;
 `
-export default class DropdownCartButtons extends Component {
+class DropdownCartButtons extends Component {
   onCheckOut=()=>{
     this.props.onCheckOut()
     console.log(this.props.total)
@@ -45,3 +45,5 @@ export default class DropdownCartButtons extends Component {
     )
   }
 }
+
+export default DropdownCartButtons
