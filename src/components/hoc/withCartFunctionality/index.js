@@ -91,6 +91,11 @@ const withCartFunctionality = WrappedComponent => {
         products: products
       }))
     }
+    componentDidUpdate(prevProps){
+      if(prevProps.cartChanged!==this.props.cartChanged){
+        this.getQuantity()
+      }
+    }
     componentDidMount(){
       this.getQuantity()
     }

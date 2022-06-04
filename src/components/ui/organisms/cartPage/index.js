@@ -39,11 +39,9 @@ class CartPage extends Component {
       this.getTotal()
     }
   }
-
   render() {
     return (
       <div onClick={(e)=>e.stopPropagation()}>
-
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
             return<CartProduct

@@ -4,11 +4,8 @@ import CartPage from '../../ui/organisms/cartPage'
 import { SmallTitle } from '../../ui/styles/titles'
 
 class Cart extends Component {
-  componentDidUpdate(prevProps){
+  componentDidUpdate(){
     let cart = JSON.parse(localStorage.getItem('cart'))
-    if(prevProps.cartChanged!==this.props.cartChanged){
-      this.props.getQuantity()
-    }
     if(cart!==null){
       if(this.props.products.length !== cart.length){
         this.props.products.forEach(product=>product.count)

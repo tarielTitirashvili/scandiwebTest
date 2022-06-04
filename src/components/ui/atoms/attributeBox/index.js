@@ -57,7 +57,7 @@ export default class AttributeBox extends Component {
                 height={`${this.props.cartDropdown?'16px':'32px'}`}
                 minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
                 margin={`${this.props.cartDropdown?'':'0 10px 0 0'}`}
-                padding={`${this.props.cartDropdown?'1px':'0px 6px'}`}
+                padding={'1px'}
                 selectedColorContainer 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 
@@ -100,7 +100,7 @@ export default class AttributeBox extends Component {
                 height={`${this.props.cartDropdown?'16px':'32px'}`}
                 minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
                 margin={`${this.props.cartDropdown?'':'0 10px 0 0'}`}
-                padding={`${this.props.cartDropdown?'1px':'0px 6px'}`}
+                padding={'1px'}
                 colorContainer 
                 onClick={()=>this.props.pushSelectedAtr(
                   this.props.name, 

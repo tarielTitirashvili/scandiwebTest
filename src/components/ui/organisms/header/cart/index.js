@@ -46,9 +46,6 @@ background-color: #39374838;
 class Cart extends Component {
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
-    if(prevProps.cartChanged!==this.props.cartChanged){
-      this.props.getQuantity()
-    }
     if(this.props.cartOpen){
       if(cart!==null){
         if(this.props.products.length !== cart.length){
