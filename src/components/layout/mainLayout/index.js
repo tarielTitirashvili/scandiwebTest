@@ -155,6 +155,7 @@ export class MainLayout extends React.Component {
               path='/cart' 
               element = {
                 <Cart 
+                  cartChanged = {this.state.cartChanged}
                   onCartStateChange={this.onCartStateChange} 
                   name={this.state.name} 
                   currency={this.state.currency} 

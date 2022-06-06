@@ -71,8 +71,8 @@ const withCartFunctionality = WrappedComponent => {
           products: [...filteredProducts],
           quantity: prev.quantity+change
         }))
-        localStorage.setItem('cart', JSON.stringify([...filteredProducts]))
       }
+      localStorage.setItem('cart', JSON.stringify([...filteredProducts]))
     }
     getQuantity=()=>{
       let cart = JSON.parse(localStorage.getItem('cart'))
@@ -96,6 +96,8 @@ const withCartFunctionality = WrappedComponent => {
     }
     componentDidUpdate(prevProps){
       if(prevProps.cartChanged!==this.props.cartChanged){
+        let cart = JSON.parse(localStorage.getItem('cart'))
+        this.setProducts(cart)
         this.getQuantity()
       }
     }

@@ -60,6 +60,7 @@ export default class CartProduct extends Component {
       </div>
       <FlexContainer zIndex={'0'}>
         <DropdownProductQuantity 
+          onCartStateChange = {this.props.onCartStateChange}
           onChangeCount = {this.props.onChangeCount} 
           index = {this.props.index} 
           quantity = {this.props.product.quantity}

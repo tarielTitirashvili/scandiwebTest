@@ -4,10 +4,10 @@ import CartPage from '../../ui/organisms/cartPage'
 import { SmallTitle } from '../../ui/styles/titles'
 
 class Cart extends Component {
-  componentDidUpdate(){
+  componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
     if(cart!==null){
-      if(this.props.products.length !== cart.length){
+      if(this.props.products.length !== cart.length&& this.props.quantity!==prevProps.quantity){
         this.props.products.forEach(product=>product.count)
         this.props.setProducts(cart)
       }
@@ -27,6 +27,7 @@ class Cart extends Component {
           CART
         </SmallTitle> 
             <CartPage
+              cartChanged = {this.props.cartChanged}
               onCartStateChange = {this.props.onCartStateChange}
               onClick = {this.props.onClick}
               onCheckOut = {this.props.onCheckOut}

@@ -27,7 +27,7 @@ export default class DropdownProductQuantity extends Component {
         <StyledSquare 
           onClick={()=>{
             this.props.onChangeCount(1, this.props.index) 
-
+            this.props.onCartStateChange()
           }}
         >
           +
@@ -37,7 +37,8 @@ export default class DropdownProductQuantity extends Component {
         </Text>
         <StyledSquare
           onClick={()=>{
-            this.props.onChangeCount(-1, this.props.index) 
+            this.props.onChangeCount(-1, this.props.index)
+            this.props.onCartStateChange() 
           }}
         >
           -

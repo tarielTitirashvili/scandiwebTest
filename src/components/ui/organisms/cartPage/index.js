@@ -17,7 +17,7 @@ class CartPage extends Component {
   componentDidUpdate(prevProps){
     if(
       (this.props.quantity !== prevProps.quantity) || 
-      (this.props.products.length!==prevProps.products.length)
+      (this.props.products.length !== prevProps.products.length)
     ){
       this.props.getTotal()
     }
@@ -30,6 +30,7 @@ class CartPage extends Component {
             return<div key={`${product.product.id}${index}`}>
               <Divider/>
               <CartProduct
+                onCartStateChange = {this.props.onCartStateChange}
                 onChangeCount = {this.props.onChangeCount}
                 product = {product}
                 index = {index}
