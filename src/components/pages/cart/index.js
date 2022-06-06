@@ -27,6 +27,7 @@ class Cart extends Component {
           CART
         </SmallTitle> 
             <CartPage
+              onCartStateChange = {this.props.onCartStateChange}
               onClick = {this.props.onClick}
               onCheckOut = {this.props.onCheckOut}
               cartOpen = {this.props.cartOpen}

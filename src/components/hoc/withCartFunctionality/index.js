@@ -76,28 +76,28 @@ const withCartFunctionality = WrappedComponent => {
     }
     getQuantity=()=>{
       let cart = JSON.parse(localStorage.getItem('cart'))
+      let quantity = 0
       if(cart){
-        let quantity = 0
         cart.forEach(product=>{
           quantity = quantity + product.quantity
         })
-        this.setState(({
-          quantity: quantity
-        }))
       }
+      this.setState(({
+        quantity: quantity
+      }))
     }
     setProducts=(products)=>{
       this.setState(({
         products: products
       }))
     }
+    componentDidMount(){
+      this.getQuantity()
+    }
     componentDidUpdate(prevProps){
       if(prevProps.cartChanged!==this.props.cartChanged){
         this.getQuantity()
       }
-    }
-    componentDidMount(){
-      this.getQuantity()
     }
     render() {
       return <WrappedComponent 

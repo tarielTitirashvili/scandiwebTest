@@ -26,6 +26,7 @@ export class MainLayout extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      loading: true,
       name: '',
       currency: '',
       currencies: [],
@@ -49,12 +50,18 @@ export class MainLayout extends React.Component {
     }))
   }
   getDate = async () => {
-    const {data} = await client.query({
+    const {data, loading} = await client.query({
       query: GET_CATEGORIES
     })
     this.setState((
       {
+        name: data.categories[0].name,
         categories: data.categories
+      }
+    ))
+    this.setState((
+      {
+        loading: loading
       }
     ))
   }
@@ -88,51 +95,55 @@ export class MainLayout extends React.Component {
     }
   }
   componentDidMount(){
-    this.getParams()
     this.getDate()
     this.getCurrencies()
+    this.getParams()
   }
   render(){
-    return(
-      <AppContainer>
-        <Header 
-          cartChanged = {this.state.cartChanged}
-          onCartStateChange = {this.onCartStateChange}
-          onChangeCurrency = {this.onChangeCurrency}
-          name = { this.state.name } 
-          categories = { this.state.categories } 
-          onClick = { this.onClick }
-          currencies = {this.state.currencies}
-          currency = {this.state.currency}
-        />
-        <Routes>
-          <Route 
-            path='/category/:name' 
-            element = {
-            <Category 
-              onCartStateChange = {this.onCartStateChange}
-              onClick = { this.onClick } 
-              name={this.state.name} 
-              currency={this.state.currency}
+    if(this.state.loading){ 
+      return<h1>loading...</h1>
+    }else{
+      return(
+        <AppContainer>
+          <Header 
+            cartChanged = {this.state.cartChanged}
+            onCartStateChange = {this.onCartStateChange}
+            onChangeCurrency = {this.onChangeCurrency}
+            name = { this.state.name } 
+            categories = { this.state.categories } 
+            onClick = { this.onClick }
+            currencies = {this.state.currencies}
+            currency = {this.state.currency}
+          />
+          <Routes>
+            <Route 
+              path='/category/:name' 
+              element = {
+              <Category 
+                onCartStateChange = {this.onCartStateChange}
+                onClick = { this.onClick } 
+                name={this.state.name} 
+                currency={this.state.currency}
+              />
+              }
             />
-            }
-          />
-          <Route 
-            path='/product/:id' 
-            element = {<Product 
-              onCartStateChange={this.onCartStateChange}
-              name={this.state.name} 
-              currency={this.state.currency}
-            />} 
-          />
-          <Route 
-            path='/cart' 
-            element = {<Cart cartChanged={this.state.cartChanged} name={this.state.name} currency={this.state.currency} />} 
-          />
-          <Route path='/' element = { <Navigate replace to={`/category${'/'+this.state.name}`} /> } />
-          <Route path='*' element = { <Navigate replace to='/error404' /> } />
-        </Routes>
-      </AppContainer>
-    )
+            <Route 
+              path='/product/:id' 
+              element = {<Product 
+                onCartStateChange={this.onCartStateChange}
+                name={this.state.name} 
+                currency={this.state.currency}
+              />} 
+            />
+            <Route 
+              path='/cart' 
+              element = {<Cart onCartStateChange={this.onCartStateChange} name={this.state.name} currency={this.state.currency} />} 
+            />
+            <Route path='/' element = { <Navigate replace to={`/category/${this.state.name}`} /> } />
+            <Route path='*' element = { <Navigate replace to='/error404' /> } />
+          </Routes>
+        </AppContainer>
+      )
+    }
   }
 }

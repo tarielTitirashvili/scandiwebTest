@@ -4,6 +4,7 @@ import FlexContainer from '../../styles/flexContainer/index'
 import CartProduct from '../../molecules/cartProduct'
 import CartButton from '../../styles/Button'
 import styled from 'styled-components';
+import withTotalPrice from '../../../hoc/withTotalPrice'
 
 const Divider = styled.div`
 background-color: ${props=>props.color || props.theme.colors.divider};
@@ -13,39 +14,12 @@ margin-top: 24px;
 `
 
 class CartPage extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      total: 0,
-    }
-  }
-  checkOut=()=>{
-    localStorage.clear()
-    this.props.onCheckOut()
-    console.log(this.state.total)
-  }
-  pushSelectedAtr=(name, value, selected, index)=>{
-    this.props.onAtrSelect(name, value, selected, index)
-  }
-  getTotal=()=>{
-    let total = 0
-    this.props.products.forEach(product=>{
-      product.product.prices.forEach(currency=>{
-        if(currency.currency.symbol===this.props.currency){
-          total = total + product.quantity*currency.amount
-        }
-      })
-    })
-    this.setState(({
-      total: total
-    }))
-  }
   componentDidUpdate(prevProps){
     if(
       (this.props.quantity !== prevProps.quantity) || 
       (this.props.products.length!==prevProps.products.length)
     ){
-      this.getTotal()
+      this.props.getTotal()
     }
   }
   render() {
@@ -59,7 +33,7 @@ class CartPage extends Component {
                 onChangeCount = {this.props.onChangeCount}
                 product = {product} 
                 index = {index}
-                pushSelectedAtr={this.pushSelectedAtr}
+                pushSelectedAtr={this.props.pushSelectedAtr}
                 currency = {this.props.currency}
               />
             </div>
@@ -71,7 +45,7 @@ class CartPage extends Component {
           Tax 21%: 
           </Text>
           <Text cursor={'text'} weight={'700'} margin = {'0 0 0 4px'}>
-            {this.props.currency}{this.state.total*0.21}
+            {this.props.currency}{Math.round(this.props.total*0.21*100)/100}
           </Text>
         </FlexContainer>
         <FlexContainer margin={'0 0 8px 0'} justify={'left'} >
@@ -87,11 +61,11 @@ class CartPage extends Component {
             Total:
           </Text>
           <Text cursor={'text'} weight={'700'}  margin = {'0 0 0 4px'}>
-           {this.props.currency}{this.state.total}
+           {this.props.currency}{this.props.total}
           </Text>
         </FlexContainer>
         <FlexContainer>
-          <div style={{width: '279px', height: '43px'}}>
+          <div style={{width: '279px', height: '43px', marginBottom: '200px'}}>
             <CartButton onClick={this.checkOut} size={'0.875rem'} padding={'13.1px'}>
               ORDER
             </CartButton>
@@ -102,4 +76,4 @@ class CartPage extends Component {
   }
 }
 
-export default CartPage
+export default withTotalPrice(CartPage)

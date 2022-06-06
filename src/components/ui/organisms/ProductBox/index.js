@@ -50,7 +50,8 @@ export default class ProductBox extends Component {
           fontSize={'1.125rem'} 
           margin={'24px 0 0 0'}
         >
-          { this.state.focused? <AddToCartButton 
+          { this.state.focused? 
+          <AddToCartButton 
           onCartStateChange = {this.props.onCartStateChange}
           product = {this.props.product}
           left={`${this.cartPosRef.current.offsetWidth-98}px`} />:''}

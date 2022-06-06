@@ -89,6 +89,7 @@ class Cart extends Component {
         <ScreenDarker display={`${ this.props.cartOpen? '':'none'}`} height = {this.generateHight()}>
           <CartDropdownContainer>
             <DropdownCart 
+              onCartStateChange = {this.props.onCartStateChange}
               onClick = {this.props.onClick}
               onCheckOut = {this.props.onCheckOut}
               cartOpen = {this.props.cartOpen}

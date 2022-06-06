@@ -20,6 +20,7 @@ align-items: center;
 `;
 
 export default class DropdownProductQuantity extends Component {
+  
   render() {
     return (
       <Container>

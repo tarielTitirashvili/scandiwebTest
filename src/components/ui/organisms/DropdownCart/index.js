@@ -1,39 +1,18 @@
 import React, { Component } from 'react'
+import withTotalPrice from '../../../hoc/withTotalPrice';
 import DropdownCartButtons from '../../molecules/dropdownCartButtons';
 import DropdownProduct from '../../molecules/dropdownProduct';
 import FlexContainer from '../../styles/flexContainer'
 import { Text } from '../../styles/titles'
 
 class DropdownCart extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      total: 0,
-    }
-  }
-  pushSelectedAtr=(name, value, selected, index)=>{
-    this.props.onAtrSelect(name, value, selected, index)
-  }
-  getTotal=()=>{
-    let total = 0
-    this.props.products.forEach(product=>{
-      product.product.prices.forEach(currency=>{
-        if(currency.currency.symbol===this.props.currency){
-          total = total + product.quantity*currency.amount
-        }
-      })
-    })
-    this.setState(({
-      total: total
-    }))
-  }
   componentDidUpdate(prevProps){
     if(
       (this.props.quantity !== prevProps.quantity) || 
       (this.props.products.length!==prevProps.products.length) ||
       (this.props.cartOpen && !prevProps.cartOpen)
     ){
-      this.getTotal()
+      this.props.getTotal()
     }
   }
   render() {
@@ -50,11 +29,12 @@ class DropdownCart extends Component {
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
             return<DropdownProduct 
+              onCartStateChange ={this.props.onCartStateChange}
               onChangeCount = {this.props.onChangeCount}
               key={`${product.product.id}${index}`}
               product = {product} 
               index = {index}
-              pushSelectedAtr={this.pushSelectedAtr}
+              pushSelectedAtr={this.props.pushSelectedAtr}
               currency = {this.props.currency}
             />
           })}
@@ -64,13 +44,13 @@ class DropdownCart extends Component {
             Total
           </Text>
           <Text cursor={'text'} weight={'700'}  margin={'0'} >
-           {this.props.currency}{this.state.total}
+           {this.props.currency}{this.props.total}
           </Text>
         </FlexContainer>
         <DropdownCartButtons 
           onClick = {this.props.onClick}
           currency={this.props.currency}
-          total ={this.state.total} 
+          total ={this.props.total} 
           onCartButtonClick = {this.props.onCartButtonClick} 
           onCheckOut = {this.props.onCheckOut}
         />
@@ -79,4 +59,4 @@ class DropdownCart extends Component {
   }
 }
 
-export default DropdownCart
+export default withTotalPrice(DropdownCart)

@@ -53,6 +53,7 @@ export default class DropdownProduct extends Component {
         }
       </div>
       <DropdownProductQuantity 
+        onCartStateChange = {this.props.onCartStateChange}
         onChangeCount = {this.props.onChangeCount} 
         index = {this.props.index} 
         quantity = {this.props.product.quantity}

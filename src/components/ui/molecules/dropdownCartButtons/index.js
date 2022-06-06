@@ -26,7 +26,7 @@ class DropdownCartButtons extends Component {
     console.log(this.props.total)
     this.props.onCartButtonClick()
   }
-  onViewBag(){
+  onViewBag=()=>{
     this.props.onClick('')
     this.props.onCartButtonClick()
   }
