@@ -73,9 +73,11 @@ class ProductInfo extends Component {
             currency = {this.props.currency}
             prices = {this.props.product.prices}
           />
+          
           <CartButton 
             margin = {'0 0 40px 0'}
             onClick={this.addToCart}
+            disabled={this.props.product.inStock? false : true}
           >
             ADD TO CART
           </CartButton>

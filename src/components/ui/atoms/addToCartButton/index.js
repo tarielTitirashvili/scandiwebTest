@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EmptyCart from '../../../../assets/EmptyCartWhite.svg'
 import styled from 'styled-components';
 import withOnAddToCart from '../../../hoc/withOnAddToCart';
+import { css } from 'styled-components';
 
 const StyledCircle = styled.div`
 position: absolute;
@@ -13,6 +14,10 @@ background-color: ${props=>props.backgroundColor || props.theme.colors.primary};
 border-radius: 100%;
 padding-top: 15.4px; 
 padding-left: 14px;
+${props =>props.disabled && css`
+  background-color: ${props=>props.backgroundColor || props.theme.colors.disabled};
+`
+}
 `
 
  class AddToCartButton extends Component {
@@ -27,6 +32,7 @@ padding-left: 14px;
   render() {
     return (
       <StyledCircle
+        disabled={this.props.product.inStock? false : true}
         id='AddToCartButton'
         onClick={e=>{
           e.stopPropagation()

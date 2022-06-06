@@ -20,6 +20,7 @@ class CartPage extends Component {
     }
   }
   checkOut=()=>{
+    localStorage.clear()
     this.props.onCheckOut()
     console.log(this.state.total)
   }

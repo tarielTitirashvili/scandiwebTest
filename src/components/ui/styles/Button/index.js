@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { css } from 'styled-components'
 
 const CartButton = styled.button`
 background-color: ${props=>props.backgroundColor || props.theme.colors.primary};
@@ -14,5 +15,9 @@ border: none;
 padding: ${props=>props.padding || '20px'};
 cursor: pointer;
 outline: inherit;
+${props =>props.disabled && css`
+  background-color: ${props=>props.backgroundColor || props.theme.colors.disabled};
+`
+}
 `
 export default CartButton

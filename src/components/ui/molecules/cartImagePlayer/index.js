@@ -56,9 +56,6 @@ export default class CartImagePlayer extends Component {
       }))
     }
   }
-  componentDidUpdate(){
-    console.log(this.state.imageNum)
-  }
   render() {
     return (
       <span style={{position: 'relative'}}>
