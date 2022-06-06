@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FlexContainer from '../../styles/flexContainer'
+import CartImagePlayer from '../cartImagePlayer';
 import { SmallTitle, Text } from './../../styles/titles/index';
 import Attributes from './../attributes/index';
 import DropdownProductQuantity from './../DropdownProductQuantity/index';
@@ -7,7 +8,7 @@ import DropdownProductQuantity from './../DropdownProductQuantity/index';
 export default class CartProduct extends Component {
   render() {
     return (
-      <FlexContainer justify = {'space-between'} margin = {'40px 0'} >
+      <FlexContainer justify = {'space-between'} margin = {'24px 0'} >
       <div style={{width: '320px'}}>
         <SmallTitle 
           weight={'600'} 
@@ -39,12 +40,17 @@ export default class CartProduct extends Component {
           })
         }
       </div>
-      <DropdownProductQuantity 
-        onChangeCount = {this.props.onChangeCount} 
-        index = {this.props.index} 
-        quantity = {this.props.product.quantity}
-      />
-
+      <FlexContainer>
+        <DropdownProductQuantity 
+          onChangeCount = {this.props.onChangeCount} 
+          index = {this.props.index} 
+          quantity = {this.props.product.quantity}
+        />
+        <CartImagePlayer 
+          name={this.props.product.product.name} 
+          gallery={this.props.product.product.gallery}
+        />
+      </FlexContainer>
     </FlexContainer>
     )
   }

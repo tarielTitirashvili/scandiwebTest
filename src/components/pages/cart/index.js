@@ -21,7 +21,6 @@ class Cart extends Component {
     }
   }
   render() {
-    console.log(this.props)
     return (
       <div>
         <SmallTitle cursor={'text'} size={'2rem'} weight={'700'} margin={'80px 0 55px 0'}>

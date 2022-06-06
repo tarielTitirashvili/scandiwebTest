@@ -20,9 +20,7 @@ align-items: center;
 `;
 
 export default class DropdownProductQuantity extends Component {
-  
   render() {
-    console.log(this.props)
     return (
       <Container>
         <StyledSquare 

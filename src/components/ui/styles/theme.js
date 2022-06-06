@@ -4,6 +4,7 @@ export const theme = {
     text: '#1D1F22',
     white: '#FFFFFF',
     cartBackground: '#39374838',
+    divider: '#E5E5E5'
   },
   fontSizes: {
     navTitle: '1rem',

@@ -3,6 +3,14 @@ import { Text } from '../../styles/titles'
 import FlexContainer from '../../styles/flexContainer/index'
 import CartProduct from '../../molecules/cartProduct'
 import CartButton from '../../styles/Button'
+import styled from 'styled-components';
+
+const Divider = styled.div`
+background-color: ${props=>props.color || props.theme.colors.divider};
+height: 1px;
+width: 100%;
+margin-top: 24px;
+`
 
 class CartPage extends Component {
   constructor(props){
@@ -44,15 +52,18 @@ class CartPage extends Component {
       <div onClick={(e)=>e.stopPropagation()}>
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
-            return<CartProduct
-              onChangeCount = {this.props.onChangeCount}
-              key={`${product.product.id}${index}`}
-              product = {product} 
-              index = {index}
-              pushSelectedAtr={this.pushSelectedAtr}
-              currency = {this.props.currency}
-            />
+            return<div key={`${product.product.id}${index}`}>
+              <Divider/>
+              <CartProduct
+                onChangeCount = {this.props.onChangeCount}
+                product = {product} 
+                index = {index}
+                pushSelectedAtr={this.pushSelectedAtr}
+                currency = {this.props.currency}
+              />
+            </div>
           })}
+        <Divider/>
         </FlexContainer>
         <FlexContainer margin={'32px 0 8px 0'} justify={'left'} >
           <Text cursor={'text'}  margin={'0'} >
