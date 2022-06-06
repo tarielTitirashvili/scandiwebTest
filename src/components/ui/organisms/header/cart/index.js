@@ -84,7 +84,7 @@ class Cart extends Component {
             {this.props.quantity}
           </CartCount>
           :''
-        }     
+        }
         <img src={EmptyCart} alt = 'EmptyCart' />
         <ScreenDarker display={`${ this.props.cartOpen? '':'none'}`} height = {this.generateHight()}>
           <CartDropdownContainer>

@@ -31,7 +31,7 @@ class CartPage extends Component {
               <Divider/>
               <CartProduct
                 onChangeCount = {this.props.onChangeCount}
-                product = {product} 
+                product = {product}
                 index = {index}
                 pushSelectedAtr={this.props.pushSelectedAtr}
                 currency = {this.props.currency}

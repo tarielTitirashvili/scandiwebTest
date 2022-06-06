@@ -9,6 +9,8 @@ import { GET_CATEGORIES, GET_CURRENCIES } from '../../../graphQL/query';
 import { client } from './../../../';
 import Product from '../../pages/product';
 import Cart from '../../pages/cart';
+import Loading from '../../pages/loading';
+import Error404 from '../../pages/404error';
 
 const AppContainer = styled.div`
 padding: 0 101px 0 101px;
@@ -27,6 +29,7 @@ export class MainLayout extends React.Component {
     super(props)
     this.state = {
       loading: true,
+      loading1: true,
       name: '',
       currency: '',
       currencies: [],
@@ -53,30 +56,36 @@ export class MainLayout extends React.Component {
     const {data, loading} = await client.query({
       query: GET_CATEGORIES
     })
-    this.setState((
-      {
-        name: data.categories[0].name,
-        categories: data.categories
-      }
-    ))
-    this.setState((
-      {
-        loading: loading
-      }
-    ))
+    if(!this.state.name){
+      this.setState((
+        {
+          categories: data.categories,
+          loading: loading
+        }
+      ))
+    }else{
+      this.setState((
+        {
+          categories: data.categories,
+          loading: loading
+        }
+      ))
+    }
   }
   getCurrencies = async()=>{
-    const {data} = await client.query({
+    const {data, loading} = await client.query({
       query: GET_CURRENCIES
     })
     if(!this.state.currency){
       this.setState(({
         currencies: data.currencies,
         currency: data.currencies[0].symbol,
+        loading1: loading
       }))
     }else{
       this.setState(({
         currencies: data.currencies,
+        loading1: loading
       }))
     }
   }
@@ -88,7 +97,7 @@ export class MainLayout extends React.Component {
         name: pathArray[2]
       }))
     }
-    if(urlCurrency!==null){
+    if(urlCurrency!==null&& urlCurrency!==this.state.currency){
       this.setState(({
         currency: urlCurrency
       }))
@@ -99,9 +108,14 @@ export class MainLayout extends React.Component {
     this.getCurrencies()
     this.getParams()
   }
+  componentDidUpdate(){
+    if(this.state.name===''){
+      this.getParams()
+    }
+  }
   render(){
-    if(this.state.loading){ 
-      return<h1>loading...</h1>
+    if(this.state.loading&&this.state.loading1){ 
+      return<Loading/>
     }else{
       return(
         <AppContainer>
@@ -119,27 +133,36 @@ export class MainLayout extends React.Component {
             <Route 
               path='/category/:name' 
               element = {
-              <Category 
-                onCartStateChange = {this.onCartStateChange}
-                onClick = { this.onClick } 
-                name={this.state.name} 
-                currency={this.state.currency}
-              />
+                <Category 
+                  onCartStateChange = {this.onCartStateChange}
+                  onClick = { this.onClick } 
+                  name={this.state.name} 
+                  currency={this.state.currency}
+                />
               }
             />
             <Route 
               path='/product/:id' 
-              element = {<Product 
-                onCartStateChange={this.onCartStateChange}
-                name={this.state.name} 
-                currency={this.state.currency}
-              />} 
+              element = {
+                <Product 
+                  onCartStateChange={this.onCartStateChange}
+                  name={this.state.name} 
+                  currency={this.state.currency}
+                />
+              } 
             />
             <Route 
               path='/cart' 
-              element = {<Cart onCartStateChange={this.onCartStateChange} name={this.state.name} currency={this.state.currency} />} 
+              element = {
+                <Cart 
+                  onCartStateChange={this.onCartStateChange} 
+                  name={this.state.name} 
+                  currency={this.state.currency} 
+                />
+              } 
             />
-            <Route path='/' element = { <Navigate replace to={`/category/${this.state.name}`} /> } />
+            <Route path='/' element = { <Navigate replace to={`/category/${this.state.categories[0].name}`} /> } />
+            <Route path='/error404' element={<Error404/>} />
             <Route path='*' element = { <Navigate replace to='/error404' /> } />
           </Routes>
         </AppContainer>

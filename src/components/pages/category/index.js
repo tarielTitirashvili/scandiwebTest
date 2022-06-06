@@ -5,6 +5,7 @@ import Title from "../../ui/styles/titles";
 import { client } from './../../../index';
 import ProductBox from './../../ui/organisms/ProductBox/index';
 import styled from 'styled-components';
+import Loading from "../loading";
 
 export const ProductsContainer = styled.div`
 display: ${props=>props.display || 'grid'};
@@ -36,6 +37,9 @@ class Category extends Component{
   }
 
   getProductsByCategory = async () => {
+    this.setState(({
+      loading: true,
+    }))
     const {data, loading} = await client.query({
         query: GET_PRODUCTS_BY_CATEGORY,
         variables: {
@@ -43,7 +47,8 @@ class Category extends Component{
         },
     });
     this.setState(({
-      products: data.category.products
+      products: data.category.products,
+      loading: loading,
     }))
 };
   componentDidUpdate(prev){
@@ -55,6 +60,7 @@ class Category extends Component{
     this.getProductsByCategory()
   }
   render(){
+    if(this.state.loading)return<Loading />
     return(
       <>
         <FlexContainer zIndex={'-1'}>
