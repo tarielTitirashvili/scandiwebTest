@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const CurrenciesContainer = styled.div`
 display: ${props=>props.display || 'flex'};
-left: -35px;
+right: 78px;
 top: 65px;
 box-shadow: 0 4px 4px 4px #F7F7F7;
 margin:${props=>props.margin || '0'};

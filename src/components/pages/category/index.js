@@ -48,6 +48,7 @@ class Category extends Component{
           CategoryInput: {title: this.props.name},
         },
     });
+    console.log(data.category.products)
     this.setState((
       {
         products: data.category.products,

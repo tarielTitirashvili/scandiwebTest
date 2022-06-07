@@ -37,9 +37,7 @@ class CartPage extends Component {
                 onChangeCount = {this.props.onChangeCount}
                 product = {product}
                 index = {index}
-                pushSelectedAtr={this.props.pushSelectedAtr}
                 currency = {this.props.currency}
-                setNewAttributeSelected={this.props.setNewAttributeSelected}
               />
             </div>
           })}

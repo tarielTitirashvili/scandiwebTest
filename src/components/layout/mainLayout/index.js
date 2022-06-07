@@ -15,15 +15,15 @@ import Loading from '../../pages/loading';
 import Error404 from '../../pages/404error';
 
 const AppContainer = styled.div`
-padding: 0 101px 0 101px;
+padding: 0 101px 178px 101px;
 @media screen and (max-width: 660px){
-  padding: 0 50px 0 50px;
+  padding: 0 50px 60px 50px;
 }
 @media screen and (max-width: 425px){
-  padding: 0 20px 0 20px;
+  padding: 0 20px 40px 20px;
 }
 @media screen and (max-width: 300px){
-  padding: 0 3px 0 3px;
+  padding: 0 3px 10px 3px;
 }
 `;
 export class MainLayout extends React.Component {

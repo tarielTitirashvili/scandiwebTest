@@ -5,6 +5,7 @@ margin: ${props=>props.margin || '28px 16px 32px 16px'};
 font-size: ${props=> props.size || '1rem'};
 line-height: ${props=>props.lineHeight||'120%'};
 font-weight: ${props=>props.weight || props.theme.fontWeight.text};
+font-family: ${props=>props.fontFamily|| '\'Raleway\', sans-serif'};
 cursor: ${props=> props.cursor || 'pointer'};
 color: ${props=>props.color || props.theme.colors.text};
 ${props =>props.selected && css`
@@ -34,6 +35,7 @@ margin: ${props=>props.margin || '28px 16px 32px 16px'};
 font-size: ${props=> props.size || '1rem'};
 line-height: 120%;
 font-weight: ${props=>props.weight || props.theme.fontWeight.text};
+font-family: ${props=>props.fontFamily|| '\'Raleway\', sans-serif'};
 cursor: ${props=>props.cursor || 'pointer'};
 position: ${props=>props.position || 'static'};
 top: ${props=>props.top};

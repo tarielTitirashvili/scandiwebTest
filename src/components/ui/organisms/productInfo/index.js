@@ -84,7 +84,7 @@ class ProductInfo extends Component {
           >
             ADD TO CART
           </CartButton>
-          <Text>
+          <Text fontFamily={'\'Roboto\', sans-serif'} >
             <Interweave content={this.props.product.description}/>
           </Text>
       </ProductInfoContainer>

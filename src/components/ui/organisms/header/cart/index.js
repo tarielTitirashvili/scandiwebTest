@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import EmptyCart from '../../../../../assets/EmptyCart.svg';
 import withCartFunctionality from '../../../../hoc/withCartFunctionality';
+import withGenerateHeight from '../../../../hoc/withGenerateHeight';
+import { ScreenDarker } from '../../../styles/flexContainer';
 import DropdownCart from '../../DropdownCart';
 
 const CartCount = styled.p`
@@ -32,16 +34,20 @@ width: 310px;
 max-height: 613px;
 overflow: auto;
 background-color:${props=>props.color || props.theme.colors.white};
+::-webkit-scrollbar {
+  width: 7px;
+  background-color: ${props=>props.color || props.theme.colors.white};
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: ${props=> props.color || props.theme.colors.disabled};
+  border-radius: 10px;
+}
 `;
-const ScreenDarker = styled.div`
-display: ${props=> props.display || 'block'};
-position: absolute;
-top: 52px;
-right: -101px;
-width: 100vw;
-height: ${props=> props.height+'px' || 'calc(100vh - 80px)'};
-background-color: #39374838;
-`;
+
 
 class Cart extends Component {
   componentDidUpdate(prevProps){
@@ -59,15 +65,6 @@ class Cart extends Component {
         localStorage.setItem('cart', JSON.stringify([...this.props.products]));
         this.props.onCartStateChange();
       };
-    };
-  };
-  generateHight=()=>{
-    let winHeight = window.innerHeight;
-    let rootDivHeight = document.getElementById("root").clientHeight;
-    if(winHeight<rootDivHeight){
-      return rootDivHeight - 80;
-    }else{
-      return winHeight - 80;
     };
   };
   render() {
@@ -88,7 +85,7 @@ class Cart extends Component {
         <img src={EmptyCart} alt = 'EmptyCart' />
         <ScreenDarker 
           display={`${ this.props.cartOpen? '':'none'}`} 
-          height = {this.generateHight()}
+          height = {this.props.generateHight()}
         >
           <CartDropdownContainer>
             <DropdownCart 
@@ -98,7 +95,6 @@ class Cart extends Component {
               cartOpen = {this.props.cartOpen}
               quantity = {this.props.quantity}
               onChangeCount = {this.props.onChangeCount}
-              onAtrSelect = {this.props.onAtrSelect}
               currency = {this.props.currency} 
               products = {this.props.products} 
               onCartButtonClick={this.props.onCartButtonClick}
@@ -110,4 +106,4 @@ class Cart extends Component {
   };
 };
 
-export default withCartFunctionality(Cart);
+export default withGenerateHeight(withCartFunctionality(Cart));

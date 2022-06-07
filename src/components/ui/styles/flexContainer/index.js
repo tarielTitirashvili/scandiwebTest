@@ -36,4 +36,13 @@ height: 29px;
   animation-fill-mode: forwards;
 }
 `;
+export const ScreenDarker = styled.div`
+display: ${props=> props.display || 'block'};
+position: absolute;
+top: ${props => props.top || '52px'};
+right: ${props=> props.right || '-101px'};
+width: 100vw;
+height: ${props => props.height+'px' || 'calc(100vh - 80px)'};
+background-color: ${props => props.backgroundColor || '#39374838'};
+`;
 export default FlexContainer;

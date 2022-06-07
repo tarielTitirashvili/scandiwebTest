@@ -8,9 +8,6 @@ const withTotalPrice = WrappedComponent => {
         total: 0,
       };
     };
-    pushSelectedAtr=(name, value, selected, index)=>{
-      this.props.onAtrSelect(name, value, selected, index);
-    };
     getTotal=()=>{
       let total = 0;
       this.props.products.forEach(product=>{
@@ -29,7 +26,6 @@ const withTotalPrice = WrappedComponent => {
       return <WrappedComponent 
         {...this.props} 
         total={this.state.total} 
-        pushSelectedAtr = {this.pushSelectedAtr} 
         getTotal={this.getTotal}
       />;
     };

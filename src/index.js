@@ -17,6 +17,10 @@ const Global = createGlobalStyle`
   margin: 0;
   padding: 0;
   text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+}
+span{
+  font-family: 'Roboto', sans-serif;
 }
 a:link {
   color: #1D1F22;

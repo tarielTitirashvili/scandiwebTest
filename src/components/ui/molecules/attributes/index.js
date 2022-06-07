@@ -8,12 +8,13 @@ export default class Attributes extends Component {
     return (
       <>
         <Title 
+          fontFamily={'\'Roboto Condensed\', sans-serif'}
           cursor={'text'}
           weight={`${this.props.cartDropdown?'400':'700'}`} 
           size={`${this.props.cartDropdown?'0.875rem':'1.125rem'}`} 
           margin={'0'}
         >
-          {this.props.attribute.name}:
+          {this.props.attribute.name.toUpperCase()}:
         </Title>
         <FlexContainer margin={`${this.props.cartDropdown?'8px 0':'8px 0 24px 0'}`} height={'auto'}>
           {
@@ -27,7 +28,6 @@ export default class Attributes extends Component {
                 pushSelectedAtr={this.props.pushSelectedAtr} 
                 cartDropdown = {this.props.cartDropdown}
                 index = {this.props.index}
-                setNewAttributeSelected={this.props.setNewAttributeSelected}
               />;
             })
           }

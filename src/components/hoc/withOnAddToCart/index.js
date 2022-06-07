@@ -16,7 +16,10 @@ const withOnAddToCart = WrappedComponent => {
                 };
               });
             });
-            if(count === cartProduct.selectedAtr.length)return isInCart=true;
+            if(count === cartProduct.selectedAtr.length){
+              isInCart=true
+              cartProduct.quantity = cartProduct.quantity+1
+            };
           };
         });
       };
@@ -38,7 +41,11 @@ const withOnAddToCart = WrappedComponent => {
             }
           ]));
         };
-      };
+      }else{
+        localStorage.setItem('cart', JSON.stringify([
+          ...cart
+        ]));
+      }
     };
     render() {
       return <WrappedComponent {...this.props} onAddToCart = {this.onAddToCart} />;

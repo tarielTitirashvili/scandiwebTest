@@ -66,14 +66,19 @@ export default class CartImagePlayer extends Component {
     return (
       <span style={{position: 'relative'}}>
         <Img src={this.props.gallery[this.state.imageNum]} alt={this.props.name} />
-        <ButtonContainer>
-          <ChangeImageButton onClick={this.onDecrease}>
-            <img src={vectorLeft} alt='vectorLeft' />
-          </ChangeImageButton>
-          <ChangeImageButton onClick={this.onIncrease} marginLeft={'8px'}>
-            <img src={vectorRight} alt='vectorRight' />
-          </ChangeImageButton>
-        </ButtonContainer>
+        {
+          this.props.gallery.length>1?
+            <ButtonContainer>
+            <ChangeImageButton onClick={this.onDecrease}>
+              <img src={vectorLeft} alt='vectorLeft' />
+            </ChangeImageButton>
+            <ChangeImageButton onClick={this.onIncrease} marginLeft={'8px'}>
+              <img src={vectorRight} alt='vectorRight' />
+            </ChangeImageButton>
+            </ButtonContainer>
+          :
+            ''
+        }
       </span>
     );
   };

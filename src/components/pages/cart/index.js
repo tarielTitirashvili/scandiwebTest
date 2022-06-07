@@ -4,15 +4,9 @@ import CartPage from '../../ui/organisms/cartPage';
 import { SmallTitle } from '../../ui/styles/titles';
 
 class Cart extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      newAttributeSelected: false
-    }
-  }
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'));
-    if(cart!==null&& this.props.quantity!==0){
+    if(cart!==null){
       if(
         this.props.products.length !== cart.length && 
         this.props.quantity!==prevProps.quantity
@@ -21,9 +15,6 @@ class Cart extends Component {
         this.props.setProducts(cart);
       };
     };
-    if(this.state.newAttributeSelected!==prevState.newAttributeSelected){
-      localStorage.setItem('cart', JSON.stringify(this.props.products))
-    }
   };
   componentWillUnmount(){
     if(this.props.products===null){
@@ -32,13 +23,6 @@ class Cart extends Component {
       localStorage.setItem('cart', JSON.stringify([...this.props.products]));
     };
   };
-  setNewAttributeSelected=()=>{
-    this.setState(prev=>(
-      {
-        newAttributeSelected: !prev.newAttributeSelected
-      }
-      ))
-  }
   render() {
     return (
       <div>
@@ -52,11 +36,9 @@ class Cart extends Component {
               cartOpen = {this.props.cartOpen}
               quantity = {this.props.quantity}
               onChangeCount = {this.props.onChangeCount}
-              onAtrSelect = {this.props.onAtrSelect}
               currency = {this.props.currency} 
               products = {this.props.products} 
               onCartButtonClick={this.props.onCartButtonClick}
-              setNewAttributeSelected={this.setNewAttributeSelected}
             />
       </div>
     );

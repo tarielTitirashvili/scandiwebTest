@@ -52,15 +52,12 @@ export default class AttributeBox extends Component {
     return isSelected;
   };
   onClick=()=>{
-    this.props.pushSelectedAtr(
-      this.props.name, 
-      this.props.item.value, 
-      this.props.selected,
-      this.props.index
-    );
-    if(this.props.setNewAttributeSelected!==undefined){
-      this.props.setNewAttributeSelected();
-    };
+    if(this.props.pushSelectedAtr!==undefined){
+      this.props.pushSelectedAtr(
+        this.props.name, 
+        this.props.item.value, 
+      );
+    }
   };
   render() {
     return (
@@ -93,6 +90,7 @@ export default class AttributeBox extends Component {
                 onClick={this.onClick}
               >
                 <Text 
+                  fontFamily={'\'Source Sans Pro\', sans-serif;'}
                   size={`${this.props.cartDropdown?'0.875rem':'1rem'}`}
                   color={'#FFFFFF'} 
                   margin = {'0'} 
@@ -129,6 +127,7 @@ export default class AttributeBox extends Component {
                 <Text 
                   size={`${this.props.cartDropdown?'0.875rem':'1rem'}`}
                   margin={'0'} 
+                  fontFamily={'\'Source Sans Pro\', sans-serif;'}
                 >
                   {this.props.item.value}
                 </Text>

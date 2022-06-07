@@ -40,7 +40,7 @@ class DropdownCart extends Component {
           })}
         </FlexContainer>
         <FlexContainer margin={'32px 16px'} justify={'space-between'}>
-          <Text cursor={'text'} margin={'0'} weight={'500'}>
+          <Text fontFamily = {'\'Roboto\', sans-serif'} cursor={'text'} margin={'0'} weight={'500'}>
             Total
           </Text>
           <Text cursor={'text'} weight={'700'}  margin={'0'} >

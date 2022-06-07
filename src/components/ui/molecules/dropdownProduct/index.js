@@ -49,8 +49,6 @@ export default class DropdownProduct extends Component {
               key={attribute.id} 
               attribute = {attribute} 
               selected={this.props.product.selectedAtr} 
-              pushSelectedAtr={this.props.pushSelectedAtr}
-              index = {this.props.index}
             />
           })
         }
