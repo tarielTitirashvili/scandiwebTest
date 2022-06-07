@@ -14,22 +14,22 @@ color: ${props=>props.color || props.theme.colors.text};
 justify-content: center;
 background: ${props=>props.color || props.theme.colors.white};
 border: ${props=>props.borderColor || '1px solid'+props.theme.colors.text};
-`
+`;
 const CheckOutButton = styled(CartButton)`
 width: 140px;
 height: 43px;
 padding: 0;
-`
+`;
 class DropdownCartButtons extends Component {
   onCheckOut=()=>{
-    this.props.onCheckOut()
-    console.log(this.props.total)
-    this.props.onCartButtonClick()
-  }
+    this.props.onCheckOut();
+    console.log(this.props.total);
+    this.props.onCartButtonClick();
+  };
   onViewBag=()=>{
-    this.props.onClick('')
-    this.props.onCartButtonClick()
-  }
+    this.props.onClick('');
+    this.props.onCartButtonClick();
+  };
   render() {
     return (
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -42,8 +42,8 @@ class DropdownCartButtons extends Component {
           CHECK OUT
         </CheckOutButton>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
-export default DropdownCartButtons
+export default DropdownCartButtons;

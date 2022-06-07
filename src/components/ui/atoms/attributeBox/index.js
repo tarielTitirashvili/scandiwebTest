@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
 import { Text } from '../../styles/titles';
@@ -29,7 +29,7 @@ ${props =>props.notSelected && css`
   border: ${props=>props.borderColor || '1px solid' + props.theme.colors.text};
 `
 }
-`
+`;
 const ColorsAtr = styled.div`
 margin: ${props=>props.margin || '0'};
 height: ${props=>props.height || '32px'};
@@ -39,18 +39,29 @@ ${props =>props.whiteAtr && css`
   border: ${props=>props.borderColor || `1px solid ${props.theme.colors.text}`};
 `
 }
-`
+`;
 
 export default class AttributeBox extends Component {
   selectedStatus(){
-    let isSelected = false
+    let isSelected = false;
     this.props.selected.forEach(selected =>{
       if(selected.name===this.props.name&&selected.value===this.props.item.value){
-        isSelected = true
-      }
-    })
-    return isSelected
-  }
+        isSelected = true;
+      };
+    });
+    return isSelected;
+  };
+  onClick=()=>{
+    this.props.pushSelectedAtr(
+      this.props.name, 
+      this.props.item.value, 
+      this.props.selected,
+      this.props.index
+    );
+    if(this.props.setNewAttributeSelected!==undefined){
+      this.props.setNewAttributeSelected();
+    };
+  };
   render() {
     return (
       <>
@@ -63,12 +74,7 @@ export default class AttributeBox extends Component {
                 margin={`${this.props.cartDropdown?'':'0 8px 0 0'}`}
                 padding={'1px'}
                 selectedColorContainer 
-                onClick={()=>this.props.pushSelectedAtr(
-                  this.props.name, 
-                  this.props.item.value, 
-                  this.props.selected, 
-                  this.props.index
-                )}
+                onClick={this.onClick}
               >
                 <ColorsAtr 
                   height = {`${this.props.cartDropdown?'16px':'32px'}`}
@@ -84,12 +90,7 @@ export default class AttributeBox extends Component {
                 margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
                 padding={`${this.props.cartDropdown?'0px 5px':'1px'}`}
                 selected 
-                onClick={()=>this.props.pushSelectedAtr(
-                  this.props.name, 
-                  this.props.item.value, 
-                  this.props.selected, 
-                  this.props.index
-                )}
+                onClick={this.onClick}
               >
                 <Text 
                   size={`${this.props.cartDropdown?'0.875rem':'1rem'}`}
@@ -107,25 +108,13 @@ export default class AttributeBox extends Component {
                 margin={`${this.props.cartDropdown?'':'0 8px 0 0'}`}
                 padding={'1px'}
                 colorContainer 
-                onClick={()=>this.props.pushSelectedAtr(
-                  this.props.name, 
-                  this.props.item.value, 
-                  this.props.selected,
-                  this.props.index
-                )}
+                onClick={this.onClick}
               >
                 <ColorsAtr 
                   height = {`${this.props.cartDropdown?'16px':'32px'}`}
                   width = {`${this.props.cartDropdown?'16px':'32px'}`}
                   whiteAtr = {this.props.item.value==='#FFFFFF'? true : false}
-                  onClick={()=>this.props.pushSelectedAtr(
-                    this.props.name, 
-                    this.props.item.value, 
-                    this.props.selected,
-                    this.props.index
-                  )}
                   color={this.props.item.value}
-
                 />
               </AttributeContainer>
             :
@@ -135,12 +124,7 @@ export default class AttributeBox extends Component {
                 minWidth = {`${this.props.cartDropdown?'12px':'61px'}`}
                 padding={`${this.props.cartDropdown?'0px 5px':'1px'}`}
                 notSelected 
-                onClick={()=>this.props.pushSelectedAtr(
-                  this.props.name, 
-                  this.props.item.value, 
-                  this.props.selected,
-                  this.props.index
-                )}
+                onClick={this.onClick}
               >
                 <Text 
                   size={`${this.props.cartDropdown?'0.875rem':'1rem'}`}
@@ -151,6 +135,6 @@ export default class AttributeBox extends Component {
               </AttributeContainer>
         }
       </>
-    )
-  }
-}
+    );
+  };
+};

@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import Vector from '../../../../../assets/Vector.svg'
-import FlexContainer, { HoveredContainer } from '../../../styles/flexContainer'
-import Title from '../../../styles/titles'
+import React, { Component } from 'react';
+import Vector from '../../../../../assets/Vector.svg';
+import FlexContainer, { HoveredContainer } from '../../../styles/flexContainer';
+import Title from '../../../styles/titles';
 import CurrenciesContainer from './../../../styles/currenciesContainer/index';
 
 export default class Currency extends Component {
   onClickHandler(symbol){
-    this.props.onCurrencyClick()
-    this.props.onChangeCurrency(symbol)
-    window.history.replaceState(null, null, `http://${window.location.host}${window.location.pathname}?currency=${symbol}`)
+    this.props.onCurrencyClick();
+    this.props.onChangeCurrency(symbol);
+    window.history.replaceState(null, null, `http://${window.location.host}${window.location.pathname}?currency=${symbol}`);
   }
   render() {
     return (
@@ -55,11 +55,11 @@ export default class Currency extends Component {
                 >
                  {`${currency.symbol} ${currency.label}`}
                 </Title>
-              </HoveredContainer>
+              </HoveredContainer>;
             })
           }
         </CurrenciesContainer>
       </FlexContainer>
-    )
-  }
-}
+    );
+  };
+};

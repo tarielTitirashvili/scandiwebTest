@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { client } from '../../..';
 import { GET_PRODUCT_BY_ID } from '../../../graphQL/query';
 import ImagesPlayer from '../../ui/organisms/imagesPlayer';
@@ -8,30 +8,32 @@ import Loading from '../loading';
 
 export default class Product extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       product: {},
       loading: true
-    }
-  }
+    };
+  };
   getProductsById = async () => {
-    const pathArray = window.location.pathname.split('/')
+    const pathArray = window.location.pathname.split('/');
     const {data, loading} = await client.query({
         query: GET_PRODUCT_BY_ID,
         variables: {
           id: pathArray[2],
         },
     });
-    this.setState(({
-      product: data.product,
-      loading: loading
-    }))
+    this.setState((
+      {
+        product: data.product,
+        loading: loading
+      }
+    ));
   };  
   componentDidMount(){
-    this.getProductsById()
-  }
+    this.getProductsById();
+  };
   render() {
-    if(this.state.loading)return <Loading/>
+    if(this.state.loading)return <Loading/>;
     return (
       <FlexContainer margin={'33.4px 0 0 0'}>
         <ImagesPlayer 
@@ -43,6 +45,6 @@ export default class Product extends Component {
           onCartStateChange = {this.props.onCartStateChange}
         />
       </FlexContainer>
-    )
-  }
-}
+    );
+  };
+};

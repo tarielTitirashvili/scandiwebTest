@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { Text } from '../../styles/titles'
-import FlexContainer from '../../styles/flexContainer/index'
-import CartProduct from '../../molecules/cartProduct'
-import CartButton from '../../styles/Button'
+import React, { Component } from 'react';
+import { Text } from '../../styles/titles';
+import FlexContainer from '../../styles/flexContainer/index';
+import CartProduct from '../../molecules/cartProduct';
+import CartButton from '../../styles/Button';
 import styled from 'styled-components';
-import withTotalPrice from '../../../hoc/withTotalPrice'
+import withTotalPrice from '../../../hoc/withTotalPrice';
 
 const Divider = styled.div`
 background-color: ${props=>props.color || props.theme.colors.divider};
 height: 1px;
 width: 100%;
-`
+`;
 
 class CartPage extends Component {
   componentDidUpdate(prevProps){
@@ -18,12 +18,16 @@ class CartPage extends Component {
       (this.props.quantity !== prevProps.quantity) || 
       (this.props.products.length !== prevProps.products.length)
     ){
-      this.props.getTotal()
-    }
-  }
+      this.props.getTotal();
+    };
+  };
+  checkOut=()=>{
+    console.log(this.props.total);
+    this.props.onCheckOut();
+  };
   render() {
     return (
-      <div onClick={(e)=>e.stopPropagation()}>
+      <div >
         <FlexContainer display = {'inline'} >
           {this.props.products.map((product, index)=>{
             return<div key={`${product.product.id}${index}`}>
@@ -35,45 +39,81 @@ class CartPage extends Component {
                 index = {index}
                 pushSelectedAtr={this.props.pushSelectedAtr}
                 currency = {this.props.currency}
+                setNewAttributeSelected={this.props.setNewAttributeSelected}
               />
             </div>
           })}
         <Divider/>
         </FlexContainer>
-        <FlexContainer margin={'32px 0 8px 0'} justify={'left'} >
-          <Text cursor={'text'}  margin={'0'} >
+        <FlexContainer 
+          margin={'32px 0 8px 0'} 
+          justify={'left'} 
+        >
+          <Text 
+            cursor={'text'}  
+            margin={'0'} 
+          >
           Tax 21%: 
           </Text>
-          <Text cursor={'text'} weight={'700'} margin = {'0 0 0 4px'}>
+          <Text 
+            cursor={'text'} 
+            weight={'700'} 
+            margin = {'0 0 0 4px'}
+          >
             {this.props.currency}{Math.round(this.props.total*0.21*100)/100}
           </Text>
         </FlexContainer>
-        <FlexContainer margin={'0 0 8px 0'} justify={'left'} >
-          <Text cursor={'text'}  margin={'0'} >
+        <FlexContainer 
+          margin={'0 0 8px 0'} 
+          justify={'left'} 
+        >
+          <Text 
+            cursor={'text'}  
+            margin={'0'} 
+          >
             Quantity:  
           </Text>
-          <Text cursor={'text'} weight={'700'} margin = {'0 0 0 4px'}>
+          <Text 
+            cursor={'text'} 
+            weight={'700'} 
+            margin = {'0 0 0 4px'}
+          >
             {this.props.quantity}
           </Text>
         </FlexContainer>
-        <FlexContainer margin={'0 0 16px 0'} justify={'left'}>
-          <Text cursor={'text'} margin={'0'} weight={'500'}>
+        <FlexContainer 
+          margin={'0 0 16px 0'} 
+          justify={'left'}
+        >
+          <Text 
+            cursor={'text'} 
+            margin={'0'} 
+            weight={'500'}
+          >
             Total:
           </Text>
-          <Text cursor={'text'} weight={'700'}  margin = {'0 0 0 4px'}>
+          <Text 
+            cursor={'text'} 
+            weight={'700'}  
+            margin = {'0 0 0 4px'}
+          >
            {this.props.currency}{this.props.total}
           </Text>
         </FlexContainer>
         <FlexContainer>
           <div style={{width: '279px', height: '43px', marginBottom: '200px'}}>
-            <CartButton onClick={this.checkOut} size={'0.875rem'} padding={'13.1px'}>
+            <CartButton 
+              onClick={this.checkOut} 
+              size={'0.875rem'} 
+              padding={'13.1px'}
+            >
               ORDER
             </CartButton>
           </div>
         </FlexContainer>
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
-export default withTotalPrice(CartPage)
+export default withTotalPrice(CartPage);

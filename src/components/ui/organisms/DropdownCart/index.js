@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import withTotalPrice from '../../../hoc/withTotalPrice';
 import DropdownCartButtons from '../../molecules/dropdownCartButtons';
 import DropdownProduct from '../../molecules/dropdownProduct';
-import FlexContainer from '../../styles/flexContainer'
-import { Text } from '../../styles/titles'
+import FlexContainer from '../../styles/flexContainer';
+import { Text } from '../../styles/titles';
 
 class DropdownCart extends Component {
   componentDidUpdate(prevProps){
@@ -12,9 +12,9 @@ class DropdownCart extends Component {
       (this.props.products.length!==prevProps.products.length) ||
       (this.props.cartOpen && !prevProps.cartOpen)
     ){
-      this.props.getTotal()
-    }
-  }
+      this.props.getTotal();
+    };
+  };
   render() {
     return (
       <div  onClick={(e)=>e.stopPropagation()}>
@@ -36,7 +36,7 @@ class DropdownCart extends Component {
               index = {index}
               pushSelectedAtr={this.props.pushSelectedAtr}
               currency = {this.props.currency}
-            />
+            />;
           })}
         </FlexContainer>
         <FlexContainer margin={'32px 16px'} justify={'space-between'}>
@@ -55,8 +55,8 @@ class DropdownCart extends Component {
           onCheckOut = {this.props.onCheckOut}
         />
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
 export default withTotalPrice(DropdownCart)

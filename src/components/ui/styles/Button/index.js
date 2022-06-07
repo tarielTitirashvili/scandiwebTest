@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { css } from 'styled-components'
+import styled from 'styled-components';
+import { css } from 'styled-components';
 
 const CartButton = styled.button`
 background-color: ${props=>props.backgroundColor || props.theme.colors.primary};
@@ -19,5 +19,5 @@ ${props =>props.disabled && css`
   background-color: ${props=>props.backgroundColor || props.theme.colors.disabled};
 `
 }
-`
-export default CartButton
+`;
+export default CartButton;

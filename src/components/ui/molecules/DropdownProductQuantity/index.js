@@ -26,24 +26,26 @@ export default class DropdownProductQuantity extends Component {
       <Container>
         <StyledSquare 
           onClick={()=>{
-            this.props.onChangeCount(1, this.props.index) 
-            this.props.onCartStateChange()
+            this.props.onChangeCount(1, this.props.index);
+            this.props.onCartStateChange();
           }}
         >
           +
         </StyledSquare>
-        <Text margin={'0'}>
+        <Text 
+          margin={'0'}
+        >
           {this.props.quantity}
         </Text>
         <StyledSquare
           onClick={()=>{
-            this.props.onChangeCount(-1, this.props.index)
-            this.props.onCartStateChange() 
+            this.props.onChangeCount(-1, this.props.index);
+            this.props.onCartStateChange();
           }}
         >
           -
         </StyledSquare>
       </Container>
-    )
-  }
-}
+    );
+  };
+};

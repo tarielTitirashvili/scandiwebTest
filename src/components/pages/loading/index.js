@@ -9,6 +9,6 @@ export default class Loading extends Component {
       <LoadingContainer>
         Loading...
       </LoadingContainer>
-    )
-  }
-}
+    );
+  };
+};

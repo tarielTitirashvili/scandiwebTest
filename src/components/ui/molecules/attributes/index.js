@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import AttributeBox from '../../atoms/attributeBox'
-import FlexContainer from '../../styles/flexContainer'
-import Title from '../../styles/titles'
+import React, { Component } from 'react';
+import AttributeBox from '../../atoms/attributeBox';
+import FlexContainer from '../../styles/flexContainer';
+import Title from '../../styles/titles';
 
 export default class Attributes extends Component {
   render() {
@@ -27,11 +27,12 @@ export default class Attributes extends Component {
                 pushSelectedAtr={this.props.pushSelectedAtr} 
                 cartDropdown = {this.props.cartDropdown}
                 index = {this.props.index}
-              />
+                setNewAttributeSelected={this.props.setNewAttributeSelected}
+              />;
             })
           }
         </FlexContainer>
       </>
-    )
-  }
-}
+    );
+  };
+};

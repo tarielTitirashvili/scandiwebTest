@@ -25,7 +25,7 @@ column-gap: 40px;
   grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px)'};
   grid-auto-flow: row;
 }
-`
+`;
 
 class Category extends Component{
   constructor(props){
@@ -33,34 +33,38 @@ class Category extends Component{
     this.state = {
       loading: true,
       products: [],
-    }
-  }
+    };
+  };
 
   getProductsByCategory = async () => {
-    this.setState(({
+    this.setState((
+      {
       loading: true,
-    }))
+      }
+    ));
     const {data, loading} = await client.query({
         query: GET_PRODUCTS_BY_CATEGORY,
         variables: {
           CategoryInput: {title: this.props.name},
         },
     });
-    this.setState(({
-      products: data.category.products,
-      loading: loading,
-    }))
+    this.setState((
+      {
+        products: data.category.products,
+        loading: loading,
+      }
+    ));
 };
   componentDidUpdate(prev){
     if(prev.name!==this.props.name){
-      this.getProductsByCategory()
-    }
-  }
+      this.getProductsByCategory();
+    };
+  };
   componentDidMount(){
-    this.getProductsByCategory()
-  }
+    this.getProductsByCategory();
+  };
   render(){
-    if(this.state.loading)return<Loading />
+    if(this.state.loading)return<Loading />;
     return(
       <>
         <FlexContainer zIndex={'-1'}>
@@ -87,8 +91,8 @@ class Category extends Component{
           }
         </ProductsContainer>
       </>
-    )
-  }
-}
+    );
+  };
+};
 
-export default Category
+export default Category;

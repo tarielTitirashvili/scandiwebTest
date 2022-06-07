@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Bag from '../../../../assets/Group.svg'
+import Bag from '../../../../assets/Group.svg';
 import FlexContainer from '../../styles/flexContainer';
 import HeaderContainer from './../../styles/headerContainer/index';
 import Currency from './currencies/index';
@@ -8,32 +8,40 @@ import NavCategories from '../../molecules/navCategories';
 
 export default class Header extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state={
       currenciesOpen: false,
       cartOpen: false
-    }
-  }
+    };
+  };
   onCurrencyClick=()=>{
     if(this.state.cartOpen){
-      this.setState(({
-        cartOpen: false
-      }))
-    }
-    this.setState(prev=>({
-      currenciesOpen: !prev.currenciesOpen
-    }))
-  }
+      this.setState((
+        {
+          cartOpen: false
+        }
+      ));
+    };
+    this.setState(prev=>(
+      {
+        currenciesOpen: !prev.currenciesOpen
+      }
+    ));
+  };
   onCartButtonClick=()=>{
     if(this.state.currenciesOpen){
-      this.setState(({
-        currenciesOpen: false
-      }))
-    }
-    this.setState(prev=>({
-      cartOpen: !prev.cartOpen
-    }))
-  }
+      this.setState((
+        {
+          currenciesOpen: false
+        }
+      ));
+    };
+    this.setState(prev=>(
+      {
+        cartOpen: !prev.cartOpen
+      }
+    ));
+  };
   render() {
     return (
       <HeaderContainer>
@@ -74,6 +82,6 @@ export default class Header extends Component {
           />
         </FlexContainer>
       </HeaderContainer>
-    )
-  }
-}
+    );
+  };
+};

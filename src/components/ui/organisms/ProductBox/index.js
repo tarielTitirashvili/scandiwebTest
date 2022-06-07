@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import FlexContainer from '../../styles/flexContainer'
+import React, { Component } from 'react';
+import FlexContainer from '../../styles/flexContainer';
 import { Text } from '../../styles/titles'
 import { NavLink } from 'react-router-dom';
 import AddToCartButton from '../../atoms/addToCartButton';
@@ -15,22 +15,22 @@ ${props =>props.disabled && css`
   opacity: 0.5;
 `
 }
-`
+`;
 
 export default class ProductBox extends Component {
   constructor(props){
     super(props)
     this.state = {
       focused: false,
-    }
-    this.cartPosRef = React.createRef()
-  }
+    };
+    this.cartPosRef = React.createRef();
+  };
   onFocusStatusChange=()=>{
     this.setState(prev=>{
       return{
       focused: !prev.focused
-    }})
-  }
+    }});
+  };
   render() {
     return (
       <NavLink 
@@ -93,11 +93,11 @@ export default class ProductBox extends Component {
               margin={'0'}
             >
             {`${currency.currency.symbol}${currency.amount}`}
-            </Text>
-            }else {return ''}
+            </Text>;
+            }else {return ''};
           })
         }
       </NavLink>
-    )
-  }
-}
+    );
+  };
+};

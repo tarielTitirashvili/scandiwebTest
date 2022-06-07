@@ -13,7 +13,11 @@ const withCartFunctionality = WrappedComponent => {
       this.setState(({
         quantity: 0,
         products: []
-      }));
+      }),()=>{
+        localStorage.setItem('cart', JSON.stringify(this.state.products));
+        this.getQuantity()
+        this.props.onCartStateChange()
+      });
     };
     onAtrSelect=(name, value, selected, index)=>{
       let cliCkedProductId = this.state.products[index].product.id;

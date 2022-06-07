@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { Text } from '../../styles/titles'
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const PriceText = styled.p`
@@ -11,7 +10,7 @@ display: flex;
 align-items: center;
 color: ${props=>props.color || props.theme.colors.text};
 font-weight: 700;
-`
+`;
 
 export default class ProductPrice extends Component {
   render() {
@@ -30,11 +29,12 @@ export default class ProductPrice extends Component {
               height = {'46px'}
             >
               {price.currency.symbol}{price.amount}
-            </PriceText>
-          }
+            </PriceText>;
+          }else{
+            return '';
+          };
         })}
       </>
-
-    )
-  }
-}
+    );
+  };
+};

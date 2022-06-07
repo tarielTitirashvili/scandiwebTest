@@ -15,4 +15,4 @@ export const theme = {
     selectedNavTitle: 600,
     text: 400,
   }
-}
+};

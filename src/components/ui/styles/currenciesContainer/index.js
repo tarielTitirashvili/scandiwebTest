@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const CurrenciesContainer = styled.div`
 display: ${props=>props.display || 'flex'};
@@ -11,5 +11,5 @@ justify-content: ${props => props.justify || 'center'};
 height:${props=>props.height || '0'};
 position: ${props=> props.position || 'absolute'};
 }
-`
-export default CurrenciesContainer
+`;
+export default CurrenciesContainer;

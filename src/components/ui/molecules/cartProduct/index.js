@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import FlexContainer from '../../styles/flexContainer'
+import React, { Component } from 'react';
+import FlexContainer from '../../styles/flexContainer';
 import CartImagePlayer from '../cartImagePlayer';
 import { SmallTitle, Text } from './../../styles/titles/index';
 import Attributes from './../attributes/index';
@@ -54,6 +54,7 @@ export default class CartProduct extends Component {
               selected={this.props.product.selectedAtr} 
               pushSelectedAtr={this.props.pushSelectedAtr}
               index = {this.props.index}
+              setNewAttributeSelected={this.props.setNewAttributeSelected}
             />
           })
         }
@@ -71,6 +72,6 @@ export default class CartProduct extends Component {
         />
       </FlexContainer>
     </FlexContainer>
-    )
-  }
-}
+    );
+  };
+};

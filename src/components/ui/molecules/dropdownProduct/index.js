@@ -13,7 +13,10 @@ height: 190px;
 export default class DropdownProduct extends Component {
   render() {
     return (
-    <FlexContainer justify = {'space-between'} margin = {'40px 0'} >
+    <FlexContainer 
+      justify = {'space-between'} 
+      margin = {'40px 0'} 
+    >
       <div style={{width: '136px'}}>
       <SmallTitle 
           cursor={'text'} 

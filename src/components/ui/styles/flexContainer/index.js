@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components'
+import styled, {keyframes} from 'styled-components';
 
 const openCurrencies=keyframes`
 0%{
@@ -7,7 +7,7 @@ const openCurrencies=keyframes`
 100%{
   background-color: #EEEEEE;
 }
-`
+`;
 
 const FlexContainer = styled.div`
 display: ${props=>props.display || 'flex'};
@@ -21,7 +21,7 @@ cursor:${props=> props.cursor || 'default'};
 position: ${props=> props.position || 'static'};
 flex-wrap: wrap;
 z-index: ${props=>props.zIndex || '1'}
-`
+`;
 
 export const HoveredContainer = styled.div`
 display: flex;
@@ -35,5 +35,5 @@ height: 29px;
   animation: ${openCurrencies} 1s;
   animation-fill-mode: forwards;
 }
-`
-export default FlexContainer
+`;
+export default FlexContainer;

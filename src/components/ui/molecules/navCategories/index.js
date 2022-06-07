@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import SelectedNavTitleStyle from '../../styles/selectedNavTitleStyle'
-import Title from '../../styles/titles'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import SelectedNavTitleStyle from '../../styles/selectedNavTitleStyle';
+import Title from '../../styles/titles';
 
 export default class NavCategories extends Component {
   render() {
@@ -36,6 +36,6 @@ export default class NavCategories extends Component {
           </NavLink>
         }
       </>
-    )
-  }
-}
+    );
+  };
+};

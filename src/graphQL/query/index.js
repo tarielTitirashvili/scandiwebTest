@@ -17,7 +17,7 @@ export const GET_CATEGORIES_AND_PRODUCTS = gql`
       }
     }
   }
-`
+`;
 
 export const GET_CURRENCIES = gql`
   query{
@@ -26,14 +26,14 @@ export const GET_CURRENCIES = gql`
       symbol
     }
   }
-`
+`;
 export const GET_CATEGORIES = gql`
 query{
   categories{
     name
   }
 }
-`
+`;
 export const GET_PRODUCTS_BY_CATEGORY = gql`
   query($CategoryInput: CategoryInput){
     category(input: $CategoryInput){
@@ -51,7 +51,7 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
       }
     }
   }
-`
+`;
 export const GET_PRODUCT_BY_ID = gql`
   query($id: String!){
     product(id: $id){
@@ -66,4 +66,4 @@ export const GET_PRODUCT_BY_ID = gql`
       attributes{id,name,type,items{id, value, displayValue}}
     }
   }
-`
+`;
