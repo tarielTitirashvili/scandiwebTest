@@ -3,6 +3,19 @@ import FlexContainer from '../../styles/flexContainer'
 import { Text } from '../../styles/titles'
 import { NavLink } from 'react-router-dom';
 import AddToCartButton from '../../atoms/addToCartButton';
+import styled,{ css } from 'styled-components';
+
+const Img = styled.img`
+width: 100%; 
+height: 100%; 
+object-fit: cover; 
+cursor: pointer;
+${props =>props.disabled && css`
+  background: ${props=>props.color || props.theme.colors.white};
+  opacity: 0.5;
+`
+}
+`
 
 export default class ProductBox extends Component {
   constructor(props){
@@ -33,24 +46,36 @@ export default class ProductBox extends Component {
         onClick={()=>this.props.onClick('')}
       >
         <FlexContainer 
+          position={'relative'}
           display={'block'} 
           justify={'left'} 
           height={'330px'}
+          zIndex={'0'}
         >
-          <img 
+          <Text 
+            display={this.props.product.inStock? 'none' : 'block'}
+            disabled
+            position={'absolute'}
+            top={'151px'}
+            left={'70px'}
+            size = {'1.5rem'}
+          >
+            OUT OF STOCK
+          </Text>
+          <Img 
+            disabled={this.props.product.inStock? false : true}
             src={this.props.product.gallery[0]} 
             alt={this.props.product.name}
-            style={{width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer'}}
           />
         </FlexContainer>
         <Text 
+          disabled={this.props.product.inStock? false : true}
           position={'relative'}
-          onClick={(event)=>console.log(event)}
           weight={'300'} 
           fontSize={'1.125rem'} 
           margin={'24px 0 0 0'}
         >
-          { this.state.focused? 
+          { this.state.focused&&this.props.product.inStock? 
           <AddToCartButton 
           onCartStateChange = {this.props.onCartStateChange}
           product = {this.props.product}
@@ -62,6 +87,7 @@ export default class ProductBox extends Component {
             if(this.props.currency===currency.currency.symbol){
             return<Text 
               key={currency.currency.symbol} 
+              disabled={this.props.product.inStock? false : true}
               weight={'500'} 
               fontSize={'1.125rem'} 
               margin={'0'}

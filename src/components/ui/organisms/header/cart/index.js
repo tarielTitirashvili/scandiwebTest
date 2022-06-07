@@ -46,12 +46,9 @@ background-color: #39374838;
 class Cart extends Component {
   componentDidUpdate(prevProps){
     let cart = JSON.parse(localStorage.getItem('cart'))
-    if(this.props.cartOpen){
+    if(this.props.cartOpen && prevProps.cartOpen===false){
       if(cart!==null){
-        if(this.props.products.length !== cart.length){
-          this.props.products.forEach(product=>product.count)
-          this.props.setProducts(cart)
-        }
+        this.props.setProducts(cart)
       }
     }
     if(prevProps.cartOpen&&!this.props.cartOpen){
@@ -84,7 +81,7 @@ class Cart extends Component {
             {this.props.quantity}
           </CartCount>
           :''
-        }
+        }   
         <img src={EmptyCart} alt = 'EmptyCart' />
         <ScreenDarker display={`${ this.props.cartOpen? '':'none'}`} height = {this.generateHight()}>
           <CartDropdownContainer>

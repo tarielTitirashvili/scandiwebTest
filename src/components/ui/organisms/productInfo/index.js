@@ -8,7 +8,7 @@ import { Interweave } from 'interweave';
 import withOnAddToCart from '../../../hoc/withOnAddToCart';
 
 const ProductInfoContainer = styled.div`
-width: 320px;
+width: 308px;
 margin-bottom: 32.4px;
 margin-left: 100px;
 `
@@ -75,7 +75,7 @@ class ProductInfo extends Component {
           />
           
           <CartButton 
-            margin = {'0 0 40px 0'}
+            margin = {'0 16px 40px 0'}
             onClick={this.addToCart}
             disabled={this.props.product.inStock? false : true}
           >

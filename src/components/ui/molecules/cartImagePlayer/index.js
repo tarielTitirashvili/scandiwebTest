@@ -21,8 +21,8 @@ align-items: center;
 `
 const ButtonContainer = styled.div`
 position: absolute;
-top: 248px;
-left: 128px;
+bottom: 16px;
+right: 16px;
 width: 56px;
 display: flex;
 `

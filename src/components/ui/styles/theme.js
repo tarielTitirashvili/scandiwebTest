@@ -5,7 +5,7 @@ export const theme = {
     white: '#FFFFFF',
     cartBackground: '#39374838',
     divider: '#E5E5E5',
-    disabled: '#9de1af'
+    disabled: '#8D8F9A'
   },
   fontSizes: {
     navTitle: '1rem',

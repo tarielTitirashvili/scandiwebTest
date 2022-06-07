@@ -10,7 +10,6 @@ const Divider = styled.div`
 background-color: ${props=>props.color || props.theme.colors.divider};
 height: 1px;
 width: 100%;
-margin-top: 24px;
 `
 
 class CartPage extends Component {

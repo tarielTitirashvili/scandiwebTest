@@ -1,9 +1,11 @@
 import React from 'react';
 import {
-  Navigate, Route, Routes
+  Navigate, 
+  Route, 
+  Routes
 } from 'react-router-dom';
 import Category from '../../pages/category';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import Header from '../../ui/organisms/header';
 import { GET_CATEGORIES, GET_CURRENCIES } from '../../../graphQL/query';
 import { client } from './../../../';
@@ -21,12 +23,12 @@ padding: 0 101px 0 101px;
   padding: 0 20px 0 20px;
 }
 @media screen and (max-width: 300px){
-  padding: 0 5px 0 5px;
+  padding: 0 3px 0 3px;
 }
-`
+`;
 export class MainLayout extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       loading: true,
       loading1: true,
@@ -35,87 +37,95 @@ export class MainLayout extends React.Component {
       currencies: [],
       categories: [],
       cartChanged: false,
-    }
-  }
+    };
+  };
   onCartStateChange=()=>{
     this.setState((prev)=>({
       cartChanged: !prev.cartChanged
-    }))
-  }
+    }));
+  };
   onClick=(name)=>{
     this.setState(({
       name: name
-    }))
-  }
+    }));
+  };
   onChangeCurrency=(newCurrency)=>{
     this.setState(({
       currency: newCurrency
-    }))
-  }
+    }));
+  };
   getDate = async () => {
     const {data, loading} = await client.query({
       query: GET_CATEGORIES
-    })
+    });
     if(!this.state.name){
       this.setState((
         {
           categories: data.categories,
           loading: loading
         }
-      ))
+      ));
     }else{
       this.setState((
         {
           categories: data.categories,
           loading: loading
         }
-      ))
-    }
-  }
+      ));
+    };
+  };
   getCurrencies = async()=>{
     const {data, loading} = await client.query({
       query: GET_CURRENCIES
-    })
+    });
     if(!this.state.currency){
-      this.setState(({
-        currencies: data.currencies,
-        currency: data.currencies[0].symbol,
-        loading1: loading
-      }))
+      this.setState((
+        {
+          currencies: data.currencies,
+          currency: data.currencies[0].symbol,
+          loading1: loading
+        }
+      ));
     }else{
-      this.setState(({
-        currencies: data.currencies,
-        loading1: loading
-      }))
-    }
-  }
+      this.setState((
+        {
+          currencies: data.currencies,
+          loading1: loading
+        }
+      ));
+    };
+  };
   getParams(){
-    const urlCurrency = new URLSearchParams(window.location.search).get('currency')
-    const pathArray = window.location.pathname.split('/')
+    const urlCurrency = new URLSearchParams(window.location.search).get('currency');
+    const pathArray = window.location.pathname.split('/');
     if(pathArray[1]==="category"&&this.state.name!==pathArray[2]){
-      this.setState(({
-        name: pathArray[2]
-      }))
-    }
+      this.setState((
+        {
+          name: pathArray[2]
+        }
+      ));
+    };
     if(urlCurrency!==null&& urlCurrency!==this.state.currency){
-      this.setState(({
-        currency: urlCurrency
-      }))
-    }
-  }
+      this.setState((
+        {
+          currency: urlCurrency
+        }
+      ));
+    };
+  };
   componentDidMount(){
-    this.getDate()
-    this.getCurrencies()
-    this.getParams()
-  }
+    this.getDate();
+    this.getCurrencies();
+    this.getParams();
+  };
   componentDidUpdate(){
     if(this.state.name===''){
-      this.getParams()
-    }
-  }
+      this.getParams();
+    };
+  };
   render(){
     if(this.state.loading&&this.state.loading1){ 
-      return<Loading/>
+      return<Loading/>;
     }else{
       return(
         <AppContainer>
@@ -167,7 +177,7 @@ export class MainLayout extends React.Component {
             <Route path='*' element = { <Navigate replace to='/error404' /> } />
           </Routes>
         </AppContainer>
-      )
-    }
-  }
-}
+      );
+    };
+  };
+};

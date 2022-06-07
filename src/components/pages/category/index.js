@@ -9,20 +9,20 @@ import Loading from "../loading";
 
 export const ProductsContainer = styled.div`
 display: ${props=>props.display || 'grid'};
-grid-template-columns:${props=> props.columns || 'minmax(280px, 386px) minmax(280px, 386px) minmax(280px, 386px)'};
+grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px)'};
 grid-template-rows:${props=> props.rows || '444px 444px'};
 grid-auto-flow: row;
 column-gap: 40px;
-@media screen and (max-width: 1040px){
-  grid-template-columns:${props=> props.columns || 'minmax(280px, 386px) minmax(280px, 386px)'};
+@media screen and (max-width: 1171px){
+  grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px)'};
   grid-auto-flow: row;
 }
-@media screen and (max-width: 719px){
-  grid-template-columns:${props=> props.columns || 'minmax(250px, 386px)'};
+@media screen and (max-width: 807px){
+  grid-template-columns:${props=> props.columns || 'minmax(304.5px, 386px)'};
   grid-auto-flow: row;
 }
 @media screen and (min-width: 1441px){
-  grid-template-columns:${props=> props.columns || 'minmax(250px, 386px) minmax(250px, 386px) minmax(250px, 386px) minmax(250px, 386px)'};
+  grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px)'};
   grid-auto-flow: row;
 }
 `

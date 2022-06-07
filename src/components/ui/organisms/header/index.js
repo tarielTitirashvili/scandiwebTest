@@ -1,12 +1,10 @@
+import React, { Component } from 'react';
 import Bag from '../../../../assets/Group.svg'
 import FlexContainer from '../../styles/flexContainer';
-import Title from '../../styles/titles';
 import HeaderContainer from './../../styles/headerContainer/index';
-import SelectedNavTitleStyle from './../../styles/selectedNavTitleStyle/index';
 import Currency from './currencies/index';
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import Cart from './cart';
+import NavCategories from '../../molecules/navCategories';
 
 export default class Header extends Component {
   constructor(props){
@@ -40,34 +38,15 @@ export default class Header extends Component {
     return (
       <HeaderContainer>
         <FlexContainer align = {'center'} hight = {'5rem'}>
-          {this.props.categories.map((category, index)=>this.props.name === category.name? 
-            <NavLink 
+          {this.props.categories.map((category, index)=>
+            <NavCategories 
+              currency={this.props.currency}
+              name={this.props.name} 
               key={index} 
-              style={{height: '100%'}} 
-              onClick={()=>this.props.onClick(category.name)}
-              to={`/category/${category.name}?currency=${this.props.currency}`}
-            >
-              <Title 
-                selected
-                onClick={()=>this.props.onClick(category.name)}
-              >
-                {category.name} 
-              </Title> 
-              <SelectedNavTitleStyle />
-            </NavLink> 
-            : 
-            <NavLink 
-              key={index} 
-              style={{height: '100%'}} 
-              to={`/category/${category.name}?currency=${this.props.currency}`}
-              onClick={()=>this.props.onClick(category.name)}
-            >
-              <Title 
-                navTitle 
-              > 
-                {category.name} 
-              </Title>
-            </NavLink>
+              category={category} 
+              index={index} 
+              onClick={this.props.onClick} 
+            />
           )}
         </FlexContainer>
         <FlexContainer 

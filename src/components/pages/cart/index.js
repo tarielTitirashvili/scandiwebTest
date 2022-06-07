@@ -1,25 +1,28 @@
-import React, { Component } from 'react'
-import withCartFunctionality from '../../hoc/withCartFunctionality'
-import CartPage from '../../ui/organisms/cartPage'
-import { SmallTitle } from '../../ui/styles/titles'
+import React, { Component } from 'react';
+import withCartFunctionality from '../../hoc/withCartFunctionality';
+import CartPage from '../../ui/organisms/cartPage';
+import { SmallTitle } from '../../ui/styles/titles';
 
 class Cart extends Component {
   componentDidUpdate(prevProps){
-    let cart = JSON.parse(localStorage.getItem('cart'))
+    let cart = JSON.parse(localStorage.getItem('cart'));
     if(cart!==null){
-      if(this.props.products.length !== cart.length&& this.props.quantity!==prevProps.quantity){
-        this.props.products.forEach(product=>product.count)
-        this.props.setProducts(cart)
-      }
-    }
-  }
+      if(
+        this.props.products.length !== cart.length && 
+        this.props.quantity!==prevProps.quantity
+      ){
+        this.props.products.forEach(product=>product.count);
+        this.props.setProducts(cart);
+      };
+    };
+  };
   componentWillUnmount(){
     if(this.props.products===null){
-      localStorage.setItem('cart', JSON.stringify(this.props.products))
+      localStorage.setItem('cart', JSON.stringify(this.props.products));
     }else{
-      localStorage.setItem('cart', JSON.stringify([...this.props.products]))
-    }
-  }
+      localStorage.setItem('cart', JSON.stringify([...this.props.products]));
+    };
+  };
   render() {
     return (
       <div>
@@ -40,8 +43,8 @@ class Cart extends Component {
               onCartButtonClick={this.props.onCartButtonClick}
             />
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
-export default withCartFunctionality(Cart)
+export default withCartFunctionality(Cart);

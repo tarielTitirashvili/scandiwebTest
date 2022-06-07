@@ -14,6 +14,7 @@ background-color: ${props=>props.backgroundColor || props.theme.colors.primary};
 border-radius: 100%;
 padding-top: 15.4px; 
 padding-left: 14px;
+z-index: 30;
 ${props =>props.disabled && css`
   background-color: ${props=>props.backgroundColor || props.theme.colors.disabled};
 `
@@ -29,21 +30,15 @@ ${props =>props.disabled && css`
     return selectedAttributes
   }
   onClick=(e)=>{
-    if(this.props.product.inStock){
       e.stopPropagation()
       e.preventDefault()
       this.props.onCartStateChange()
       this.props.onAddToCart(this.generateAttributes())
-    }else{
-      e.stopPropagation()
-      e.preventDefault()
-    }
   }
 
   render() {
     return (
       <StyledCircle
-        disabled={this.props.product.inStock? false : true}
         id='AddToCartButton'
         onClick={this.onClick} 
         left={this.props.left}

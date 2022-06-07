@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import LoadingContainer from '../../ui/styles/loadingContainer'
+import React, { Component } from 'react';
+import LoadingContainer from '../../ui/styles/loadingContainer';
 
 export default class Error404 extends Component {
   render() {
@@ -10,6 +10,6 @@ export default class Error404 extends Component {
           <h2>page not found</h2>
         </div>
       </LoadingContainer>
-    )
-  }
-}
+    );
+  };
+};
