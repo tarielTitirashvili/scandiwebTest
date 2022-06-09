@@ -162,7 +162,7 @@ export class MainLayout extends React.Component {
               } 
             />
             <Route 
-              path='/cart' 
+              path='/cart'
               element = {
                 <Cart 
                   cartChanged = {this.state.cartChanged}

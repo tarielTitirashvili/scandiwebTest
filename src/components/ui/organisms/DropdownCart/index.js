@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import withTotalPrice from '../../../hoc/withTotalPrice';
 import DropdownCartButtons from '../../molecules/dropdownCartButtons';
 import DropdownProduct from '../../molecules/dropdownProduct';
 import FlexContainer from '../../styles/flexContainer';
 import { Text } from '../../styles/titles';
 
 class DropdownCart extends Component {
-  componentDidUpdate(prevProps){
-    if(
-      (this.props.quantity !== prevProps.quantity) || 
-      (this.props.products.length!==prevProps.products.length) ||
-      (this.props.cartOpen && !prevProps.cartOpen)
-    ){
-      this.props.getTotal();
-    };
-  };
   render() {
     return (
       <div  onClick={(e)=>e.stopPropagation()}>
@@ -59,4 +49,4 @@ class DropdownCart extends Component {
   };
 };
 
-export default withTotalPrice(DropdownCart)
+export default DropdownCart

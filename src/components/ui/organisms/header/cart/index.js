@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import EmptyCart from '../../../../../assets/EmptyCart.svg';
 import withCartFunctionality from '../../../../hoc/withCartFunctionality';
 import withGenerateHeight from '../../../../hoc/withGenerateHeight';
+import withTotalPrice from '../../../../hoc/withTotalPrice';
 import { ScreenDarker } from '../../../styles/flexContainer';
 import DropdownCart from '../../DropdownCart';
 
@@ -50,23 +51,6 @@ background-color:${props=>props.color || props.theme.colors.white};
 
 
 class Cart extends Component {
-  componentDidUpdate(prevProps){
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    if(this.props.cartOpen && prevProps.cartOpen===false){
-      if(cart!==null){
-        this.props.setProducts(cart);
-      };
-    };
-    if(prevProps.cartOpen&&!this.props.cartOpen){
-      if(this.props.products===null){
-        localStorage.setItem('cart', JSON.stringify(this.props.products));
-        this.props.onCartStateChange();
-      }else{
-        localStorage.setItem('cart', JSON.stringify([...this.props.products]));
-        this.props.onCartStateChange();
-      };
-    };
-  };
   render() {
     return (
       <CartButtonCOntainer 
@@ -89,6 +73,7 @@ class Cart extends Component {
         >
           <CartDropdownContainer>
             <DropdownCart 
+              total = {this.props.total}
               onCartStateChange = {this.props.onCartStateChange}
               onClick = {this.props.onClick}
               onCheckOut = {this.props.onCheckOut}
@@ -106,4 +91,10 @@ class Cart extends Component {
   };
 };
 
-export default withGenerateHeight(withCartFunctionality(Cart));
+export default withGenerateHeight(
+  withCartFunctionality(
+    withTotalPrice(
+      Cart
+      )
+    )
+  );

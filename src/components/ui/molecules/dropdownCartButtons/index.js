@@ -23,7 +23,7 @@ padding: 0;
 class DropdownCartButtons extends Component {
   onCheckOut=()=>{
     this.props.onCheckOut();
-    console.log(this.props.total);
+    console.log(`${this.props.currency}${this.props.total}`);
     this.props.onCartButtonClick();
   };
   onViewBag=()=>{

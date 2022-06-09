@@ -73,10 +73,9 @@ const withCartFunctionality = WrappedComponent => {
         {...this.props} 
         quantity={this.state.quantity} 
         products = {this.state.products} 
-        getQuantity={this.getQuantity}
-        setProducts={this.setProducts}
         onCheckOut={this.onCheckOut}
         onChangeCount = {this.onChangeCount}
+        setProducts={this.setProducts}
       />;
     };
   };

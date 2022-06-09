@@ -4,7 +4,6 @@ import FlexContainer from '../../styles/flexContainer/index';
 import CartProduct from '../../molecules/cartProduct';
 import CartButton from '../../styles/Button';
 import styled from 'styled-components';
-import withTotalPrice from '../../../hoc/withTotalPrice';
 
 const Divider = styled.div`
 background-color: ${props=>props.color || props.theme.colors.divider};
@@ -13,16 +12,8 @@ width: 100%;
 `;
 
 class CartPage extends Component {
-  componentDidUpdate(prevProps){
-    if(
-      (this.props.quantity !== prevProps.quantity) || 
-      (this.props.products.length !== prevProps.products.length)
-    ){
-      this.props.getTotal();
-    };
-  };
   checkOut=()=>{
-    console.log(this.props.total);
+    console.log(`${this.props.currency}${this.props.total}`);
     this.props.onCheckOut();
   };
   render() {
@@ -114,4 +105,4 @@ class CartPage extends Component {
   };
 };
 
-export default withTotalPrice(CartPage);
+export default CartPage;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import withCartFunctionality from '../../hoc/withCartFunctionality';
+import withTotalPrice from '../../hoc/withTotalPrice';
 import CartPage from '../../ui/organisms/cartPage';
 import { SmallTitle } from '../../ui/styles/titles';
 
@@ -30,6 +31,7 @@ class Cart extends Component {
           CART
         </SmallTitle> 
             <CartPage
+              total = {this.props.total}
               onCartStateChange = {this.props.onCartStateChange}
               onClick = {this.props.onClick}
               onCheckOut = {this.props.onCheckOut}
@@ -45,4 +47,8 @@ class Cart extends Component {
   };
 };
 
-export default withCartFunctionality(Cart);
+export default withCartFunctionality(
+  withTotalPrice(
+    Cart
+    )
+  );

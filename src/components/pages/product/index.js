@@ -4,6 +4,7 @@ import { GET_PRODUCT_BY_ID } from '../../../graphQL/query';
 import ImagesPlayer from '../../ui/organisms/imagesPlayer';
 import ProductInfo from '../../ui/organisms/productInfo';
 import FlexContainer from '../../ui/styles/flexContainer';
+import Error404 from '../404error';
 import Loading from '../loading';
 
 export default class Product extends Component {
@@ -34,6 +35,7 @@ export default class Product extends Component {
   };
   render() {
     if(this.state.loading)return <Loading/>;
+    if(this.state.product===null) return<Error404 />
     return (
       <FlexContainer margin={'33.4px 0 0 0'}>
         <ImagesPlayer 

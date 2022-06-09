@@ -22,11 +22,19 @@ const withTotalPrice = WrappedComponent => {
         total: total
       }));
     };
+    componentDidUpdate(prevProps){
+      if(
+        (this.props.quantity !== prevProps.quantity) || 
+        (this.props.products.length!==prevProps.products.length) || 
+        (this.props.currency !== prevProps.currency)
+      ){
+        this.getTotal();
+      };
+    };
     render() {
       return <WrappedComponent 
         {...this.props} 
         total={this.state.total} 
-        getTotal={this.getTotal}
       />;
     };
   };

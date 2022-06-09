@@ -6,6 +6,7 @@ import { client } from './../../../index';
 import ProductBox from './../../ui/organisms/ProductBox/index';
 import styled from 'styled-components';
 import Loading from "../loading";
+import Error404 from "../404error";
 
 export const ProductsContainer = styled.div`
 display: ${props=>props.display || 'grid'};
@@ -48,13 +49,21 @@ class Category extends Component{
           CategoryInput: {title: this.props.name},
         },
     });
-    console.log(data.category.products)
-    this.setState((
-      {
-        products: data.category.products,
-        loading: loading,
-      }
-    ));
+    if(data.category===null){
+      this.setState((
+        {
+          products: data.category,
+          loading: false
+        }
+        ))
+    }else{
+      this.setState((
+        {
+          products: data.category.products,
+          loading: loading,
+        }
+      ));
+    }
 };
   componentDidUpdate(prev){
     if(prev.name!==this.props.name){
@@ -66,6 +75,7 @@ class Category extends Component{
   };
   render(){
     if(this.state.loading)return<Loading />;
+    if(this.state.products===null)return<Error404 />
     return(
       <>
         <FlexContainer zIndex={'-1'}>
