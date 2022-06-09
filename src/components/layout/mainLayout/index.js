@@ -16,6 +16,7 @@ import Error404 from '../../pages/404error';
 
 const AppContainer = styled.div`
 padding: 0 101px 178px 101px;
+background-color: ${props=>props.backgroundColor || props.theme.colors.white};
 @media screen and (max-width: 660px){
   padding: 0 50px 60px 50px;
 }

@@ -68,23 +68,30 @@ class Cart extends Component {
         }   
         <img src={EmptyCart} alt = 'EmptyCart' />
         <ScreenDarker 
+          top={'0'}
+          right={'0'}
+          height={this.props.generateHight()+80}
+          backgroundColor={'transparent'}
           display={`${ this.props.cartOpen? '':'none'}`} 
-          height = {this.props.generateHight()}
         >
-          <CartDropdownContainer>
-            <DropdownCart 
-              total = {this.props.total}
-              onCartStateChange = {this.props.onCartStateChange}
-              onClick = {this.props.onClick}
-              onCheckOut = {this.props.onCheckOut}
-              cartOpen = {this.props.cartOpen}
-              quantity = {this.props.quantity}
-              onChangeCount = {this.props.onChangeCount}
-              currency = {this.props.currency} 
-              products = {this.props.products} 
-              onCartButtonClick={this.props.onCartButtonClick}
-            />
-          </CartDropdownContainer>
+          <ScreenDarker 
+            height = {this.props.generateHight()}
+          >
+            <CartDropdownContainer>
+              <DropdownCart 
+                total = {this.props.total}
+                onCartStateChange = {this.props.onCartStateChange}
+                onClick = {this.props.onClick}
+                onCheckOut = {this.props.onCheckOut}
+                cartOpen = {this.props.cartOpen}
+                quantity = {this.props.quantity}
+                onChangeCount = {this.props.onChangeCount}
+                currency = {this.props.currency} 
+                products = {this.props.products} 
+                onCartButtonClick={this.props.onCartButtonClick}
+              />
+            </CartDropdownContainer>
+          </ScreenDarker>
         </ScreenDarker>
       </CartButtonCOntainer>
     );

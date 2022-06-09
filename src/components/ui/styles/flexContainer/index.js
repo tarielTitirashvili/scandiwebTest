@@ -20,7 +20,8 @@ width:${props=>props.width || ''};
 cursor:${props=> props.cursor || 'default'};
 position: ${props=> props.position || 'static'};
 flex-wrap: wrap;
-z-index: ${props=>props.zIndex || '1'}
+z-index: ${props=>props.zIndex || '1'};
+background-color:${props=>props.backgroundColor || props.theme.colors.white}
 `;
 
 export const HoveredContainer = styled.div`

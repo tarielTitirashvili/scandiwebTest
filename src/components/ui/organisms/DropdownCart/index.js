@@ -8,11 +8,20 @@ class DropdownCart extends Component {
   render() {
     return (
       <div  onClick={(e)=>e.stopPropagation()}>
-        <FlexContainer margin={'0 0 32px 0'} justify={'left'} >
-          <Text cursor={'text'} weight={'700'}  margin={'0'} >
+        <FlexContainer 
+          margin={'0 0 32px 0'} 
+          justify={'left'} >
+          <Text 
+            cursor={'text'} 
+            weight={'700'}  
+            margin={'0'} 
+          >
             My Bag, 
           </Text>
-          <Text cursor={'text'} margin = {'0 0 0 4px'}>
+          <Text 
+            cursor={'text'} 
+            margin={'0 0 0 4px'}
+          >
             {this.props.quantity} items
           </Text>
         </FlexContainer>
@@ -29,11 +38,23 @@ class DropdownCart extends Component {
             />;
           })}
         </FlexContainer>
-        <FlexContainer margin={'32px 16px'} justify={'space-between'}>
-          <Text fontFamily = {'\'Roboto\', sans-serif'} cursor={'text'} margin={'0'} weight={'500'}>
+        <FlexContainer 
+          margin={'32px 16px'} 
+          justify={'space-between'}
+        >
+          <Text 
+            fontFamily = {'\'Roboto\', sans-serif'} 
+            cursor={'text'} 
+            margin={'0'} 
+            weight={'500'}
+          >
             Total
           </Text>
-          <Text cursor={'text'} weight={'700'}  margin={'0'} >
+          <Text 
+            cursor={'text'} 
+            weight={'700'}  
+            margin={'0'} 
+          >
            {this.props.currency}{this.props.total}
           </Text>
         </FlexContainer>
