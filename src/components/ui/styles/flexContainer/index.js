@@ -1,4 +1,4 @@
-import styled, {keyframes} from 'styled-components';
+import styled, {css, keyframes} from 'styled-components';
 
 const openCurrencies=keyframes`
 0%{
@@ -8,6 +8,19 @@ const openCurrencies=keyframes`
   background-color: #EEEEEE;
 }
 `;
+
+export const SpaceBetweenContainer = styled.div`
+display: flex; 
+justify-content: space-between;
+${props =>props.dropdownCart && css`
+margin: 40px 0;
+`
+}
+${props =>props.cartProduct && css`
+margin: 24px 0;
+`
+}
+`
 
 const FlexContainer = styled.div`
 display: ${props=>props.display || 'flex'};
@@ -21,8 +34,16 @@ cursor:${props=> props.cursor || 'default'};
 position: ${props=> props.position || 'static'};
 flex-wrap: wrap;
 z-index: ${props=>props.zIndex || '1'};
-background-color:${props=>props.backgroundColor || props.theme.colors.white}
+background-color:${props=>props.backgroundColor || props.theme.colors.white};
+${props =>props.lowZIndex && css`
+z-index: 0
+`
+}
 `;
+
+export const CenteredFlexContainer =styled(FlexContainer)`
+justify-content: center;
+`
 
 export const HoveredContainer = styled.div`
 display: flex;

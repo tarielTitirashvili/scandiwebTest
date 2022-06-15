@@ -38,7 +38,6 @@ ${props =>props.disabled && css`
   render() {
     return (
       <StyledCircle
-        id='AddToCartButton'
         onClick={this.onClick} 
       >
         <img src={EmptyCart} alt={'cart'}/>

@@ -10,14 +10,17 @@ object-fit: cover;
 margin-bottom: 32.4px;
 `;
 const GalleryContainer = styled(FlexContainer)`
-overflow: ${props=>props.overflow || 'hidden'};
+width: 113.5px;
+height: 511px;
+z-index: 0;
+overflow: auto;
 `;
 
 export default class FullGallery extends Component {
 
   render() {
     return (
-      <GalleryContainer width={'113.5px'} height={'511px'} zIndex = {'0'} overflow={'auto'}>
+      <GalleryContainer>
         {
           this.props.gallery.map((photo)=>{
             return <GalleryImage 

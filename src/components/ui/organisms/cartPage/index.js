@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text } from '../../styles/titles';
 import FlexContainer from '../../styles/flexContainer/index';
 import CartProduct from '../../molecules/cartProduct';
 import CartButton from '../../styles/Button';
 import styled from 'styled-components';
+import { Text } from '../../styles/text';
 
 const Divider = styled.div`
 background-color: ${props=>props.color || props.theme.colors.divider};

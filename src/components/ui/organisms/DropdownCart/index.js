@@ -4,7 +4,7 @@ import withGenerateHeight from '../../../hoc/withGenerateHeight';
 import DropdownCartButtons from '../../molecules/dropdownCartButtons';
 import DropdownProduct from '../../molecules/dropdownProduct';
 import FlexContainer, { ScreenDarker } from '../../styles/flexContainer';
-import { Text } from '../../styles/titles';
+import { Text } from '../../styles/text';
 
 const CartDropdownContainer = styled.div`
 cursor: default;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { client } from '../../..';
 import { GET_PRODUCT_BY_ID } from '../../../graphQL/query';
 import ImagesPlayer from '../../ui/organisms/imagesPlayer';
@@ -6,6 +7,10 @@ import ProductInfo from '../../ui/organisms/productInfo';
 import FlexContainer from '../../ui/styles/flexContainer';
 import Error404 from '../404error';
 import Loading from '../loading';
+
+const ProductInfoContainer = styled(FlexContainer)`
+margin: 33.4px 0 0 0;
+`
 
 export default class Product extends Component {
   constructor(props){
@@ -37,7 +42,7 @@ export default class Product extends Component {
     if(this.state.loading)return <Loading/>;
     if(this.state.product===null) return<Error404 />
     return (
-      <FlexContainer margin={'33.4px 0 0 0'}>
+      <ProductInfoContainer>
         <ImagesPlayer 
           gallery = {this.state.product.gallery}
         />
@@ -46,7 +51,7 @@ export default class Product extends Component {
           currency = {this.props.currency}
           onCartStateChange = {this.props.onCartStateChange}
         />
-      </FlexContainer>
+      </ProductInfoContainer>
     );
   };
 };

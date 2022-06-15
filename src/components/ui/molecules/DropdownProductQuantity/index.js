@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { Text } from '../../styles/titles';
+import { Text } from '../../styles/text';
 
 const StyledSquare = styled.div`
 width: 22px;

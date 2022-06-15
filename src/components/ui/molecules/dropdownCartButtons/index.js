@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import CartButton from '../../styles/Button';
+import { SpaceBetweenContainer } from '../../styles/flexContainer';
 
 const ViewBagButton=styled.div`
 width: 138px;
@@ -20,6 +21,7 @@ width: 140px;
 height: 43px;
 padding: 0;
 `;
+
 class DropdownCartButtons extends Component {
   onCheckOut=()=>{
     this.props.onCheckOut();
@@ -32,7 +34,7 @@ class DropdownCartButtons extends Component {
   };
   render() {
     return (
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+      <SpaceBetweenContainer>
         <NavLink  onClick={this.onViewBag} to={`/cart?currency=${this.props.currency}`}>
           <ViewBagButton>
             VIEW BAG
@@ -41,7 +43,7 @@ class DropdownCartButtons extends Component {
         <CheckOutButton onClick={this.onCheckOut}>
           CHECK OUT
         </CheckOutButton>
-      </div>
+      </SpaceBetweenContainer>
     );
   };
 };

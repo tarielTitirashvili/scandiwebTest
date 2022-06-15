@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import withCartFunctionality from '../../hoc/withCartFunctionality';
 import withTotalPrice from '../../hoc/withTotalPrice';
 import CartPage from '../../ui/organisms/cartPage';
 import { SmallTitle } from '../../ui/styles/titles';
+
+const CartTitle = styled(SmallTitle)`
+cursor: text; 
+font-size: 2rem; 
+font-weight: 700;
+margin: 80px 0 55px 0;
+`
 
 class Cart extends Component {
   componentDidUpdate(prevProps){
@@ -27,9 +35,9 @@ class Cart extends Component {
   render() {
     return (
       <div>
-        <SmallTitle cursor={'text'} size={'2rem'} weight={'700'} margin={'80px 0 55px 0'}>
+        <CartTitle >
           CART
-        </SmallTitle> 
+        </CartTitle> 
             <CartPage
               total = {this.props.total}
               onCartStateChange = {this.props.onCartStateChange}

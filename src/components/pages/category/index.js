@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { GET_PRODUCTS_BY_CATEGORY } from "../../../graphQL/query";
-import FlexContainer from "../../ui/styles/flexContainer";
+import FlexContainer, { CenteredFlexContainer } from "../../ui/styles/flexContainer";
 import Title from "../../ui/styles/titles";
 import { client } from './../../../index';
 import ProductBox from './../../ui/organisms/ProductBox/index';
@@ -25,6 +25,13 @@ column-gap: 40px;
   grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px)'};
   grid-auto-flow: row;
 }
+`;
+
+export const CategoryTitle = styled(Title)`
+line-height: 67.2px;
+font-size: 42px; 
+margin: 80px 0 103px 0;
+font-weight: 400;
 `;
 
 class Category extends Component{
@@ -77,17 +84,12 @@ class Category extends Component{
     if(this.state.products===null)return<Error404 />
     return(
       <>
-        <FlexContainer zIndex={'-1'}>
-          <Title 
-            lineHeight={'67.2px'}
-            size = {'42px'} 
-            margin={'80px 0 103px 0'}
-            weight={'400'}
-          >
+        <FlexContainer>
+          <CategoryTitle>
             {this.props.name}
-          </Title>
+          </CategoryTitle>
         </FlexContainer>
-        <FlexContainer justify={'center'}>
+        <CenteredFlexContainer>
           <ProductsContainer>
             {
               this.state.products.map((product)=>{
@@ -101,7 +103,7 @@ class Category extends Component{
               })
             }
           </ProductsContainer>
-        </FlexContainer>
+        </CenteredFlexContainer>
       </>
     );
   };

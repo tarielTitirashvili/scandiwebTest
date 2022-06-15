@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text } from '../../styles/titles'
 import { NavLink } from 'react-router-dom';
 import AddToCartButton from '../../atoms/addToCartButton';
 import styled,{ css } from 'styled-components';
+import { Text } from '../../styles/text';
 
 const Img = styled.img`
 width: 100%; 

@@ -1,47 +1,53 @@
 import React, { Component } from 'react';
-import { SmallTitle, Text } from '../../styles/titles';
+import { SmallTitle } from '../../styles/titles';
 import Attributes from '../attributes';
 import styled from 'styled-components';
-import FlexContainer from '../../styles/flexContainer';
+import { SpaceBetweenContainer } from '../../styles/flexContainer';
 import DropdownProductQuantity from '../DropdownProductQuantity';
+import { Text } from '../../styles/text';
 
 const ImageContainer = styled.div`
 width: 121px;
 height: 190px;
 `;
 
+const ProductTitle = styled(SmallTitle)`
+cursor: text;
+font-weight: 300;
+margin: 0;
+`
+const CurrencyTitle = styled(Text)`
+cursor: text;
+font-weight: 500;
+margin: 4px 0 8px 0;
+`
+
+const Img = styled.img`
+width: 100%;
+height: 100%;
+object-fit: cover;
+`
+const CartProductInfoWrapper = styled.div`
+width: 136px;
+`
+
 export default class DropdownProduct extends Component {
   render() {
     return (
-    <FlexContainer 
-      justify = {'space-between'} 
-      margin = {'40px 0'} 
-    >
-      <div style={{width: '136px'}}>
-      <SmallTitle 
-          cursor={'text'} 
-          weight={'300'}
-          margin={'0'}
-        >
+    <SpaceBetweenContainer dropdownCart>
+      <CartProductInfoWrapper>
+      <ProductTitle>
           {this.props.product.product.brand}
-        </SmallTitle>
-        <SmallTitle 
-          cursor={'text'} 
-          weight={'300'} 
-          margin={'0'}
-        >
+        </ProductTitle>
+        <ProductTitle>
           {this.props.product.product.name}
-        </SmallTitle>
-        <Text 
-          cursor={'text'} 
-          weight={'500'}
-          margin={'4px 0 8px 0'}
-        >
+        </ProductTitle>
+        <CurrencyTitle>
           {this.props.currency}
           {this.props.product.product.prices.map(price=>{
             return price.currency.symbol===this.props.currency?price.amount:''
           })}
-        </Text>
+        </CurrencyTitle>
         {
           this.props.product.product.attributes.map(attribute=>{
             return<Attributes 
@@ -52,7 +58,7 @@ export default class DropdownProduct extends Component {
             />
           })
         }
-      </div>
+      </CartProductInfoWrapper>
       <DropdownProductQuantity 
         onCartStateChange = {this.props.onCartStateChange}
         onChangeCount = {this.props.onChangeCount} 
@@ -60,12 +66,11 @@ export default class DropdownProduct extends Component {
         quantity = {this.props.product.quantity}
       />
       <ImageContainer>
-        <img 
+        <Img 
           src={this.props.product.product.gallery[0]} 
           alt = {this.props.product.product.name}
-          style={{width: '100%', height: '100%', objectFit: 'cover'}}
         />
       </ImageContainer>
-    </FlexContainer>
+    </SpaceBetweenContainer>
   )};
 };

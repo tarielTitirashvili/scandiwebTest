@@ -25,7 +25,11 @@ bottom: 16px;
 right: 16px;
 width: 56px;
 display: flex;
+justify-content: space-between;
 `;
+const CartImageContainer = styled.span`
+position: relative;
+`
 
 export default class CartImagePlayer extends Component {
   constructor(props){
@@ -64,7 +68,7 @@ export default class CartImagePlayer extends Component {
   };
   render() {
     return (
-      <span style={{position: 'relative'}}>
+      <CartImageContainer>
         <Img src={this.props.gallery[this.state.imageNum]} alt={this.props.name} />
         {
           this.props.gallery.length>1?
@@ -72,14 +76,14 @@ export default class CartImagePlayer extends Component {
             <ChangeImageButton onClick={this.onDecrease}>
               <img src={vectorLeft} alt='vectorLeft' />
             </ChangeImageButton>
-            <ChangeImageButton onClick={this.onIncrease} marginLeft={'8px'}>
+            <ChangeImageButton onClick={this.onIncrease}>
               <img src={vectorRight} alt='vectorRight' />
             </ChangeImageButton>
             </ButtonContainer>
           :
             ''
         }
-      </span>
+      </CartImageContainer>
     );
   };
 };

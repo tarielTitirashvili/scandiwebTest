@@ -12,6 +12,12 @@ color: ${props=>props.color || props.theme.colors.text};
 font-weight: 700;
 `;
 
+const Price = styled(PriceText)`
+margin: 0 0 20px 0;
+font-size: 1.5rem;
+height: 46px;
+`
+
 export default class ProductPrice extends Component {
   render() {
     return (
@@ -22,14 +28,12 @@ export default class ProductPrice extends Component {
         </PriceText>
         {this.props.prices.map(price=>{
           if(this.props.currency===price.currency.symbol){
-            return <PriceText 
+            return <Price 
               key={price.currency.symbol} 
-              margin={'0 0 20px 0'}
-              size={'1.5rem'}
-              height = {'46px'}
+
             >
               {price.currency.symbol}{price.amount}
-            </PriceText>;
+            </Price>;
           }else{
             return '';
           };

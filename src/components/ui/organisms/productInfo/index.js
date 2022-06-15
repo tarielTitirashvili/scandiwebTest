@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { SmallTitle, Text } from '../../styles/titles';
+import { SmallTitle } from '../../styles/titles';
 import Attributes from '../../molecules/attributes';
 import ProductPrice from '../../atoms/productPrice';
 import CartButton from '../../styles/Button';
 import styled from 'styled-components';
 import { Interweave } from 'interweave';
 import withOnAddToCart from '../../../hoc/withOnAddToCart';
+import { Text } from '../../styles/text';
 
 const ProductInfoContainer = styled.div`
 width: 308px;

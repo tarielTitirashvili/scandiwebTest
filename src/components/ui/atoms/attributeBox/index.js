@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { css } from 'styled-components';
-import { Text } from '../../styles/titles';
+import { Text } from '../../styles/text';
 
 const AttributeContainer = styled.div`
 margin: ${props=>props.margin || '0 6px 0 0'};
