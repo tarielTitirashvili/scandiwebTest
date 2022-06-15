@@ -11,18 +11,17 @@ import Error404 from "../404error";
 export const ProductsContainer = styled.div`
 display: ${props=>props.display || 'grid'};
 grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px)'};
-grid-template-rows:${props=> props.rows || '444px 444px'};
 grid-auto-flow: row;
 column-gap: 40px;
-@media screen and (max-width: 1171px){
+@media screen and (max-width: 1247px){
   grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px)'};
   grid-auto-flow: row;
 }
-@media screen and (max-width: 807px){
+@media screen and (max-width: 889px){
   grid-template-columns:${props=> props.columns || 'minmax(304.5px, 386px)'};
   grid-auto-flow: row;
 }
-@media screen and (min-width: 1441px){
+@media screen and (min-width: 1644px){
   grid-template-columns:${props=> props.columns || 'minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px) minmax(324.5px, 386px)'};
   grid-auto-flow: row;
 }
@@ -88,19 +87,21 @@ class Category extends Component{
             {this.props.name}
           </Title>
         </FlexContainer>
-        <ProductsContainer>
-          {
-            this.state.products.map((product)=>{
-                return<ProductBox 
-                onCartStateChange = {this.props.onCartStateChange}
-                onClick = { this.props.onClick }
-                key={product.id} 
-                product = {product} 
-                currency = {this.props.currency}
-              />
-            })
-          }
-        </ProductsContainer>
+        <FlexContainer justify={'center'}>
+          <ProductsContainer>
+            {
+              this.state.products.map((product)=>{
+                  return<ProductBox 
+                  onCartStateChange = {this.props.onCartStateChange}
+                  onClick = { this.props.onClick }
+                  key={product.id} 
+                  product = {product} 
+                  currency = {this.props.currency}
+                />
+              })
+            }
+          </ProductsContainer>
+        </FlexContainer>
       </>
     );
   };

@@ -44,11 +44,15 @@ const withCartFunctionality = WrappedComponent => {
     getQuantity=()=>{
       let cart = JSON.parse(localStorage.getItem('cart'));
       let quantity = 0;
-      if(cart){
+      if(cart!==null){
         cart.forEach(product=>{
           quantity = quantity + product.quantity
         });
-      };
+      }else{
+        this.setState(({
+          products: []
+        }))
+      }
       this.setState(({
         quantity: quantity
       }));

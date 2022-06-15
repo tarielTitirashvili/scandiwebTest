@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import EmptyCart from '../../../../../assets/EmptyCart.svg';
 import withCartFunctionality from '../../../../hoc/withCartFunctionality';
-import withGenerateHeight from '../../../../hoc/withGenerateHeight';
 import withTotalPrice from '../../../../hoc/withTotalPrice';
-import { ScreenDarker } from '../../../styles/flexContainer';
 import DropdownCart from '../../DropdownCart';
 
 const CartCount = styled.p`
@@ -24,30 +22,8 @@ border-radius: 100%;
 `;
 const CartButtonCOntainer = styled.div`
 position: relative;
-cursor: pointer;
 `;
-const CartDropdownContainer = styled.div`
-cursor: default;
-position: absolute;
-padding: 32px 16px;
-right: 72px;
-width: 310px;
-max-height: 613px;
-overflow: auto;
-background-color:${props=>props.color || props.theme.colors.white};
-::-webkit-scrollbar {
-  width: 7px;
-  background-color: ${props=>props.color || props.theme.colors.white};
-}
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb {
-  background: ${props=> props.color || props.theme.colors.disabled};
-  border-radius: 10px;
-}
-`;
+
 
 
 class Cart extends Component {
@@ -67,18 +43,10 @@ class Cart extends Component {
           :''
         }   
         <img src={EmptyCart} alt = 'EmptyCart' />
-        <ScreenDarker 
-          top={'0'}
-          right={'0'}
-          height={this.props.generateHight()+80}
-          backgroundColor={'transparent'}
-          display={`${ this.props.cartOpen? '':'none'}`} 
-        >
-          <ScreenDarker 
-            height = {this.props.generateHight()}
-          >
-            <CartDropdownContainer>
+        { 
+          this.props.cartOpen? 
               <DropdownCart 
+                name={this.props.name} 
                 total = {this.props.total}
                 onCartStateChange = {this.props.onCartStateChange}
                 onClick = {this.props.onClick}
@@ -90,18 +58,17 @@ class Cart extends Component {
                 products = {this.props.products} 
                 onCartButtonClick={this.props.onCartButtonClick}
               />
-            </CartDropdownContainer>
-          </ScreenDarker>
-        </ScreenDarker>
+            :
+              '' 
+        }
       </CartButtonCOntainer>
     );
   };
 };
 
-export default withGenerateHeight(
+export default 
   withCartFunctionality(
     withTotalPrice(
       Cart
-      )
     )
   );

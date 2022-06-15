@@ -73,6 +73,7 @@ export default class Header extends Component {
             onChangeCurrency = {this.props.onChangeCurrency}
           />
           <Cart 
+            name={this.props.name} 
             onClick = {this.props.onClick}
             currency = {this.props.currency}
             cartOpen = {this.state.cartOpen}

@@ -6,9 +6,9 @@ const withGenerateHeight = WrappedComponent => {
       let winHeight = window.innerHeight;
       let rootDivHeight = document.getElementById("root").clientHeight;
       if(winHeight<rootDivHeight){
-        return rootDivHeight - 80;
+        return rootDivHeight;
       }else{
-        return winHeight - 80;
+        return winHeight;
       };
     };
     render() {

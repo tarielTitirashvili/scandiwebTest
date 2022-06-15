@@ -42,9 +42,11 @@ const withOnAddToCart = WrappedComponent => {
           ]));
         };
       }else{
-        localStorage.setItem('cart', JSON.stringify([
-          ...cart
-        ]));
+        if(cart!==null){
+          localStorage.setItem('cart', JSON.stringify([
+            ...cart
+          ]));
+        }
       }
     };
     render() {

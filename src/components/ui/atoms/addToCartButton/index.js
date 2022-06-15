@@ -6,15 +6,14 @@ import { css } from 'styled-components';
 
 const StyledCircle = styled.div`
 position: absolute;
-top: -50px;
-left: ${props=> props.left || '280px' };
+right: 15px;
+bottom: -26px;
 width: 38px;
 height: 36.6px; 
 background-color: ${props=>props.backgroundColor || props.theme.colors.primary};
 border-radius: 100%;
 padding-top: 15.4px; 
 padding-left: 14px;
-z-index: 30;
 ${props =>props.disabled && css`
   background-color: ${props=>props.backgroundColor || props.theme.colors.disabled};
 `
@@ -41,7 +40,6 @@ ${props =>props.disabled && css`
       <StyledCircle
         id='AddToCartButton'
         onClick={this.onClick} 
-        left={this.props.left}
       >
         <img src={EmptyCart} alt={'cart'}/>
       </StyledCircle>
