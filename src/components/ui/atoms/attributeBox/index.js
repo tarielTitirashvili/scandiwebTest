@@ -4,7 +4,7 @@ import { css } from 'styled-components';
 import { Text } from '../../styles/text';
 
 const AttributeContainer = styled.div`
-margin: ${props=>props.margin || '0 6px 0 0'};
+margin: ${props=>props.margin || '0 8px 0 0'};
 padding: ${props=>props.padding || '0px 5px'};
 height: ${props=>props.height || '32px'};
 min-width: ${props=>props.minWidth || '32px'};
@@ -14,10 +14,13 @@ align-items: center;
 cursor: pointer;
 ${props =>props.selectedColorContainer && css`
   border: ${props=>props.borderColor || '1px solid' + props.theme.colors.primary};
+  padding: 1px;
+
 `
 }
 ${props =>props.colorContainer && css`
   border: ${props=>props.borderColor || '1px solid' + props.theme.colors.white};
+  padding: 1px;
 `
 }
 ${props =>props.selected && css`
@@ -27,6 +30,25 @@ ${props =>props.selected && css`
 }
 ${props =>props.notSelected && css`
   border: ${props=>props.borderColor || '1px solid' + props.theme.colors.text};
+`
+}
+${props =>props.cartDropdown && css`
+height: 16px;
+min-width: 16px;
+margin: 0 6px 0 0;
+`
+}
+`;
+const NoColorAttributeContainer = styled(AttributeContainer)`
+height: 43px;
+min-width: 61px;
+margin: 0 12px 0 0;
+padding: 1px;
+${props =>props.dropdown && css`
+  height: 22px;
+  min-width: 12px;
+  padding: 0px 5px;
+  margin: 0 8px 0 0;
 `
 }
 `;
@@ -39,7 +61,30 @@ ${props =>props.whiteAtr && css`
   border: ${props=>props.borderColor || `1px solid ${props.theme.colors.text}`};
 `
 }
+${props =>props.dropdown && css`
+  height: 16px;
+  width: 16px;
+`
+}
 `;
+const SelectedValueTitle = styled(Text)`
+color: #FFFFFF;
+margin: 0;
+font-size: 1rem;
+font-family: 'Source Sans Pro', sans-serif;
+${props =>props.dropdown && css`
+font-size: 0.875rem;
+`
+}
+`
+const NotSelectedValueTitle = styled(Text)`
+margin: 0;
+font-family: 'Source Sans Pro', sans-serif;
+${props =>props.dropdown && css`
+font-size: 0.875rem;
+`
+}
+`
 
 export default class AttributeBox extends Component {
   selectedStatus(){
@@ -66,72 +111,52 @@ export default class AttributeBox extends Component {
           this.selectedStatus()? 
             this.props.type==="swatch"?
               <AttributeContainer 
-                height={`${this.props.cartDropdown?'16px':'32px'}`}
-                minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
-                margin={`${this.props.cartDropdown?'':'0 8px 0 0'}`}
-                padding={'1px'}
+                cartDropdown = {this.props.cartDropdown? true : ''}
                 selectedColorContainer 
                 onClick={this.onClick}
               >
                 <ColorsAtr 
-                  height = {`${this.props.cartDropdown?'16px':'32px'}`}
-                  width = {`${this.props.cartDropdown?'16px':'32px'}`}
-                  whiteAtr = {this.props.item.value==='$FFFFFF'? true : false}
+                  dropdown={this.props.cartDropdown? true : ''}
                   color={this.props.item.value} 
                 />
               </AttributeContainer>
             :
-              <AttributeContainer 
-                height={`${this.props.cartDropdown?'22px':'43px'}`}
-                minWidth = {`${this.props.cartDropdown?'12px':'61px'}`}
-                margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
-                padding={`${this.props.cartDropdown?'0px 5px':'1px'}`}
-                selected 
+              <NoColorAttributeContainer 
+                dropdown = {this.props.cartDropdown? true :''}
+                selected
                 onClick={this.onClick}
               >
-                <Text 
-                  fontFamily={'\'Source Sans Pro\', sans-serif;'}
-                  size={`${this.props.cartDropdown?'0.875rem':'1rem'}`}
-                  color={'#FFFFFF'} 
-                  margin = {'0'} 
+                <SelectedValueTitle 
+                  dropdown = {this.props.cartDropdown? true : '' }
                 >
                   {this.props.item.value}
-                </Text>
-              </AttributeContainer>
+                </SelectedValueTitle>
+              </NoColorAttributeContainer>
           :
             this.props.type==="swatch"?
               <AttributeContainer 
-                height={`${this.props.cartDropdown?'16px':'32px'}`}
-                minWidth = {`${this.props.cartDropdown?'16px':'32px'}`}
-                margin={`${this.props.cartDropdown?'':'0 8px 0 0'}`}
-                padding={'1px'}
+                cartDropdown = {this.props.cartDropdown? true : ''}
                 colorContainer 
                 onClick={this.onClick}
               >
                 <ColorsAtr 
-                  height = {`${this.props.cartDropdown?'16px':'32px'}`}
-                  width = {`${this.props.cartDropdown?'16px':'32px'}`}
+                  dropdown={this.props.cartDropdown? true : ''}
                   whiteAtr = {this.props.item.value==='#FFFFFF'? true : false}
                   color={this.props.item.value}
                 />
               </AttributeContainer>
             :
-              <AttributeContainer 
-                margin={`${this.props.cartDropdown?'':'0 12px 0 0'}`}
-                height={`${this.props.cartDropdown?'22px':'43px'}`}
-                minWidth = {`${this.props.cartDropdown?'12px':'61px'}`}
-                padding={`${this.props.cartDropdown?'0px 5px':'1px'}`}
+              <NoColorAttributeContainer 
+                dropdown = {this.props.cartDropdown? true :''}
                 notSelected 
                 onClick={this.onClick}
               >
-                <Text 
-                  size={`${this.props.cartDropdown?'0.875rem':'1rem'}`}
-                  margin={'0'} 
-                  fontFamily={'\'Source Sans Pro\', sans-serif;'}
+                <NotSelectedValueTitle 
+                  dropdown = {this.props.cartDropdown? true : '' }
                 >
                   {this.props.item.value}
-                </Text>
-              </AttributeContainer>
+                </NotSelectedValueTitle>
+              </NoColorAttributeContainer>
         }
       </>
     );
