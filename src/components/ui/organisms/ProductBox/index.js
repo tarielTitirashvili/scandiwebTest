@@ -14,14 +14,42 @@ ${props =>props.disabled && css`
 `
 }
 `;
-
 const Container = styled.div`
 display: flex;
 justify-content: left;
 flex-grow: 1;
 position: relative;
 background-color:${props=>props.backgroundColor || props.theme.colors.white}
+`;
+const StyledNavLink = styled(NavLink)`
+padding: 16px;
+cursor: pointer;
+box-shadow: none;
+display: flex;
+flex-direction: column;
+${props =>props.focus && css`
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
 `
+}
+`;
+const OutOfStockTitle = styled(Text)`
+position: absolute;
+top: 151px;
+left: 70px;
+font-size: 1.5rem;
+color: ${props=>props.navTitleColor || props.theme.colors.disabled};
+`;
+const ProductFullTitle = styled(Text)`
+position: relative;
+margin: 24px 0 0 0;
+font-weight: 300;
+font-size: 1.125rem;
+`;
+const PriceTitle = styled(Text)`
+margin: 0;
+font-weight: 500;
+font-size: 1.125rem;
+`;
 
 export default class ProductBox extends Component {
   constructor(props){
@@ -29,7 +57,6 @@ export default class ProductBox extends Component {
     this.state = {
       focused: false,
     };
-    this.cartPosRef = React.createRef();
   };
   onFocusStatusChange=()=>{
     this.setState(prev=>{
@@ -39,44 +66,30 @@ export default class ProductBox extends Component {
   };
   render() {
     return (
-      <NavLink 
-        ref={this.cartPosRef}
+      <StyledNavLink 
         onMouseEnter={this.onFocusStatusChange}
         onMouseLeave={this.onFocusStatusChange}
         to={`/product/${this.props.product.id}?currency=${this.props.currency}`} 
-        style={{
-          padding:'16px', 
-          cursor: 'pointer',
-          boxShadow: this.state.focused?'0px 4px 35px rgba(168, 172, 176, 0.19)':'none',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
+        focus = {this.state.focused? 'true' : ''}
         onClick={()=>this.props.onClick('')}
       >
-        <Container 
-        >
+        <Container>
           {
             this.props.product.inStock?
-            ''
+              ''
             :
-            <Text 
-            disabled
-            position={'absolute'}
-            top={'151px'}
-            left={'70px'}
-            size = {'1.5rem'}
-          >
-            OUT OF STOCK
-          </Text>
+              <OutOfStockTitle>
+                OUT OF STOCK
+              </OutOfStockTitle>
           }
           <Img 
-            disabled={this.props.product.inStock? false : true}
+            disabled={this.props.product.inStock? '' : true}
             src={this.props.product.gallery[0]} 
             alt={this.props.product.name}
           />
           { 
             this.state.focused&&this.props.product.inStock? 
-            <AddToCartButton 
+              <AddToCartButton 
                 onCartStateChange = {this.props.onCartStateChange}
                 product = {this.props.product}
               />
@@ -84,32 +97,24 @@ export default class ProductBox extends Component {
               ''
           }
         </Container>
-        <Text 
-          disabled={this.props.product.inStock? false : true}
-          position={'relative'}
-          weight={'300'} 
-          fontSize={'1.125rem'} 
-          margin={'24px 0 0 0'}
+        <ProductFullTitle 
+          disabled={this.props.product.inStock? '' : true}
         >
-
           {`${this.props.product.brand} ${this.props.product.name}`}
-        </Text>
+        </ProductFullTitle>
         {
           this.props.product.prices.map((currency)=>{
             if(this.props.currency===currency.currency.symbol){
-            return<Text 
+            return<PriceTitle 
               key={currency.currency.symbol} 
               disabled={this.props.product.inStock? false : true}
-              weight={'500'} 
-              fontSize={'1.125rem'} 
-              margin={'0'}
             >
             {`${currency.currency.symbol}${currency.amount}`}
-            </Text>;
+            </PriceTitle>;
             }else {return ''};
           })
         }
-      </NavLink>
+      </StyledNavLink>
     );
   };
 };

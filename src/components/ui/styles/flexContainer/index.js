@@ -20,6 +20,10 @@ ${props =>props.cartProduct && css`
 margin: 24px 0;
 `
 }
+${props =>props.dropdownTotalWrapper && css`
+  margin: 32px 16px; 
+`
+}
 `
 
 const FlexContainer = styled.div`

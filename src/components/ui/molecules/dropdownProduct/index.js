@@ -15,21 +15,21 @@ const ProductTitle = styled(SmallTitle)`
 cursor: text;
 font-weight: 300;
 margin: 0;
-`
+`;
 const CurrencyTitle = styled(Text)`
 cursor: text;
 font-weight: 500;
 margin: 4px 0 8px 0;
-`
+`;
 
 const Img = styled.img`
 width: 100%;
 height: 100%;
 object-fit: cover;
-`
+`;
 const CartProductInfoWrapper = styled.div`
 width: 136px;
-`
+`;
 
 export default class DropdownProduct extends Component {
   render() {

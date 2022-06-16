@@ -10,7 +10,7 @@ cursor: text;
 font-size: 2rem; 
 font-weight: 700;
 margin: 80px 0 55px 0;
-`
+`;
 
 class Cart extends Component {
   componentDidUpdate(prevProps){

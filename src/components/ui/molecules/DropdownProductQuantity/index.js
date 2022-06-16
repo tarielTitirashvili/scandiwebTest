@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Text } from '../../styles/text';
 
@@ -12,7 +12,7 @@ font-size: 16px;
 border: ${props=>props.borderColor || '1px solid'+props.theme.colors.text};
 `;
 const Container = styled.div`
-margin: 0 8px 0 4px;
+margin: 0;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
@@ -20,7 +20,6 @@ align-items: center;
 `;
 
 export default class DropdownProductQuantity extends Component {
-  
   render() {
     return (
       <Container>

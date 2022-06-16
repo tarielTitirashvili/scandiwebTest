@@ -13,7 +13,12 @@ top: ${props=>props.top};
 left: ${props=>props.left};
 color: ${props=>props.color || props.theme.colors.text};
 ${props =>props.disabled && css`
-  color: ${props=>props.navTitleColor || props.theme.colors.disabled};
+ 
+`
+}
+${props =>props.dropdownBagItems && css`
+cursor: text;
+margin: 0 0 0 4px;
 `
 }
 `;

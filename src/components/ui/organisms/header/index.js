@@ -5,6 +5,21 @@ import HeaderContainer from './../../styles/headerContainer/index';
 import Currency from './currencies/index';
 import Cart from './cart';
 import NavCategories from '../../molecules/navCategories';
+import styled from 'styled-components';
+
+const NavContainer = styled(FlexContainer)`
+align: center;
+hight: 5rem;
+`;
+const LogoContainer = styled(FlexContainer)`
+align = {'center'}
+margin={'9px 0 0 0'}
+justify={'center'}
+`;
+const DropdownButtonsContainer = styled(FlexContainer)`
+align-items: center;
+justify-content: right;
+`;
 
 export default class Header extends Component {
   constructor(props){
@@ -45,7 +60,7 @@ export default class Header extends Component {
   render() {
     return (
       <HeaderContainer>
-        <FlexContainer align = {'center'} hight = {'5rem'}>
+        <NavContainer>
           {this.props.categories.map((category, index)=>
             <NavCategories 
               currency={this.props.currency}
@@ -56,15 +71,11 @@ export default class Header extends Component {
               onClick={this.props.onClick} 
             />
           )}
-        </FlexContainer>
-        <FlexContainer 
-          align = {'center'} 
-          margin={'9px 0 0 0'} 
-          justify={'center'} 
-        >
+        </NavContainer>
+        <LogoContainer>
           <img src={Bag} alt = 'Bag'/>
-        </FlexContainer>
-        <FlexContainer align={'center'} justify={'right'}>
+        </LogoContainer>
+        <DropdownButtonsContainer>
           <Currency 
             currenciesOpen = {this.state.currenciesOpen}
             onCurrencyClick ={this.onCurrencyClick}
@@ -81,7 +92,7 @@ export default class Header extends Component {
             cartChanged = {this.props.cartChanged}
             onCartStateChange={this.props.onCartStateChange}
           />
-        </FlexContainer>
+        </DropdownButtonsContainer>
       </HeaderContainer>
     );
   };

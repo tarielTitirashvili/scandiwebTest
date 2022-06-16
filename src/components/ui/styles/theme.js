@@ -9,7 +9,6 @@ export const theme = {
   },
   fontSizes: {
     navTitle: '1rem',
-    
   },
   fontWeight:{
     selectedNavTitle: 600,

@@ -15,7 +15,7 @@ ${props =>props.cartDropdown && css`
   font-size: 0.875rem;
 `
 }
-`
+`;
 const AttributesContainer = styled(FlexContainer)`
 height: auto;
 margin: 8px 0 16px 0;
@@ -23,7 +23,7 @@ ${props =>props.cartDropdown && css`
 margin: 8px 0;
 `
 }
-`
+`;
 
 export default class Attributes extends Component {
   render() {

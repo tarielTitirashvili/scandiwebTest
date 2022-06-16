@@ -10,7 +10,7 @@ import Loading from '../loading';
 
 const ProductInfoContainer = styled(FlexContainer)`
 margin: 33.4px 0 0 0;
-`
+`;
 
 export default class Product extends Component {
   constructor(props){

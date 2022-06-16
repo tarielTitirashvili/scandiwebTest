@@ -29,7 +29,7 @@ justify-content: space-between;
 `;
 const CartImageContainer = styled.span`
 position: relative;
-`
+`;
 
 export default class CartImagePlayer extends Component {
   constructor(props){

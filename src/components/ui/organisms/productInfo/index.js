@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SmallTitle } from '../../styles/titles';
+import { ProductBrandTitle, SmallTitle } from '../../styles/titles';
 import Attributes from '../../molecules/attributes';
 import ProductPrice from '../../atoms/productPrice';
 import CartButton from '../../styles/Button';
@@ -12,6 +12,12 @@ const ProductInfoContainer = styled.div`
 width: 308px;
 margin-bottom: 32.4px;
 margin-left: 100px;
+`;
+const AddToCartButton = styled(CartButton)`
+margin: 0 16px 40px 0;
+`;
+const ProductDescription = styled(Text)`
+font-family: 'Roboto', sans-serif;
 `;
 
 class ProductInfo extends Component {
@@ -47,20 +53,13 @@ class ProductInfo extends Component {
   render() {
     return (
       <ProductInfoContainer>
-          <SmallTitle 
-            weight={600} 
-            size={'1.875rem'} 
-            lineHeight={'27px'} 
-            margin={'0 0 16px 0'} 
-            cursor = {'auto'}
+          <ProductBrandTitle 
+            productInfoTitle
           >
             {this.props.product.brand}
-          </SmallTitle>
+          </ProductBrandTitle>
           <SmallTitle  
-            size={'1.875rem'} 
-            lineHeight={'27px'} 
-            margin={'0 0 43px 0'} 
-            cursor = {'auto'}
+            productInfoTitle
           >
             {this.props.product.name}
           </SmallTitle>
@@ -78,16 +77,15 @@ class ProductInfo extends Component {
             currency = {this.props.currency}
             prices = {this.props.product.prices}
           />
-          <CartButton 
-            margin = {'0 16px 40px 0'}
+          <AddToCartButton 
+            disabled={this.props.product.inStock? '' : true}
             onClick={this.addToCart}
-            disabled={this.props.product.inStock? false : true}
           >
             ADD TO CART
-          </CartButton>
-          <Text fontFamily={'\'Roboto\', sans-serif'} >
+          </AddToCartButton>
+          <ProductDescription>
             <Interweave content={this.props.product.description}/>
-          </Text>
+          </ProductDescription>
       </ProductInfoContainer>
     );
   };

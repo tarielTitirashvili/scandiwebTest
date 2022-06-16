@@ -6,7 +6,7 @@ import Title from '../../styles/titles';
 
 const StyledNavLink = styled(NavLink)`
 height: 100%;
-`
+`;
 
 export default class NavCategories extends Component {
   render() {

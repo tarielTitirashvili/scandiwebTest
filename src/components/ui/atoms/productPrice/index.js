@@ -16,7 +16,7 @@ const Price = styled(PriceText)`
 margin: 0 0 20px 0;
 font-size: 1.5rem;
 height: 46px;
-`
+`;
 
 export default class ProductPrice extends Component {
   render() {

@@ -2,13 +2,43 @@ import React, { Component } from 'react';
 import FlexContainer from '../../styles/flexContainer/index';
 import CartProduct from '../../molecules/cartProduct';
 import CartButton from '../../styles/Button';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Text } from '../../styles/text';
+import { CartSummaryNumTitle } from '../../styles/titles';
 
 const Divider = styled.div`
 background-color: ${props=>props.color || props.theme.colors.divider};
 height: 1px;
 width: 100%;
+`;
+const Containers = styled(FlexContainer)`
+margin: 32px 0 8px 0;
+justify-content: left;
+${props =>props.quantity && css`
+  margin: 0 0 8px 0;
+`
+}
+${props =>props.total && css`
+  margin: 0 0 16px 0;
+`
+}
+`;
+const OrderWrapper = styled.div`
+width: 279px;
+height: 43px;
+margin-bottom: 200px;
+`;
+const OrderButton = styled(CartButton)`
+font-size: 0.875rem;
+padding: 13.1px;
+`;
+const CartSummaryTitle = styled(Text)`
+cursor: text;
+margin: 0;
+${props =>props.total && css`
+  font-weight: 500;
+`
+}
 `;
 
 class CartPage extends Component {
@@ -19,7 +49,7 @@ class CartPage extends Component {
   render() {
     return (
       <div >
-        <FlexContainer display = {'inline'} >
+        <div>
           {this.props.products.map((product, index)=>{
             return<div key={`${product.product.id}${index}`}>
               <Divider/>
@@ -32,73 +62,50 @@ class CartPage extends Component {
               />
             </div>
           })}
-        <Divider/>
-        </FlexContainer>
-        <FlexContainer 
-          margin={'32px 0 8px 0'} 
-          justify={'left'} 
-        >
-          <Text 
-            cursor={'text'}  
-            margin={'0'} 
-          >
+          <Divider/>
+        </div>
+        <Containers>
+          <CartSummaryTitle>
           Tax 21%: 
-          </Text>
-          <Text 
-            cursor={'text'} 
-            weight={'700'} 
-            margin = {'0 0 0 4px'}
-          >
+          </CartSummaryTitle>
+          <CartSummaryNumTitle>
             {this.props.currency}{Math.round(this.props.total*0.21*100)/100}
-          </Text>
-        </FlexContainer>
-        <FlexContainer 
-          margin={'0 0 8px 0'} 
-          justify={'left'} 
+          </CartSummaryNumTitle>
+        </Containers>
+        <Containers
+          quantity
         >
-          <Text 
-            cursor={'text'}  
-            margin={'0'} 
-          >
+          <CartSummaryTitle >
             Quantity:  
-          </Text>
-          <Text 
-            cursor={'text'} 
-            weight={'700'} 
-            margin = {'0 0 0 4px'}
+          </CartSummaryTitle>
+          <CartSummaryNumTitle 
+            quantity
           >
             {this.props.quantity}
-          </Text>
-        </FlexContainer>
-        <FlexContainer 
-          margin={'0 0 16px 0'} 
-          justify={'left'}
+          </CartSummaryNumTitle>
+        </Containers>
+        <Containers 
+          total 
         >
-          <Text 
-            cursor={'text'} 
-            margin={'0'} 
-            weight={'500'}
+          <CartSummaryTitle 
+            total
           >
             Total:
-          </Text>
-          <Text 
-            cursor={'text'} 
-            weight={'700'}  
-            margin = {'0 0 0 4px'}
+          </CartSummaryTitle>
+          <CartSummaryNumTitle 
+            total
           >
            {this.props.currency}{this.props.total}
-          </Text>
-        </FlexContainer>
+          </CartSummaryNumTitle>
+        </Containers>
         <FlexContainer>
-          <div style={{width: '279px', height: '43px', marginBottom: '200px'}}>
-            <CartButton 
+          <OrderWrapper>
+            <OrderButton 
               onClick={this.checkOut} 
-              size={'0.875rem'} 
-              padding={'13.1px'}
             >
               ORDER
-            </CartButton>
-          </div>
+            </OrderButton>
+          </OrderWrapper>
         </FlexContainer>
       </div>
     );
