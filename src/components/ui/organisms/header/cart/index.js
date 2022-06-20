@@ -46,12 +46,10 @@ class Cart extends Component {
         { 
           this.props.cartOpen? 
               <DropdownCart 
-                name={this.props.name} 
                 total = {this.props.total}
                 onCartStateChange = {this.props.onCartStateChange}
                 onClick = {this.props.onClick}
                 onCheckOut = {this.props.onCheckOut}
-                cartOpen = {this.props.cartOpen}
                 quantity = {this.props.quantity}
                 onChangeCount = {this.props.onChangeCount}
                 currency = {this.props.currency} 

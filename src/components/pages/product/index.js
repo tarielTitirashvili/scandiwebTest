@@ -9,47 +9,44 @@ import Error404 from '../404error';
 import Loading from '../loading';
 
 const ProductInfoContainer = styled(FlexContainer)`
-margin: 33.4px 0 0 0;
+  justify-content: space-between;
+  margin: 33.4px 0 0 0;
 `;
 
 export default class Product extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       product: {},
-      loading: true
+      loading: true,
     };
   };
   getProductsById = async () => {
     const pathArray = window.location.pathname.split('/');
-    const {data, loading} = await client.query({
-        query: GET_PRODUCT_BY_ID,
-        variables: {
-          id: pathArray[2],
-        },
+    const { data, loading } = await client.query({
+      query: GET_PRODUCT_BY_ID,
+      variables: {
+        id: pathArray[2],
+      },
     });
-    this.setState((
-      {
-        product: data.product,
-        loading: loading
-      }
-    ));
-  };  
-  componentDidMount(){
+    this.setState({
+      product: data.product,
+      loading: loading,
+    });
+  };
+  componentDidMount() {
     this.getProductsById();
   };
   render() {
-    if(this.state.loading)return <Loading/>;
-    if(this.state.product===null) return<Error404 />
+    if (this.state.loading) return <Loading />;
+    if (this.state.product === null) return <Error404 />;
     return (
       <ProductInfoContainer>
-        <ImagesPlayer 
-          gallery = {this.state.product.gallery}
-        />
-        <ProductInfo 
-          product = {this.state.product} 
-          currency = {this.props.currency}
-          onCartStateChange = {this.props.onCartStateChange}
+        <ImagesPlayer gallery={this.state.product.gallery} />
+        <ProductInfo
+          product={this.state.product}
+          currency={this.props.currency}
+          onCartStateChange={this.props.onCartStateChange}
         />
       </ProductInfoContainer>
     );

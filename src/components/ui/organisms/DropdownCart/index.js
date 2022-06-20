@@ -50,7 +50,7 @@ font-weight: 500;
 
 class DropdownCart extends Component {
   render() {
-    if(this.props.cartOpen)return(
+    return(
       <BackgroundContainer
         height={this.props.generateHight()}
       >
@@ -108,7 +108,6 @@ class DropdownCart extends Component {
         </BackgroundDarker>
       </BackgroundContainer>
     );
-    return <></>
   };
 };
 

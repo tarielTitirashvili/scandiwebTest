@@ -4,13 +4,13 @@ import FlexContainer from '../../styles/flexContainer';
 
 
 const GalleryImage = styled.img`
-width: 97px;
+width: 106.3px;
 height:87px;
 object-fit: cover;
 margin-bottom: 32.4px;
 `;
 const GalleryContainer = styled(FlexContainer)`
-width: 113.5px;
+width: 122.3px;
 height: 511px;
 z-index: 0;
 overflow: auto;

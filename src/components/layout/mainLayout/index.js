@@ -157,7 +157,6 @@ export class MainLayout extends React.Component {
               element = {
                 <Product 
                   onCartStateChange={this.onCartStateChange}
-                  name={this.state.name} 
                   currency={this.state.currency}
                 />
               } 
@@ -168,7 +167,6 @@ export class MainLayout extends React.Component {
                 <Cart 
                   cartChanged = {this.state.cartChanged}
                   onCartStateChange={this.onCartStateChange} 
-                  name={this.state.name} 
                   currency={this.state.currency} 
                 />
               } 

@@ -8,7 +8,9 @@ import { Text } from '../../styles/text';
 
 const ImageContainer = styled.div`
 width: 121px;
-height: 190px;
+min-height: 190px;
+display: flex;
+align-items: center;
 `;
 
 const ProductTitle = styled(SmallTitle)`
@@ -23,9 +25,8 @@ margin: 4px 0 8px 0;
 `;
 
 const Img = styled.img`
-width: 100%;
-height: 100%;
-object-fit: cover;
+max-width: 100%;
+max-height: 100%;
 `;
 const CartProductInfoWrapper = styled.div`
 width: 136px;

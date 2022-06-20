@@ -4,8 +4,8 @@ import vectorRight from '../../../../assets/Vector(1).svg';
 import vectorLeft from '../../../../assets/Vector(2).svg';
 
 const Img = styled.img`
-width: 200px;
-height: 288px;
+max-width: 200px;
+max-height: 288px;
 object-fit: cover;
 margin-left: 24px;
 `;
@@ -29,6 +29,14 @@ justify-content: space-between;
 `;
 const CartImageContainer = styled.span`
 position: relative;
+display: flex;
+align-items: center;
+`;
+const CartImageWrapper = styled.span`
+width: 200px;
+height: 288px;
+display: flex;
+align-items: center;
 `;
 
 export default class CartImagePlayer extends Component {
@@ -68,22 +76,24 @@ export default class CartImagePlayer extends Component {
   };
   render() {
     return (
-      <CartImageContainer>
-        <Img src={this.props.gallery[this.state.imageNum]} alt={this.props.name} />
-        {
-          this.props.gallery.length>1?
-            <ButtonContainer>
-            <ChangeImageButton onClick={this.onDecrease}>
-              <img src={vectorLeft} alt='vectorLeft' />
-            </ChangeImageButton>
-            <ChangeImageButton onClick={this.onIncrease}>
-              <img src={vectorRight} alt='vectorRight' />
-            </ChangeImageButton>
-            </ButtonContainer>
-          :
-            ''
-        }
-      </CartImageContainer>
+      <CartImageWrapper>
+        <CartImageContainer>
+          <Img src={this.props.gallery[this.state.imageNum]} alt={this.props.name} />
+          {
+            this.props.gallery.length>1?
+              <ButtonContainer>
+              <ChangeImageButton onClick={this.onDecrease}>
+                <img src={vectorLeft} alt='vectorLeft' />
+              </ChangeImageButton>
+              <ChangeImageButton onClick={this.onIncrease}>
+                <img src={vectorRight} alt='vectorRight' />
+              </ChangeImageButton>
+              </ButtonContainer>
+            :
+              ''
+          }
+        </CartImageContainer>
+      </CartImageWrapper>
     );
   };
 };
